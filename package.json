@@ -1,0 +1,51 @@
+{
+  "name": "parser",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Matheus Hernandes",
+    "email": "",
+    "url": "onhernandes.github.io"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    ""
+  ],
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.9",
+    "jest": "^26.1.0",
+    "lint-staged": "^9.4.3"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "git@github.com:onhernandes/parser.git",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "MIT"
+}

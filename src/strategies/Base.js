@@ -31,4 +31,13 @@ Base.prototype.parse = function parse (data, options) {
   throw new NotImplemented()
 }
 
+/**
+ * Base.prototype.pipe - prototype for streams
+ *
+ * @throws {NotImplemented} This method must be implemented
+ */
+Base.prototype.pipe = function pipe () {
+  throw new NotImplemented()
+}
+
 module.exports = Base

@@ -9,7 +9,7 @@
     "url": "onhernandes.github.io"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "main": "lib/index.js",
   "keywords": [
@@ -31,6 +31,7 @@
   },
   "lint-staged": {
     "*.js": [
+      "./node_modules/.bin/jest",
       "eslint --fix",
       "git add"
     ]

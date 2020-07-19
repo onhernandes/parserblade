@@ -48,5 +48,8 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  }
 }

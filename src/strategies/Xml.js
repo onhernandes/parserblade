@@ -65,4 +65,17 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
   return xml.js2xml(data, config)
 }
 
+/**
+ * Xml.prototype.parse - receives an XML string and translate it to valid JavaScript
+ *
+ * @param {string} data
+ * @param {object} options
+ * @throws {NotImplemented} This method must be implemented
+ */
+/*
+Xml.prototype.parse = function parse (data, options) {
+  return xml.xml2js(data)
+}
+*/
+
 module.exports = Xml

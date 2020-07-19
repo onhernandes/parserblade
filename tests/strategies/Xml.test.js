@@ -1,5 +1,5 @@
 const Xml = require('../../src/strategies/Xml')
-// const ParserError = require('../../src/errors/ParserError')
+const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
 const strategy = new Xml()
 
@@ -37,8 +37,67 @@ describe('Xml Strategy', function () {
     expect(result).toBe(expected)
   })
 
-  it('throws NotImplemented error for parse()', function () {
-    expect(strategy.parse).toThrow(NotImplemented)
+  it('parses XML string to JS object', function () {
+    const data = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package></packages>'
+    const expected = {
+      packages: {
+        name: { _text: 'Hernandes' },
+        package: { _text: 'parser' }
+      }
+    }
+    const result = strategy.parse(data)
+    expect(result).toStrictEqual(expected)
+  })
+
+  it('parses XML string to JS object array', function () {
+    const data = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package><name>Hernandes</name><package>parser</package></packages>'
+    const expected = {
+      packages: {
+        name: [
+          { _text: 'Hernandes' },
+          { _text: 'Hernandes' }
+        ],
+        package: [
+          { _text: 'parser' },
+          { _text: 'parser' }
+        ]
+      }
+    }
+    const result = strategy.parse(data)
+    expect(result).toStrictEqual(expected)
+  })
+
+  it('throws ParserError for missing parent tag', function () {
+    const data = '<?xml version="1.0" encoding="utf-8"?><name>Hernandes</name><package>parser</package><name>Hernandes</name><package>parser</package>'
+    try {
+      strategy.parse(data)
+    } catch (error) {
+      expect(error).toBeInstanceOf(ParserError)
+    }
+  })
+
+  it('parses XML string, including _declaration', function () {
+    const data = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package><name>Hernandes</name><package>parser</package></packages>'
+    const expected = {
+      _declaration: {
+        _attributes: {
+          encoding: 'utf-8',
+          version: 1
+        }
+      },
+      packages: {
+        name: [
+          { _text: 'Hernandes' },
+          { _text: 'Hernandes' }
+        ],
+        package: [
+          { _text: 'parser' },
+          { _text: 'parser' }
+        ]
+      }
+    }
+    const result = strategy.parse(data, { showDeclaration: true })
+    expect(result).toStrictEqual(expected)
   })
 
   it('throws NotImplemented error for pipe()', () => {

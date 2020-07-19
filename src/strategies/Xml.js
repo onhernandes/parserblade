@@ -1,5 +1,5 @@
 const Base = require('./Base')
-// const ParserError = require('../errors/ParserError')
+const ParserError = require('../errors/ParserError')
 const xml = require('xml-js')
 
 /**
@@ -70,12 +70,26 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
  *
  * @param {string} data
  * @param {object} options
+ * @param {object} options.showDeclaration - force parsing XML declaration tag
  * @throws {NotImplemented} This method must be implemented
  */
-/*
-Xml.prototype.parse = function parse (data, options) {
-  return xml.xml2js(data)
+Xml.prototype.parse = function parse (data, options = {}) {
+  try {
+    const config = {
+      compact: true,
+      ignoreDeclaration: true,
+      nativeType: true,
+      nativeTypeAttributes: true
+    }
+
+    if (options.showDeclaration) {
+      config.ignoreDeclaration = false
+    }
+
+    return xml.xml2js(data, config)
+  } catch (error) {
+    throw new ParserError(error.message)
+  }
 }
-*/
 
 module.exports = Xml

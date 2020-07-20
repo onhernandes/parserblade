@@ -41,7 +41,8 @@
     }
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "tdd": "./node_modules/.bin/jest --watch"
   },
   "repository": "git@github.com:onhernandes/parser.git",
   "jest": {
@@ -49,6 +50,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "js-yaml": "^3.14.0",
     "xml-js": "^1.6.11"
   }
 }

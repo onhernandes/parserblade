@@ -29,7 +29,7 @@ Json.prototype.parse = function parse (data) {
  * @param {*} data
  * @returns {string}
  */
-Json.prototype.stringify = function parse (data) {
+Json.prototype.stringify = function stringify (data) {
   return JSON.stringify(data)
 }
 

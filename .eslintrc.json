@@ -16,5 +16,6 @@
         "ecmaVersion": 11
     },
     "rules": {
-    }
+    },
+    "ignorePatterns": ["docs/**"]
 }

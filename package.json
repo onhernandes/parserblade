@@ -24,6 +24,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.9",
     "jest": "^26.1.0",
+    "jsdoc": "^3.6.4",
     "lint-staged": "^9.4.3"
   },
   "engines": {
@@ -42,7 +43,9 @@
   },
   "scripts": {
     "test": "jest",
-    "tdd": "./node_modules/.bin/jest --watch"
+    "tdd": "./node_modules/.bin/jest --watch",
+    "docs": "./node_modules/.bin/jsdoc -d docs src/**",
+    "lint": "./node_modules/.bin/eslint"
   },
   "repository": "git@github.com:onhernandes/parser.git",
   "jest": {

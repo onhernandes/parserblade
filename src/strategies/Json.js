@@ -3,6 +3,8 @@ const ParserError = require('../errors/ParserError')
 
 /**
  * Json - Support for JSON filetype
+ *
+ * @constructor
  */
 function Json () {}
 

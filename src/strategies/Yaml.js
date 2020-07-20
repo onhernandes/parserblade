@@ -4,6 +4,8 @@ const yaml = require('js-yaml')
 
 /**
  * Yaml - Support for YAML filetype
+ *
+ * @constructor
  */
 function Yaml () {
 }

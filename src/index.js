@@ -1,12 +1,14 @@
 const {
   Json,
   Xml,
-  Yaml
+  Yaml,
+  Csv
 } = require('./strategies')
 const Parser = require('./Parser')
 
 module.exports = {
   json: new Parser(new Json()),
   xml: new Parser(new Xml()),
-  yaml: new Parser(new Yaml())
+  yaml: new Parser(new Yaml()),
+  csv: new Parser(new Csv())
 }

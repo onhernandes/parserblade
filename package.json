@@ -31,7 +31,6 @@
   },
   "lint-staged": {
     "*.js": [
-      "./node_modules/.bin/jest --no-cache",
       "eslint --fix",
       "git add"
     ]

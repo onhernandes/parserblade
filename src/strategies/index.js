@@ -1,3 +1,4 @@
 const Json = require('./Json')
+const Xml = require('./Xml')
 
-module.exports = { Json }
+module.exports = { Json, Xml }

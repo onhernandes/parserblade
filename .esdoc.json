@@ -1,0 +1,17 @@
+{
+  "source": "./src",
+  "destination": "./docs",
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "brand": {
+        "title": "parser -  the all-in-one filetype parser for javascript",
+        "description": "Don't worry about which module install or how to use it, the parser solves everything for you. Use it as simple as JSON.stringify() or JSON.parse() - but for XML, CSV, YAML and JSON. All in one place."
+      }
+    },
+    {
+      "name": "esdoc-ecmascript-proposal-plugin",
+      "option": { "all": true }
+    }
+  ]
+}

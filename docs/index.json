@@ -1,0 +1,2104 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/Parser.js",
+    "content": "/**\n * Parser - Receives any strategy and safely implement it\n *\n * @constructor\n * @param {Base} strategy - Any strategy implementing the Base's prototype\n */\nfunction Parser (strategy) {\n  this.strategy = strategy\n}\n\n/**\n * Parser.prototype.parse - Exposes the parsing from string to any valid JS type with the strategy\n *\n * @param {string} data\n * @param {object} options\n */\nParser.prototype.parse = function parse (data, options) {\n  return this.strategy.parse(data, options)\n}\n\n/**\n * Parser.prototype.stringify - Exposes the stringify() method from any valid JS type to expected type with the strategy\n *\n * @param {*} data\n * @param {object} options\n */\nParser.prototype.stringify = function stringify (data, options) {\n  return this.strategy.stringify(data, options)\n}\n\nParser.prototype.get = function get (data, path) {}\n\nParser.prototype.has = function has (data, path) {}\n\nmodule.exports = Parser\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/Parser.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "function",
+    "name": "Parser",
+    "memberof": "src/Parser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/Parser.js~Parser",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/Parser.js",
+    "importStyle": null,
+    "description": "Parser - Receives any strategy and safely implement it",
+    "lineNumber": 7,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Base"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strategy",
+        "description": "Any strategy implementing the Base's prototype"
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/Parser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/Parser.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/Parser.js",
+    "importStyle": null,
+    "description": "Parser.prototype.parse - Exposes the parsing from string to any valid JS type with the strategy",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/Parser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/Parser.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/Parser.js",
+    "importStyle": null,
+    "description": "Parser.prototype.stringify - Exposes the stringify() method from any valid JS type to expected type with the strategy",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 52,
+    "kind": "function",
+    "name": "get",
+    "memberof": "src/Parser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/Parser.js~get",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/Parser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "path",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 53,
+    "kind": "function",
+    "name": "has",
+    "memberof": "src/Parser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/Parser.js~has",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/Parser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "path",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "src/errors/NotImplemented.js",
+    "content": "/**\n * NotImplemented\n */\nfunction NotImplemented () {\n  this.name = 'NotImplemented'\n  this.message = 'This method haven\\'t been implemented yet'\n}\n\nNotImplemented.prototype = new Error()\n\nmodule.exports = NotImplemented\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/errors/NotImplemented.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
+    "kind": "function",
+    "name": "NotImplemented",
+    "memberof": "src/errors/NotImplemented.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/errors/NotImplemented.js~NotImplemented",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/errors/NotImplemented.js",
+    "importStyle": null,
+    "description": "NotImplemented",
+    "lineNumber": 4,
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 56,
+    "kind": "file",
+    "name": "src/errors/ParserError.js",
+    "content": "/**\n * ParseError\n */\nfunction ParseError (format) {\n  this.name = 'ParseError'\n  this.message = `Failed to parse ${format}`\n}\n\nParseError.prototype = new Error()\n\nmodule.exports = ParseError\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/errors/ParserError.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 57,
+    "kind": "function",
+    "name": "ParseError",
+    "memberof": "src/errors/ParserError.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/errors/ParserError.js~ParseError",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/errors/ParserError.js",
+    "importStyle": null,
+    "description": "ParseError",
+    "lineNumber": 4,
+    "params": [
+      {
+        "name": "format",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 58,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "const {\n  Json,\n  Xml,\n  Yaml,\n  Csv\n} = require('./strategies')\nconst Parser = require('./Parser')\n\nmodule.exports = {\n  json: new Parser(new Json()),\n  xml: new Parser(new Xml()),\n  yaml: new Parser(new Yaml()),\n  csv: new Parser(new Csv())\n}\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 59,
+    "kind": "variable",
+    "name": "Json",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~Json",
+    "access": "public",
+    "export": false,
+    "importPath": "parser",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "Parser",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~Parser",
+    "access": "public",
+    "export": false,
+    "importPath": "parser",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/strategies/Base.js",
+    "content": "const NotImplemented = require('../errors/NotImplemented')\n\n/**\n * Base class for strategies around the Parser\n * Every function that haven't been implemented\n * will throw an NotImplementedError\n *\n * @constructor\n */\nfunction Base () {}\n\n/**\n * Base.prototype.stringify - receives * form of data and turns it into a string\n *\n * @param {*} data\n * @param {object} options\n * @throws {NotImplemented} This method must be implemented\n */\nBase.prototype.stringify = function stringify (data, options) {\n  throw new NotImplemented()\n}\n\n/**\n * Base.prototype.parse - receives an string and translate it to valid JavaScript\n *\n * @param {string} data\n * @param {object} options\n * @throws {NotImplemented} This method must be implemented\n */\nBase.prototype.parse = function parse (data, options) {\n  throw new NotImplemented()\n}\n\n/**\n * Base.prototype.pipe - prototype for streams\n *\n * @throws {NotImplemented} This method must be implemented\n */\nBase.prototype.pipe = function pipe () {\n  throw new NotImplemented()\n}\n\nmodule.exports = Base\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/Base.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "variable",
+    "name": "NotImplemented",
+    "memberof": "src/strategies/Base.js",
+    "static": true,
+    "longname": "src/strategies/Base.js~NotImplemented",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Base.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "Base",
+    "memberof": "src/strategies/Base.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Base.js~Base",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Base.js",
+    "importStyle": null,
+    "description": "Base class for strategies around the Parser\nEvery function that haven't been implemented\nwill throw an NotImplementedError",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 64,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/strategies/Base.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Base.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Base.js",
+    "importStyle": null,
+    "description": "Base.prototype.stringify - receives * form of data and turns it into a string",
+    "lineNumber": 19,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "throws": [
+      {
+        "types": [
+          "NotImplemented"
+        ],
+        "description": "This method must be implemented"
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 65,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/strategies/Base.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Base.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Base.js",
+    "importStyle": null,
+    "description": "Base.prototype.parse - receives an string and translate it to valid JavaScript",
+    "lineNumber": 30,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "throws": [
+      {
+        "types": [
+          "NotImplemented"
+        ],
+        "description": "This method must be implemented"
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "function",
+    "name": "pipe",
+    "memberof": "src/strategies/Base.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Base.js~pipe",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Base.js",
+    "importStyle": null,
+    "description": "Base.prototype.pipe - prototype for streams",
+    "lineNumber": 39,
+    "throws": [
+      {
+        "types": [
+          "NotImplemented"
+        ],
+        "description": "This method must be implemented"
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "src/strategies/Csv.js",
+    "content": "const Base = require('./Base')\n// const ParserError = require('../errors/ParserError')\nconst csvParser = require('csv-parse/lib/sync')\nconst csvStringify = require('csv-stringify/lib/sync')\n\n/**\n * Csv - Support for CSV filetype\n *\n * @constructor\n */\nfunction Csv () {}\n\nCsv.prototype = Object.create(Base.prototype)\n\n/**\n * Csv.prototype.parse - receives an CSV string and returns valid JS\n *\n * @param {string} data\n * @param {object} options\n * @param {boolean} options.headers - If should parse first line as the headers, default is true\n * @param {(string|Buffer)} options.delimiter - Which delimiters to use when parsing, defaults to comma `,`\n * @param {number} options.skipLines - How many lines it should skip before parsing, defaults to 1\n * @param {number} options.offset - How many lines it should parse, defaults to -1\n * @returns {array}\n */\nCsv.prototype.parse = function parse (data, options = {}) {\n  const config = {\n    columns: true,\n    skip_empty_lines: true,\n    delimiter: options.delimiter || ',',\n    from_line: options.skipLines || 1\n  }\n\n  if (options.headers === false) {\n    config.columns = false\n  }\n\n  if (options.offset) {\n    config.to_line = options.offset\n  }\n\n  return csvParser(data, config)\n}\n\n/**\n * Csv.prototype.stringify - receives * valid JS data and returns it as CSV\n *\n * @param {array} data\n * @param {object} options\n * @param {boolean} options.headers - If should set first line as the headers, default is true\n * @param {(array|object)} options.columns - Custom column mapping, see examples for more\n * @returns {string}\n */\nCsv.prototype.stringify = function stringify (data, options = {}) {\n  const config = {\n    header: true\n  }\n\n  if (options.headers === false) {\n    config.header = false\n  }\n\n  if (options.columns) {\n    config.columns = options.columns\n  }\n\n  return csvStringify(data, config)\n}\n\nmodule.exports = Csv\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/Csv.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "variable",
+    "name": "Base",
+    "memberof": "src/strategies/Csv.js",
+    "static": true,
+    "longname": "src/strategies/Csv.js~Base",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "variable",
+    "name": "csvParser",
+    "memberof": "src/strategies/Csv.js",
+    "static": true,
+    "longname": "src/strategies/Csv.js~csvParser",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "variable",
+    "name": "csvStringify",
+    "memberof": "src/strategies/Csv.js",
+    "static": true,
+    "longname": "src/strategies/Csv.js~csvStringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "function",
+    "name": "Csv",
+    "memberof": "src/strategies/Csv.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Csv.js~Csv",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": "Csv - Support for CSV filetype",
+    "lineNumber": 11,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/strategies/Csv.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Csv.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": "Csv.prototype.parse - receives an CSV string and returns valid JS",
+    "lineNumber": 26,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{array}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.headers",
+        "description": "If should parse first line as the headers, default is true"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string",
+          "Buffer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.delimiter",
+        "description": "Which delimiters to use when parsing, defaults to comma `,`"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.skipLines",
+        "description": "How many lines it should skip before parsing, defaults to 1"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.offset",
+        "description": "How many lines it should parse, defaults to -1"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "array"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/strategies/Csv.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Csv.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Csv.js",
+    "importStyle": null,
+    "description": "Csv.prototype.stringify - receives * valid JS data and returns it as CSV",
+    "lineNumber": 54,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.headers",
+        "description": "If should set first line as the headers, default is true"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "array",
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.columns",
+        "description": "Custom column mapping, see examples for more"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "file",
+    "name": "src/strategies/Json.js",
+    "content": "const Base = require('./Base')\nconst ParserError = require('../errors/ParserError')\n\n/**\n * Json - Support for JSON filetype\n *\n * @constructor\n */\nfunction Json () {}\n\nJson.prototype = Object.create(Base.prototype)\n\n/**\n * Json.prototype.parse - receives an JSON string and returns valid JS\n *\n * @param {string} data\n * @throws {ParserError} In case the JSON string is not valid, ParserError will be thrown\n * @returns {*}\n */\nJson.prototype.parse = function parse (data) {\n  try {\n    return JSON.parse(data)\n  } catch (e) {\n    throw new ParserError('json')\n  }\n}\n\n/**\n * Json.prototype.stringify - receives * valid JS data and returns it as JSON\n *\n * @param {*} data\n * @returns {string}\n */\nJson.prototype.stringify = function stringify (data) {\n  return JSON.stringify(data)\n}\n\nmodule.exports = Json\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/Json.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 75,
+    "kind": "variable",
+    "name": "Base",
+    "memberof": "src/strategies/Json.js",
+    "static": true,
+    "longname": "src/strategies/Json.js~Base",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Json.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "variable",
+    "name": "ParserError",
+    "memberof": "src/strategies/Json.js",
+    "static": true,
+    "longname": "src/strategies/Json.js~ParserError",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Json.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "function",
+    "name": "Json",
+    "memberof": "src/strategies/Json.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Json.js~Json",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Json.js",
+    "importStyle": null,
+    "description": "Json - Support for JSON filetype",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 78,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/strategies/Json.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Json.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Json.js",
+    "importStyle": null,
+    "description": "Json.prototype.parse - receives an JSON string and returns valid JS",
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "throws": [
+      {
+        "types": [
+          "ParserError"
+        ],
+        "description": "In case the JSON string is not valid, ParserError will be thrown"
+      }
+    ],
+    "ignore": true
+  },
+  {
+    "__docId__": 79,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/strategies/Json.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Json.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Json.js",
+    "importStyle": null,
+    "description": "Json.prototype.stringify - receives * valid JS data and returns it as JSON",
+    "lineNumber": 34,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "file",
+    "name": "src/strategies/Xml.js",
+    "content": "const Base = require('./Base')\nconst ParserError = require('../errors/ParserError')\nconst xml = require('xml-js')\n\n/**\n * Xml - Support for XML filetype\n *\n * @constructor\n */\nfunction Xml () {\n  this.XML_VERSION_TAG = {\n    _declaration: {\n      _attributes: {\n        version: '1.0',\n        encoding: 'utf-8'\n      }\n    }\n  }\n}\n\nXml.prototype = Object.create(Base.prototype)\n\n/**\n * Xml.prototype.setXmlDeclaration - sets XML declaration tag on first position of array or object\n *\n * @param {(object|array)} data - input data\n * @returns {(object|array)}\n */\nXml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {\n  if (Array.isArray(data)) {\n    data = [this.XML_VERSION_TAG, ...data]\n  } else {\n    data = { ...this.XML_VERSION_TAG, ...data }\n  }\n\n  return data\n}\n\n/**\n * Xml.prototype.stringify - receives * valid JS data and returns it as XML\n *\n * @param {(object|array)} data\n * @param {Object} options - options for turning JS data into XML\n * @param {boolean} options.ignoreDeclaration - don't output XML version tag, default is true\n * @example\n * // returns '<?xml version=\"1.0\" encoding=\"utf-8\"?><package>parser</package>'\n * const data = { package: 'parser' }\n * Xml().stringify(data)\n * @example\n * // returns '<package>parser</package>'\n * const data = { package: 'parser' }\n * Xml().stringify(data, { ignoreDeclaration: true })\n * @returns {string}\n */\nXml.prototype.stringify = function stringify (data, options = {}) {\n  const config = {\n    compact: true,\n    ignoreDeclaration: false\n  }\n\n  data = this.setXmlDeclaration(data)\n\n  if (options.ignoreDeclaration) {\n    config.ignoreDeclaration = true\n  }\n\n  return xml.js2xml(data, config)\n}\n\n/**\n * Xml.prototype.parse - receives an XML string and translate it to valid JavaScript\n *\n * @param {string} data\n * @param {object} options\n * @param {object} options.showDeclaration - force parsing XML declaration tag\n * @throws {NotImplemented} This method must be implemented\n */\nXml.prototype.parse = function parse (data, options = {}) {\n  try {\n    const config = {\n      compact: true,\n      ignoreDeclaration: true,\n      nativeType: true,\n      nativeTypeAttributes: true\n    }\n\n    if (options.showDeclaration) {\n      config.ignoreDeclaration = false\n    }\n\n    return xml.xml2js(data, config)\n  } catch (error) {\n    throw new ParserError(error.message)\n  }\n}\n\nmodule.exports = Xml\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/Xml.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 81,
+    "kind": "variable",
+    "name": "Base",
+    "memberof": "src/strategies/Xml.js",
+    "static": true,
+    "longname": "src/strategies/Xml.js~Base",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "variable",
+    "name": "ParserError",
+    "memberof": "src/strategies/Xml.js",
+    "static": true,
+    "longname": "src/strategies/Xml.js~ParserError",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "variable",
+    "name": "xml",
+    "memberof": "src/strategies/Xml.js",
+    "static": true,
+    "longname": "src/strategies/Xml.js~xml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 84,
+    "kind": "function",
+    "name": "Xml",
+    "memberof": "src/strategies/Xml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Xml.js~Xml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": "Xml - Support for XML filetype",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 85,
+    "kind": "function",
+    "name": "setXmlDeclaration",
+    "memberof": "src/strategies/Xml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Xml.js~setXmlDeclaration",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": "Xml.prototype.setXmlDeclaration - sets XML declaration tag on first position of array or object",
+    "lineNumber": 29,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{(object|array)}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "input data"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object",
+        "array"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 86,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/strategies/Xml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Xml.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": "Xml.prototype.stringify - receives * valid JS data and returns it as XML",
+    "examples": [
+      "// returns '<?xml version=\"1.0\" encoding=\"utf-8\"?><package>parser</package>'\nconst data = { package: 'parser' }\nXml().stringify(data)",
+      "// returns '<package>parser</package>'\nconst data = { package: 'parser' }\nXml().stringify(data, { ignoreDeclaration: true })"
+    ],
+    "lineNumber": 55,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "options for turning JS data into XML"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.ignoreDeclaration",
+        "description": "don't output XML version tag, default is true"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 87,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/strategies/Xml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Xml.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Xml.js",
+    "importStyle": null,
+    "description": "Xml.prototype.parse - receives an XML string and translate it to valid JavaScript",
+    "lineNumber": 78,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.showDeclaration",
+        "description": "force parsing XML declaration tag"
+      }
+    ],
+    "throws": [
+      {
+        "types": [
+          "NotImplemented"
+        ],
+        "description": "This method must be implemented"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 88,
+    "kind": "file",
+    "name": "src/strategies/Yaml.js",
+    "content": "const Base = require('./Base')\nconst ParserError = require('../errors/ParserError')\nconst yaml = require('js-yaml')\n\n/**\n * Yaml - Support for YAML filetype\n *\n * @constructor\n */\nfunction Yaml () {\n}\n\nYaml.prototype = Object.create(Base.prototype)\n\n/**\n * Yaml.prototype.stringify - receives * valid JS data and returns it as YAML\n *\n * @param {object} data\n * @param {Object} options - options for turning JS data into YAML\n * @throws {ParserError} For invalid data type\n * @returns {string}\n */\nYaml.prototype.stringify = function stringify (data, options = {}) {\n  if (Array.isArray(data)) {\n    throw new ParserError('Only plain objects are accepted for stringify()')\n  }\n\n  return yaml.safeDump(data)\n}\n\n/**\n * Yaml.prototype.parse - receives an YAML string and translate it to valid JavaScript\n *\n * @param {string} data\n * @param {object} options\n * @returns {object} Parsed YAML data as JS object\n */\nYaml.prototype.parse = function parse (data, options = {}) {\n  return yaml.safeLoad(data)\n}\n\nmodule.exports = Yaml\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/Yaml.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 89,
+    "kind": "variable",
+    "name": "Base",
+    "memberof": "src/strategies/Yaml.js",
+    "static": true,
+    "longname": "src/strategies/Yaml.js~Base",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "variable",
+    "name": "ParserError",
+    "memberof": "src/strategies/Yaml.js",
+    "static": true,
+    "longname": "src/strategies/Yaml.js~ParserError",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "variable",
+    "name": "yaml",
+    "memberof": "src/strategies/Yaml.js",
+    "static": true,
+    "longname": "src/strategies/Yaml.js~yaml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "function",
+    "name": "Yaml",
+    "memberof": "src/strategies/Yaml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Yaml.js~Yaml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": "Yaml - Support for YAML filetype",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/strategies/Yaml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Yaml.js~stringify",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": "Yaml.prototype.stringify - receives * valid JS data and returns it as YAML",
+    "lineNumber": 23,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "options for turning JS data into YAML"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "throws": [
+      {
+        "types": [
+          "ParserError"
+        ],
+        "description": "For invalid data type"
+      }
+    ],
+    "ignore": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/strategies/Yaml.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/strategies/Yaml.js~parse",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/Yaml.js",
+    "importStyle": null,
+    "description": "Yaml.prototype.parse - receives an YAML string and translate it to valid JavaScript",
+    "lineNumber": 38,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Parsed YAML data as JS object"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Parsed YAML data as JS object"
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "file",
+    "name": "src/strategies/index.js",
+    "content": "const Json = require('./Json')\nconst Xml = require('./Xml')\nconst Yaml = require('./Yaml')\nconst Csv = require('./Csv')\n\nmodule.exports = { Json, Xml, Yaml, Csv }\n",
+    "static": true,
+    "longname": "/home/onhernandes/code/parser/src/strategies/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 96,
+    "kind": "variable",
+    "name": "Json",
+    "memberof": "src/strategies/index.js",
+    "static": true,
+    "longname": "src/strategies/index.js~Json",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "variable",
+    "name": "Xml",
+    "memberof": "src/strategies/index.js",
+    "static": true,
+    "longname": "src/strategies/index.js~Xml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "variable",
+    "name": "Yaml",
+    "memberof": "src/strategies/index.js",
+    "static": true,
+    "longname": "src/strategies/index.js~Yaml",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "variable",
+    "name": "Csv",
+    "memberof": "src/strategies/index.js",
+    "static": true,
+    "longname": "src/strategies/index.js~Csv",
+    "access": "public",
+    "export": false,
+    "importPath": "parser/src/strategies/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "kind": "index",
+    "content": "# parser\n\nA all-in-one parser for Javascript, heavily inspired by: https://github.com/nathanmac/Parser. It allows you to work with JSON, XML, CSV and YAML more without worrying about which module install. It's designed to work just as `JSON.parse` and `JSON.stringify` does, with some improvements.\n\n## Installation\n\n```sh\n$ npm install --save parser\n```\n\n## Usage\n\nEvery filetype has two main methods: `stringify()` and `parse()`, both receives two arguments, `data` containing any type of data and an options object.\n\n### CSV\n\n```javascript\nconst { csv } = require('parser')\n\n// Parsing\nconst input = 'title,platform\\nStardew Valley,Steam'\nconst result = csv.parse(input)\nconsole.log(result) // [ { title: 'Stardew Valley', platform: 'Steam' } ]\n\n// Stringifying\nconsole.log(\n  csv.stringify(result)\n) // 'title,platform\\nStardew Valley,Steam'\n```\n\n### YAML\n\n```javascript\nconst { yaml } = require('parser')\n\n// Parsing\nconst input = 'title: Stardew Valley\\nplatform: Steam'\nconst result = yaml.parse(input)\nconsole.log(result) // { title: 'Stardew Valley', platform: 'Steam' }\n\n// Stringifying\nconsole.log(\n  yaml.stringify(result)\n) // 'title: Stardew Valley\\nplatform: Steam'\n```\n\n### XML\n\n```javascript\nconst { xml } = require('parser')\n\n// Parsing\nconst input = '<?xml version=\"1.0\" encoding=\"utf-8\"?><package>lodash</package>'\nconst result = xml.parse(input)\nconsole.log(result) // { package: 'lodash' }\n\n// Stringifying\nconsole.log(\n  xml.stringify(result)\n) // '<?xml version=\"1.0\" encoding=\"utf-8\"?><package>lodash</package>'\n```\n\n## License\n\nMIT ©\n",
+    "longname": "/home/onhernandes/code/parser/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"parser\",\n  \"version\": \"0.0.0\",\n  \"description\": \"\",\n  \"homepage\": \"\",\n  \"author\": {\n    \"name\": \"Matheus Hernandes\",\n    \"email\": \"\",\n    \"url\": \"onhernandes.github.io\"\n  },\n  \"files\": [\n    \"src\"\n  ],\n  \"main\": \"src/index.js\",\n  \"keywords\": [\n    \"\"\n  ],\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^7.4.0\",\n    \"eslint-config-standard\": \"^14.1.1\",\n    \"eslint-plugin-import\": \"^2.22.0\",\n    \"eslint-plugin-node\": \"^11.1.0\",\n    \"eslint-plugin-promise\": \"^4.2.1\",\n    \"eslint-plugin-standard\": \"^4.0.1\",\n    \"husky\": \"^3.0.9\",\n    \"jest\": \"^26.1.0\",\n    \"lint-staged\": \"^9.4.3\"\n  },\n  \"engines\": {\n    \"npm\": \">= 4.0.0\"\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"eslint --fix\",\n      \"git add\"\n    ]\n  },\n  \"husky\": {\n    \"hooks\": {\n      \"pre-commit\": \"lint-staged\"\n    }\n  },\n  \"scripts\": {\n    \"test\": \"jest\",\n    \"tdd\": \"./node_modules/.bin/jest --watch\",\n    \"docs\": \"./node_modules/.bin/esdoc\",\n    \"lint\": \"./node_modules/.bin/eslint\"\n  },\n  \"repository\": \"git@github.com:onhernandes/parser.git\",\n  \"jest\": {\n    \"testEnvironment\": \"node\"\n  },\n  \"license\": \"MIT\",\n  \"dependencies\": {\n    \"csv-parse\": \"^4.11.1\",\n    \"csv-stringify\": \"^5.5.0\",\n    \"js-yaml\": \"^3.14.0\",\n    \"xml-js\": \"^1.6.11\"\n  }\n}\n",
+    "longname": "/home/onhernandes/code/parser/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

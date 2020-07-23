@@ -1,11 +1,11 @@
-# parser
+# parserblade
 
 A all-in-one parser for Javascript, heavily inspired by: https://github.com/nathanmac/Parser. It allows you to work with JSON, XML, CSV and YAML more without worrying about which module install. It's designed to work just as `JSON.parse` and `JSON.stringify` does, with some improvements.
 
 ## Installation
 
 ```sh
-$ npm install --save parser
+$ npm install --save parserblade
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ Every filetype has two main methods: `stringify()` and `parse()`, both receives 
 ### CSV
 
 ```javascript
-const { csv } = require('parser')
+const { csv } = require('parserblade')
 
 // Parsing
 const input = 'title,platform\nStardew Valley,Steam'
@@ -31,7 +31,7 @@ console.log(
 ### YAML
 
 ```javascript
-const { yaml } = require('parser')
+const { yaml } = require('parserblade')
 
 // Parsing
 const input = 'title: Stardew Valley\nplatform: Steam'
@@ -47,7 +47,7 @@ console.log(
 ### XML
 
 ```javascript
-const { xml } = require('parser')
+const { xml } = require('parserblade')
 
 // Parsing
 const input = '<?xml version="1.0" encoding="utf-8"?><package>lodash</package>'

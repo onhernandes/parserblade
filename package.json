@@ -48,7 +48,8 @@
     "test": "jest",
     "tdd": "./node_modules/.bin/jest --watch",
     "docs": "./node_modules/.bin/esdoc",
-    "lint": "./node_modules/.bin/eslint"
+    "lint": "./node_modules/.bin/eslint",
+    "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages"
   },
   "repository": "git@github.com:onhernandes/parser.git",
   "jest": {

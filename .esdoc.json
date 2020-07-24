@@ -16,7 +16,8 @@
             "files": [
               "./esdocs/manual/json.md",
               "./esdocs/manual/csv.md",
-              "./esdocs/manual/xml.md"
+              "./esdocs/manual/xml.md",
+              "./esdocs/manual/yaml.md"
             ]
         }
       }

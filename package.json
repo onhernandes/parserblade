@@ -1,8 +1,8 @@
 {
   "name": "parserblade",
-  "version": "0.0.0",
-  "description": "",
-  "homepage": "",
+  "version": "1.0.0",
+  "description": "The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place.",
+  "homepage": "https://onhernandes.github.io/parserblade",
   "author": {
     "name": "Matheus Hernandes",
     "email": "",
@@ -13,7 +13,22 @@
   ],
   "main": "src/index.js",
   "keywords": [
-    ""
+    "parser",
+    "data-parser",
+    "csv-parser",
+    "csv-stringify",
+    "transform-csv",
+    "csv",
+    "yaml-parser",
+    "yaml-stringify",
+    "transform-yaml",
+    "yaml",
+    "xml-parser",
+    "xml-stringify",
+    "transform-xml",
+    "xml",
+    "json",
+    "json-parser"
   ],
   "devDependencies": {
     "esdoc": "^1.1.0",

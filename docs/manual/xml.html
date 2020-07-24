@@ -76,26 +76,96 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="json">JSON</h1><h2 id="usage">Usage</h2><h3 id="parse">Parse</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.parse</code>, currently there&apos;s no additional parameters.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
-const { json } = require(&apos;parserblade&apos;)
-const input = &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
-const result = json.parse(input)
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="xml">XML</h1><p>Works with XML data. I haven&apos;t tested with xlsx or other similar data types yet. There&apos;s a lot of things to improve here.</p>
+<h2 id="usage">Usage</h2><p>Both <code>xml.parse()</code> and <code>xml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p>
+<h3 id="parse">Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;games&gt;&lt;name&gt;Naruto Shippuden Storm 3&lt;/name&gt;&lt;platform&gt;playstation&lt;/platform&gt;&lt;/games&gt;&apos;
+const result = xml.parse(input)
 
 assert.deepStrictEqual(
   result,
-  [ { game: &apos;Stardew Valley&apos; } ]
+  {
+    games: {
+      name: { _text: &apos;Naruto Shippuden Storm 3&apos; },
+      platform: { _text: &apos;playstation&apos; }
+    }
+  }
 )</code>
 </code></pre>
-<h3 id="stringify">Stringify</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.stringify</code>, currently there&apos;s no additional parameters.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
-const { json } = require(&apos;parserblade&apos;)
-const input = [ { game: &apos;Stardew Valley&apos; } ]
-const result = json.stringify(input)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input)
 
-assert.equal(
+assert.deepStrictEqual(
   result,
-  &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
+  {
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre>
+<h4 id="parse-xml-including-declaration">Parse XML including declaration</h4><p>Pass <code>{ showDeclaration: true }</code> as option.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input, { showDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  {
+    _declaration: {
+      _attributes: {
+        encoding: &apos;utf-8&apos;,
+        version: 1
+      }
+    },
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre>
+<h3 id="stringify">Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre>
+<h4 id="stringify-without-xml-declaration">Stringify without XML declaration</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input, { ignoreDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre>
+<h4 id="stringify-array">Stringify array</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = {
+  packages: [
+    { name: &apos;lodash&apos; }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;lodash&lt;/name&gt;&lt;/packages&gt;&apos;
 )</code>
 </code></pre>
 </div>

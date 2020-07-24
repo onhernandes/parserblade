@@ -15,7 +15,8 @@
             "globalIndex": true,
             "files": [
               "./esdocs/manual/json.md",
-              "./esdocs/manual/csv.md"
+              "./esdocs/manual/csv.md",
+              "./esdocs/manual/xml.md"
             ]
         }
       }

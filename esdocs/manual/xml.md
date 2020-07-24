@@ -11,15 +11,15 @@ Both `xml.parse()` and `xml.stringify()` accepts the data to be parsed/stringifi
 ```javascript
 const assert = require('assert')
 const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package><name>Hernandes</name><package>parser</package></packages>'
+const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
 const result = xml.parse(input)
 
 assert.deepStrictEqual(
   result,
   {
-    packages: {
-      name: { _text: 'Hernandes' },
-      package: { _text: 'parser' }
+    games: {
+      name: { _text: 'Naruto Shippuden Storm 3' },
+      platform: { _text: 'playstation' }
     }
   }
 )
@@ -28,7 +28,7 @@ assert.deepStrictEqual(
 ```javascript
 const assert = require('assert')
 const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package></packages>'
+const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>'
 const result = xml.parse(input)
 
 assert.deepStrictEqual(
@@ -36,12 +36,8 @@ assert.deepStrictEqual(
   {
     packages: {
       name: [
-        { _text: 'Hernandes' },
-        { _text: 'Hernandes' }
-      ],
-      package: [
-        { _text: 'parser' },
-        { _text: 'parser' }
+        { _text: 'mongoose' },
+        { _text: 'sequelize' }
       ]
     }
   }
@@ -55,7 +51,7 @@ Pass `{ showDeclaration: true }` as option.
 ```javascript
 const assert = require('assert')
 const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package></packages>'
+const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>'
 const result = xml.parse(input, { showDeclaration: true })
 
 assert.deepStrictEqual(
@@ -69,12 +65,8 @@ assert.deepStrictEqual(
     },
     packages: {
       name: [
-        { _text: 'Hernandes' },
-        { _text: 'Hernandes' }
-      ],
-      package: [
-        { _text: 'parser' },
-        { _text: 'parser' }
+        { _text: 'mongoose' },
+        { _text: 'sequelize' }
       ]
     }
   }
@@ -86,28 +78,43 @@ assert.deepStrictEqual(
 ```javascript
 const assert = require('assert')
 const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>Hernandes</name><package>parser</package></packages>'
-const result = xml.parse(input, { showDeclaration: true })
+const input = { game: 'Stardew Valley' }
+const result = xml.stringify(input)
 
 assert.deepStrictEqual(
   result,
-  {
-    _declaration: {
-      _attributes: {
-        encoding: 'utf-8',
-        version: 1
-      }
-    },
-    packages: {
-      name: [
-        { _text: 'Hernandes' },
-        { _text: 'Hernandes' }
-      ],
-      package: [
-        { _text: 'parser' },
-        { _text: 'parser' }
-      ]
-    }
-  }
+  '<?xml version="1.0" encoding="utf-8"?><game>Stardew Valley</game>'
+)
+```
+
+#### Stringify without XML declaration
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = { game: 'Stardew Valley' }
+const result = xml.stringify(input, { ignoreDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  '<game>Stardew Valley</game>'
+)
+```
+
+#### Stringify array
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = {
+  packages: [
+    { name: 'lodash' }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  '<?xml version="1.0" encoding="utf-8"?><packages><name>lodash</name></packages>'
 )
 ```

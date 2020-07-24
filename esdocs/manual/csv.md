@@ -90,3 +90,60 @@ assert.deepStrictEqual(
 
 ### Stringify
 
+Simply transforms JS array of objects into CSV
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const input = [
+  { name: 'Netflix', email: 'contact@netflix.com' }
+]
+const result = csv.stringify(input)
+
+assert.equal(
+  result,
+  'name,email\nNetflix,contact@netflix.com'
+)
+```
+
+#### Stringify omitting headers
+
+Pass `{ headers: false }` as options
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const input = [
+  { name: 'Netflix', email: 'contact@netflix.com' }
+]
+const result = csv.stringify(input)
+
+assert.equal(
+  result,
+  'Netflix,contact@netflix.com'
+)
+```
+
+#### Stringify with custom column names/headers
+
+Pass `{ columns: [ { key: '', header: '' } ] }` as options
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const input = [
+  { name: 'Netflix', email: 'contact@netflix.com' }
+]
+
+const columns = [
+  { key: 'name', header: 'Platform' },
+  { key: 'email', header: 'e-mail' }
+]
+
+const result = csv.stringify(input, { columns })
+
+assert.equal(
+  result,
+  'Platform,e-mail\nNetflix,contact@netflix.com'
+)
+```

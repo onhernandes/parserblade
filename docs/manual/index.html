@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | parserblade</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-parser.css"><meta name="description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="parserblade"><meta property="twitter:description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."></head>
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parser"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/json.html"><a href="manual/json.html" data-ice="link">JSON</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#stringify" data-ice="link">Stringify</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/csv.html"><a href="manual/csv.html" data-ice="link">CSV</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-without-headers" data-ice="link">Parse without headers</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-with-custom-delimiters" data-ice="link">Parse with custom delimiters</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-skipping-some-lines" data-ice="link">Parse skipping some lines</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-offset" data-ice="link">Parse offset</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#stringify-omitting-headers" data-ice="link">Stringify omitting headers</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#stringify-with-custom-column-names-headers" data-ice="link">Stringify with custom column names/headers</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/xml.html"><a href="manual/xml.html" data-ice="link">XML</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/xml.html"><a href="manual/xml.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#parse-xml-including-declaration" data-ice="link">Parse XML including declaration</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-without-xml-declaration" data-ice="link">Stringify without XML declaration</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-array" data-ice="link">Stringify array</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/yaml.html"><a href="manual/yaml.html" data-ice="link">YAML</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/yaml.html"><a href="manual/yaml.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#stringify" data-ice="link">Stringify</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown">
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="parserblade">parserblade</h1><p>A all-in-one parser for Javascript, heavily inspired by: <a href="https://github.com/nathanmac/Parser">https://github.com/nathanmac/Parser</a>. It allows you to work with JSON, XML, CSV and YAML more without worrying about which module install. It&apos;s designed to work just as <code>JSON.parse</code> and <code>JSON.stringify</code> does, with some improvements.</p>
+<h2 id="installation">Installation</h2><pre><code class="lang-sh"><code class="source-code prettyprint">$ npm install --save parserblade</code>
+</code></pre>
+<h2 id="usage">Usage</h2><p>Every filetype has two main methods: <code>stringify()</code> and <code>parse()</code>, both receives two arguments, <code>data</code> containing any type of data and an options object.</p>
+<h3 id="csv">CSV</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const { csv } = require(&apos;parserblade&apos;)
+
+// Parsing
+const input = &apos;title,platform\nStardew Valley,Steam&apos;
+const result = csv.parse(input)
+console.log(result) // [ { title: &apos;Stardew Valley&apos;, platform: &apos;Steam&apos; } ]
+
+// Stringifying
+console.log(
+  csv.stringify(result)
+) // &apos;title,platform\nStardew Valley,Steam&apos;</code>
+</code></pre>
+<h3 id="yaml">YAML</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const { yaml } = require(&apos;parserblade&apos;)
+
+// Parsing
+const input = &apos;title: Stardew Valley\nplatform: Steam&apos;
+const result = yaml.parse(input)
+console.log(result) // { title: &apos;Stardew Valley&apos;, platform: &apos;Steam&apos; }
+
+// Stringifying
+console.log(
+  yaml.stringify(result)
+) // &apos;title: Stardew Valley\nplatform: Steam&apos;</code>
+</code></pre>
+<h3 id="xml">XML</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const { xml } = require(&apos;parserblade&apos;)
+
+// Parsing
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;package&gt;lodash&lt;/package&gt;&apos;
+const result = xml.parse(input)
+console.log(result) // { package: &apos;lodash&apos; }
+
+// Stringifying
+console.log(
+  xml.stringify(result)
+) // &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;package&gt;lodash&lt;/package&gt;&apos;</code>
+</code></pre>
+<h2 id="license">License</h2><p>MIT &#xA9;</p>
+</div>
+
+  
+
+  <div class="manual-cards">
+    
+  <div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>JSON</h1><h2>Usage</h2><h3>Parse</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.parse</code>, currently there&apos;s no additional parameters.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { json } = require(&apos;parserblade&apos;)
+const input = &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
+const result = json.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  [ { game: &apos;Stardew Valley&apos; } ]
+)</code>
+</code></pre><h3>Stringify</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.stringify</code>, currently there&apos;s no additional parameters.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { json } = require(&apos;parserblade&apos;)
+const input = [ { game: &apos;Stardew Valley&apos; } ]
+const result = json.stringify(input)
+
+assert.equal(
+  result,
+  &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/json.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>CSV</h1><p>Works with CSV data. I haven&apos;t tested with xlsx or other similar data types yet.</p><h2>Usage</h2><p>Both <code>csv.parse()</code> and <code>csv.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p><h3>Parse</h3><p>Parses CSV string to JS data, automatically uses first line as headers. Pass data as first argument.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = &apos;title,platform\nStardew Valley,Steam&apos;
+const result = csv.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  [ { title: &apos;Stardew Valley&apos;, platform: &apos;Steam&apos; } ]
+)</code>
+</code></pre><h4>Parse without headers</h4><p>Don&apos;t use first line as headers. Pass <code>{ headers: false }</code> as second parameter.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = &apos;name,email\nNetflix,contact@netflix.com&apos;
+const result = csv.parse(input, { headers: false })
+
+assert.deepStrictEqual(
+  result,
+  [
+    [&apos;name&apos;, &apos;email&apos;],
+    [&apos;Netflix&apos;, &apos;contact@netflix.com&apos;]
+  ]
+)</code>
+</code></pre><h4>Parse with custom delimiters</h4><p>Uses custom delimiters. Anything you want! Pass <code>{ delimiter: &apos;;&apos; }</code> as option.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = &apos;name;email\nNetflix;contact@netflix.com&apos;
+const result = csv.parse(input, { delimiter: &apos;;&apos; })
+
+assert.deepStrictEqual(
+  result,
+  [ { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; } ]
+)</code>
+</code></pre><h4>Parse skipping some lines</h4><p>Pass <code>{ skipLines: 2 }</code> as option.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = &apos;coll streaming platforms\nname,email\nNetflix,contact@netflix.com&apos;
+const result = csv.parse(input, { skipLines: 2 })
+
+assert.deepStrictEqual(
+  result,
+  [ { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; } ]
+)</code>
+</code></pre><h4>Parse offset</h4><p>Pass <code>{ offset: 2 }</code> as option.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = &apos;name,email\nNetflix,contact@netflix.com\nAmazon,contact@amazon.com&apos;
+const result = csv.parse(input, { offset: 2 })
+
+assert.deepStrictEqual(
+  result,
+  [ { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; } ]
+)</code>
+</code></pre><h3>Stringify</h3><p>Simply transforms JS array of objects into CSV</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = [
+  { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; }
+]
+const result = csv.stringify(input)
+
+assert.equal(
+  result,
+  &apos;name,email\nNetflix,contact@netflix.com&apos;
+)</code>
+</code></pre><h4>Stringify omitting headers</h4><p>Pass <code>{ headers: false }</code> as options</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = [
+  { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; }
+]
+const result = csv.stringify(input)
+
+assert.equal(
+  result,
+  &apos;Netflix,contact@netflix.com&apos;
+)</code>
+</code></pre><h4>Stringify with custom column names/headers</h4><p>Pass <code>{ columns: [ { key: &apos;&apos;, header: &apos;&apos; } ] }</code> as options</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { csv } = require(&apos;parserblade&apos;)
+const input = [
+  { name: &apos;Netflix&apos;, email: &apos;contact@netflix.com&apos; }
+]
+
+const columns = [
+  { key: &apos;name&apos;, header: &apos;Platform&apos; },
+  { key: &apos;email&apos;, header: &apos;e-mail&apos; }
+]
+
+const result = csv.stringify(input, { columns })
+
+assert.equal(
+  result,
+  &apos;Platform,e-mail\nNetflix,contact@netflix.com&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/csv.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>XML</h1><p>Works with XML data. I haven&apos;t tested with xlsx or other similar data types yet. There&apos;s a lot of things to improve here.</p><h2>Usage</h2><p>Both <code>xml.parse()</code> and <code>xml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p><h3>Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;games&gt;&lt;name&gt;Naruto Shippuden Storm 3&lt;/name&gt;&lt;platform&gt;playstation&lt;/platform&gt;&lt;/games&gt;&apos;
+const result = xml.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  {
+    games: {
+      name: { _text: &apos;Naruto Shippuden Storm 3&apos; },
+      platform: { _text: &apos;playstation&apos; }
+    }
+  }
+)</code>
+</code></pre><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  {
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre><h4>Parse XML including declaration</h4><p>Pass <code>{ showDeclaration: true }</code> as option.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input, { showDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  {
+    _declaration: {
+      _attributes: {
+        encoding: &apos;utf-8&apos;,
+        version: 1
+      }
+    },
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre><h3>Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre><h4>Stringify without XML declaration</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input, { ignoreDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre><h4>Stringify array</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = {
+  packages: [
+    { name: &apos;lodash&apos; }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;lodash&lt;/name&gt;&lt;/packages&gt;&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/xml.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>YAML</h1><h2>Usage</h2><p>Both <code>yaml.parse()</code> and <code>yaml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p><h3>Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = &apos;series: Bleach\nseasons: 16&apos;
+const result = yaml.parse(data)
+assert.deepStrictEqual(
+  result,
+  { series: &apos;Bleach&apos;, seasons: 16 }
+)</code>
+</code></pre><h3>Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = { series: &apos;Bleach&apos;, seasons: 16 }
+const result = yaml.parse(data)
+assert.equal(
+  result,
+  &apos;series: Bleach\nseasons: 16&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/yaml.html"></a>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

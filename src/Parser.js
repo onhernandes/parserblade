@@ -1,7 +1,7 @@
 /**
  * Parser - Receives any strategy and safely implement it
  *
- * @typedef {Base} - The Base class for any strategy
+ * @constructor
  * @param {Base} strategy - Any strategy implementing the Base's prototype
  */
 function Parser (strategy) {

@@ -3,6 +3,8 @@ const ParserError = require('../errors/ParserError')
 
 /**
  * Json - Support for JSON filetype
+ *
+ * @constructor
  */
 function Json () {}
 
@@ -29,7 +31,7 @@ Json.prototype.parse = function parse (data) {
  * @param {*} data
  * @returns {string}
  */
-Json.prototype.stringify = function parse (data) {
+Json.prototype.stringify = function stringify (data) {
   return JSON.stringify(data)
 }
 

@@ -76,26 +76,23 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="json">JSON</h1><h2 id="usage">Usage</h2><h3 id="parse">Parse</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.parse</code>, currently there&apos;s no additional parameters.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
-const { json } = require(&apos;parserblade&apos;)
-const input = &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
-const result = json.parse(input)
-
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="yaml">YAML</h1><h2 id="usage">Usage</h2><p>Both <code>yaml.parse()</code> and <code>yaml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p>
+<h3 id="parse">Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = &apos;series: Bleach\nseasons: 16&apos;
+const result = yaml.parse(data)
 assert.deepStrictEqual(
   result,
-  [ { game: &apos;Stardew Valley&apos; } ]
+  { series: &apos;Bleach&apos;, seasons: 16 }
 )</code>
 </code></pre>
-<h3 id="stringify">Stringify</h3><p>There&apos;s no magic here. It just calls native&apos;s <code>JSON.stringify</code>, currently there&apos;s no additional parameters.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
-const { json } = require(&apos;parserblade&apos;)
-const input = [ { game: &apos;Stardew Valley&apos; } ]
-const result = json.stringify(input)
-
+<h3 id="stringify">Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = { series: &apos;Bleach&apos;, seasons: 16 }
+const result = yaml.parse(data)
 assert.equal(
   result,
-  &apos;[{&quot;game&quot;:&quot;Stardew Valley&quot;}]&apos;
+  &apos;series: Bleach\nseasons: 16&apos;
 )</code>
 </code></pre>
 </div>

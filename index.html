@@ -52,6 +52,27 @@
 <li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#stringify-with-custom-column-names-headers" data-ice="link">Stringify with custom column names/headers</a></li>
 </ul>
   </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/xml.html"><a href="manual/xml.html" data-ice="link">XML</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/xml.html"><a href="manual/xml.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#parse-xml-including-declaration" data-ice="link">Parse XML including declaration</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-without-xml-declaration" data-ice="link">Stringify without XML declaration</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-array" data-ice="link">Stringify array</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/yaml.html"><a href="manual/yaml.html" data-ice="link">YAML</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/yaml.html"><a href="manual/yaml.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#stringify" data-ice="link">Stringify</a></li>
+</ul>
+  </div>
 </div>
 </nav>
 
@@ -218,6 +239,117 @@ assert.equal(
 )</code>
 </code></pre></div>
         <a data-ice="link" href="manual/csv.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>XML</h1><p>Works with XML data. I haven&apos;t tested with xlsx or other similar data types yet. There&apos;s a lot of things to improve here.</p><h2>Usage</h2><p>Both <code>xml.parse()</code> and <code>xml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p><h3>Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;games&gt;&lt;name&gt;Naruto Shippuden Storm 3&lt;/name&gt;&lt;platform&gt;playstation&lt;/platform&gt;&lt;/games&gt;&apos;
+const result = xml.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  {
+    games: {
+      name: { _text: &apos;Naruto Shippuden Storm 3&apos; },
+      platform: { _text: &apos;playstation&apos; }
+    }
+  }
+)</code>
+</code></pre><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input)
+
+assert.deepStrictEqual(
+  result,
+  {
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre><h4>Parse XML including declaration</h4><p>Pass <code>{ showDeclaration: true }</code> as option.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;mongoose&lt;/name&gt;&lt;name&gt;sequelize&lt;/name&gt;&lt;/packages&gt;&apos;
+const result = xml.parse(input, { showDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  {
+    _declaration: {
+      _attributes: {
+        encoding: &apos;utf-8&apos;,
+        version: 1
+      }
+    },
+    packages: {
+      name: [
+        { _text: &apos;mongoose&apos; },
+        { _text: &apos;sequelize&apos; }
+      ]
+    }
+  }
+)</code>
+</code></pre><h3>Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre><h4>Stringify without XML declaration</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = { game: &apos;Stardew Valley&apos; }
+const result = xml.stringify(input, { ignoreDeclaration: true })
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;game&gt;Stardew Valley&lt;/game&gt;&apos;
+)</code>
+</code></pre><h4>Stringify array</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { xml } = require(&apos;parserblade&apos;)
+const input = {
+  packages: [
+    { name: &apos;lodash&apos; }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  &apos;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;packages&gt;&lt;name&gt;lodash&lt;/name&gt;&lt;/packages&gt;&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/xml.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>YAML</h1><h2>Usage</h2><p>Both <code>yaml.parse()</code> and <code>yaml.stringify()</code> accepts the data to be parsed/stringified as the first argument, and an option&apos;s object as the second.</p><h3>Parse</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = &apos;series: Bleach\nseasons: 16&apos;
+const result = yaml.parse(data)
+assert.deepStrictEqual(
+  result,
+  { series: &apos;Bleach&apos;, seasons: 16 }
+)</code>
+</code></pre><h3>Stringify</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const input = { series: &apos;Bleach&apos;, seasons: 16 }
+const result = yaml.parse(data)
+assert.equal(
+  result,
+  &apos;series: Bleach\nseasons: 16&apos;
+)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/yaml.html"></a>
       </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 # parserblade
 
+![CI](https://github.com/onhernandes/parserblade/workflows/CI/badge.svg?branch=main)
+
 A all-in-one parser for Javascript, heavily inspired by: https://github.com/nathanmac/Parser. It allows you to work with JSON, XML, CSV and YAML more without worrying about which module install. It's designed to work just as `JSON.parse` and `JSON.stringify` does, with some improvements.
 
 See [docs](https://onhernandes.github.io/parserblade) for more info and examples.

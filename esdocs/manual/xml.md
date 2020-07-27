@@ -118,3 +118,18 @@ assert.deepStrictEqual(
   '<?xml version="1.0" encoding="utf-8"?><packages><name>lodash</name></packages>'
 )
 ```
+
+### Valid
+
+Just checks if given string is a valid XML
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const result = xml.valid('phrase<tag />')
+
+assert.equal(
+  result,
+  false
+)
+```

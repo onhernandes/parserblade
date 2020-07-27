@@ -79,4 +79,14 @@ describe('Csv Strategy', () => {
 
     expect(result).toEqual(expect.stringMatching('Platform,e-mail\nNetflix,contact@netflix.com'))
   })
+
+  it('returns false for invalid input data', () => {
+    const result = strategy.valid('name\nstardew,pokemon')
+    expect(result).toBe(false)
+  })
+
+  it('returns true for valid input data', () => {
+    const result = strategy.valid('name,email\nNetflix,contact@netflix.com')
+    expect(result).toBe(true)
+  })
 })

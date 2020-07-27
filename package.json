@@ -1,6 +1,6 @@
 {
   "name": "parserblade",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place.",
   "homepage": "https://onhernandes.github.io/parserblade",
   "author": {
@@ -60,13 +60,13 @@
     }
   },
   "scripts": {
-    "test": "jest",
-    "tdd": "./node_modules/.bin/jest --watch",
+    "test": "./node_modules/.bin/jest",
+    "tdd": "./node_modules/.bin/jest --watch --no-cache",
     "docs": "./node_modules/.bin/esdoc",
     "lint": "./node_modules/.bin/eslint",
     "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages"
   },
-  "repository": "git@github.com:onhernandes/parser.git",
+  "repository": "git@github.com:onhernandes/parserblade.git",
   "jest": {
     "testEnvironment": "node"
   },

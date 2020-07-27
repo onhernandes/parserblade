@@ -26,4 +26,14 @@ describe('Json Strategy', function () {
   it('throws NotImplemented error for pipe()', () => {
     expect(strategy.pipe).toThrow(NotImplemented)
   })
+
+  it('returns false for invalid input data', () => {
+    const result = strategy.valid('}')
+    expect(result).toBe(false)
+  })
+
+  it('returns true for valid input data', () => {
+    const result = strategy.valid('{}')
+    expect(result).toBe(true)
+  })
 })

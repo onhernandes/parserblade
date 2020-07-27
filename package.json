@@ -67,6 +67,7 @@
     "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages",
     "tarfile": "tar -czvf parserblade.tar.gz LICENSE package* README.md src"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "repository": "git@github.com:onhernandes/parserblade.git",
   "jest": {
     "testEnvironment": "node"

@@ -64,7 +64,8 @@
     "tdd": "./node_modules/.bin/jest --watch --no-cache",
     "docs": "./node_modules/.bin/esdoc",
     "lint": "./node_modules/.bin/eslint",
-    "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages"
+    "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages",
+    "tarfile": "tar -czvf parserblade.tar.gz LICENSE package* README.md src"
   },
   "repository": "git@github.com:onhernandes/parserblade.git",
   "jest": {

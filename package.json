@@ -60,7 +60,7 @@
     }
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/jest --no-cache",
     "tdd": "./node_modules/.bin/jest --watch --no-cache",
     "docs": "./node_modules/.bin/esdoc",
     "lint": "./node_modules/.bin/eslint",

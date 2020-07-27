@@ -8,9 +8,7 @@ const ParserError = require('../errors/ParserError')
  *
  * @constructor
  */
-function Base () {
-  this.a = true
-}
+function Base () {}
 
 /**
  * Base.prototype.stringify - receives * form of data and turns it into a string

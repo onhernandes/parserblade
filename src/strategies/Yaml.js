@@ -36,7 +36,17 @@ Yaml.prototype.stringify = function stringify (data, options = {}) {
  * @returns {object} Parsed YAML data as JS object
  */
 Yaml.prototype.parse = function parse (data, options = {}) {
-  return yaml.safeLoad(data)
+  try {
+    return yaml.safeLoad(data)
+  } catch (e) {
+    const context = {
+      errorName: e.name,
+      message: e.message,
+      mark: e.mark
+    }
+
+    throw new ParserError('yaml', context)
+  }
 }
 
 module.exports = Yaml

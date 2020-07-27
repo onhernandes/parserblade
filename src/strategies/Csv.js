@@ -1,5 +1,5 @@
 const Base = require('./Base')
-// const ParserError = require('../errors/ParserError')
+const ParserError = require('../errors/ParserError')
 const csvParser = require('csv-parse/lib/sync')
 const csvStringify = require('csv-stringify/lib/sync')
 
@@ -39,7 +39,23 @@ Csv.prototype.parse = function parse (data, options = {}) {
     config.to_line = options.offset
   }
 
-  return csvParser(data, config)
+  try {
+    return csvParser(data, config)
+  } catch (e) {
+    const context = {
+      code: e.code,
+      message: e.message,
+      column: e.column,
+      emptyLines: e.empty_lines,
+      header: e.header,
+      index: e.index,
+      lines: e.lines,
+      quoting: e.quoting,
+      records: e.records
+    }
+
+    throw new ParserError('csv', context)
+  }
 }
 
 /**

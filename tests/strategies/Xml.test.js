@@ -99,4 +99,14 @@ describe('Xml Strategy', function () {
   it('throws NotImplemented error for pipe()', () => {
     expect(strategy.pipe).toThrow(NotImplemented)
   })
+
+  it('returns false for invalid input data', () => {
+    const result = strategy.valid('phrase<tag />')
+    expect(result).toBe(false)
+  })
+
+  it('returns true for valid input data', () => {
+    const result = strategy.valid('<game>Stardew Valley</game>')
+    expect(result).toBe(true)
+  })
 })

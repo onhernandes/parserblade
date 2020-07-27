@@ -147,3 +147,18 @@ assert.equal(
   'Platform,e-mail\nNetflix,contact@netflix.com'
 )
 ```
+
+### Valid
+
+Just checks if given string is a valid CSV
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const result = csv.valid('name\nstardew,pokemon')
+
+assert.equal(
+  result,
+  false
+)
+```

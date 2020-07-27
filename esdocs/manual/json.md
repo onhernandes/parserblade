@@ -33,3 +33,18 @@ assert.equal(
   '[{"game":"Stardew Valley"}]'
 )
 ```
+
+### Valid
+
+Just checks if given string is a valid JSON data
+
+```javascript
+const assert = require('assert')
+const { json } = require('parserblade')
+const result = json.valid('{')
+
+assert.equal(
+  result,
+  false
+)
+```

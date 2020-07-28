@@ -34,7 +34,7 @@ Parser.prototype.stringify = function stringify (data, options) {
  * @param {string} data
  * @param {object} options
  */
-Parser.prototype.stringify = function stringify (data, options) {
+Parser.prototype.valid = function stringify (data, options) {
   return this.strategy.valid(data, options)
 }
 

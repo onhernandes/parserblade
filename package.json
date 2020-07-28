@@ -1,6 +1,6 @@
 {
   "name": "parserblade",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place.",
   "homepage": "https://onhernandes.github.io/parserblade",
   "author": {

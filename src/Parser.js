@@ -28,6 +28,16 @@ Parser.prototype.stringify = function stringify (data, options) {
   return this.strategy.stringify(data, options)
 }
 
+/**
+ * Parser.prototype.valid - Exposes the valid() method from strategy. Checks if given data is valid
+ *
+ * @param {string} data
+ * @param {object} options
+ */
+Parser.prototype.stringify = function stringify (data, options) {
+  return this.strategy.valid(data, options)
+}
+
 Parser.prototype.get = function get (data, path) {}
 
 Parser.prototype.has = function has (data, path) {}

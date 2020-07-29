@@ -14,4 +14,11 @@ describe('Parser implements Strategy', () => {
     parser.stringify()
     expect(mock.stringify).toHaveBeenCalled()
   })
+
+  it('calls valid() strategy method', () => {
+    const mock = { valid: jest.fn() }
+    const parser = new Parser(mock)
+    parser.valid()
+    expect(mock.valid).toHaveBeenCalled()
+  })
 })

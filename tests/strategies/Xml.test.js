@@ -46,6 +46,42 @@ describe('Xml Strategy', function () {
   })
 
   describe('Xml.prototype.parse()', function () {
+    it('parses XML string to JS object in verbose mode', function () {
+      const data = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
+      const expected = {
+        elements: [
+          {
+            type: 'element',
+            name: 'games',
+            elements: [
+              {
+                type: 'element',
+                name: 'name',
+                elements: [
+                  {
+                    type: 'text',
+                    text: 'Naruto Shippuden Storm 3'
+                  }
+                ]
+              },
+              {
+                type: 'element',
+                name: 'platform',
+                elements: [
+                  {
+                    type: 'text',
+                    text: 'playstation'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+      const result = strategy.parse(data, { verbose: true })
+      expect(result).toStrictEqual(expected)
+    })
+
     it('parses XML string to JS object', function () {
       const data = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
       const expected = {

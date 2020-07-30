@@ -17,7 +17,7 @@ Csv.prototype = Object.create(Base.prototype)
  *
  * @param {string} data
  * @param {object} options
- * @param {boolean} options.headers - If should parse first line as the headers, default is true
+ * @param {(boolean|array|function)} options.headers - If should parse first line as the headers, default is true
  * @param {(string|Buffer)} options.delimiter - Which delimiters to use when parsing, defaults to comma `,`
  * @param {number} options.skipLines - How many lines it should skip before parsing, defaults to 1
  * @param {number} options.offset - How many lines it should parse, defaults to -1
@@ -31,8 +31,8 @@ Csv.prototype.parse = function parse (data, options = {}) {
     from_line: options.skipLines || 1
   }
 
-  if (options.headers === false) {
-    config.columns = false
+  if (Object.prototype.hasOwnProperty.apply(options, ['headers'])) {
+    config.columns = options.headers
   }
 
   if (options.offset) {

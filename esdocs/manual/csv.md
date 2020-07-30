@@ -22,7 +22,7 @@ assert.deepStrictEqual(
 )
 ```
 
-#### Parse without headers
+#### Parse headers
 
 Don't use first line as headers. Pass `{ headers: false }` as second parameter.
 
@@ -37,6 +37,38 @@ assert.deepStrictEqual(
   [
     ['name', 'email'],
     ['Netflix', 'contact@netflix.com']
+  ]
+)
+```
+
+Specify headers passing `{ headers: ['name', 'email'] }`
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const input = 'name,email\nNetflix,contact@netflix.com'
+const result = csv.parse(input, { headers: false })
+
+assert.deepStrictEqual(
+  result,
+  [
+    { name: 'Netflix', email: 'contact@netflix.com' }
+  ]
+)
+```
+
+Specify a function to transform headers passing `{ headers: header => header.toUpperCase() }`
+
+```javascript
+const assert = require('assert')
+const { csv } = require('parserblade')
+const input = 'name,email\nNetflix,contact@netflix.com'
+const result = csv.parse(input, { headers: false })
+
+assert.deepStrictEqual(
+  result,
+  [
+    { NAME: 'Netflix', EMAIL: 'contact@netflix.com' }
   ]
 )
 ```
@@ -126,7 +158,11 @@ assert.equal(
 
 #### Stringify with custom column names/headers
 
-Pass `{ columns: [ { key: '', header: '' } ] }` as options
+Specifying custom columns is easy in many forms, like just pass `{ columns: [ { key: '', header: '' } ] }` as options.
+
+Or `{ columns: ['name', 'email'] }`.
+
+Or `{ columns: { name: 'Name', email: 'Email' } }`.
 
 ```javascript
 const assert = require('assert')

@@ -1,7 +1,7 @@
 name: linter
 on: push
 jobs:
-  build:
+  linter:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

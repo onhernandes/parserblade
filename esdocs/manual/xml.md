@@ -73,6 +73,52 @@ assert.deepStrictEqual(
 )
 ```
 
+#### Parse XML in verbose mode
+
+Pass `{ verbose: true }` as option.
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
+const result = xml.parse(input, { verbose: true })
+const expected = {
+  elements: [
+    {
+      type: 'element',
+      name: 'games',
+      elements: [
+        {
+          type: 'element',
+          name: 'name',
+          elements: [
+            {
+              type: 'text',
+              text: 'Naruto Shippuden Storm 3'
+            }
+          ]
+        },
+        {
+          type: 'element',
+          name: 'platform',
+          elements: [
+            {
+              type: 'text',
+              text: 'playstation'
+            }
+          ]
+        },
+      ]
+    }
+  ]
+}
+
+assert.deepStrictEqual(
+  result,
+  expected
+)
+```
+
 ### Stringify
 
 ```javascript

@@ -73,6 +73,7 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
  * @param {string} data
  * @param {object} options
  * @param {object} options.showDeclaration - force parsing XML declaration tag
+ * @param {boolean} options.verbose - makes xml2js return non compact mode, defaults to false
  * @throws {NotImplemented} This method must be implemented
  */
 Xml.prototype.parse = function parse (data, options = {}) {
@@ -86,6 +87,10 @@ Xml.prototype.parse = function parse (data, options = {}) {
 
     if (options.showDeclaration) {
       config.ignoreDeclaration = false
+    }
+
+    if (options.verbose) {
+      config.compact = false
     }
 
     return xml.xml2js(data, config)

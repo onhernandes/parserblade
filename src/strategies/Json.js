@@ -1,5 +1,6 @@
 const Base = require('./Base')
 const ParserError = require('../errors/ParserError')
+const JSONStream = require('JSONStream')
 
 /**
  * Json - Support for JSON filetype
@@ -33,6 +34,26 @@ Json.prototype.parse = function parse (data) {
  */
 Json.prototype.stringify = function stringify (data) {
   return JSON.stringify(data)
+}
+
+/**
+ * Json.prototype.pipeStringify - receives * valid JS data and returns it as JSON
+ *
+ * @param {object} config
+ * @returns {Stream}
+ */
+Json.prototype.pipeStringify = function pipeStringify (config) {
+  return JSONStream.stringify()
+}
+
+/**
+ * Json.prototype.pipeStringify - receives * valid JS data and returns it as JSON
+ *
+ * @param {object} config
+ * @returns {Stream}
+ */
+Json.prototype.pipeParse = function pipeStringify (config) {
+  return JSONStream.parse()
 }
 
 module.exports = Json

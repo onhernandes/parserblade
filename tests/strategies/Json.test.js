@@ -1,6 +1,7 @@
 const Json = require('../../src/strategies/Json')
 const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
+const Stream = require('stream')
 const strategy = new Json()
 
 describe('Json Strategy', function () {
@@ -42,6 +43,40 @@ describe('Json Strategy', function () {
     it('returns true for valid input data', () => {
       const result = strategy.valid('{}')
       expect(result).toBe(true)
+    })
+  })
+
+  describe('Json.prototype.pipeStringify', () => {
+    fit('stringifies an array of objects', () => {
+      const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+
+      const reader = new Stream.Readable({
+        objectMode: true,
+        read (size) {
+          const next = input.shift()
+
+          if (!next) {
+            this.push(null)
+          } else {
+            this.push(next)
+          }
+        }
+      })
+
+      const result = []
+      const writer = strategy.pipeStringify()
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+      writer.on('end', () => {
+        const jsonString = result.join('')
+        const parsed = JSON.parse(jsonString)
+        expect(parsed).toEqual(expect.arrayContaining(input))
+      })
     })
   })
 })

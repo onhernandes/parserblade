@@ -21,4 +21,18 @@ describe('Parser implements Strategy', () => {
     parser.valid()
     expect(mock.valid).toHaveBeenCalled()
   })
+
+  it('calls pipeStringify() strategy method', () => {
+    const mock = { pipeStringify: jest.fn() }
+    const parser = new Parser(mock)
+    parser.pipeStringify()
+    expect(mock.pipeStringify).toHaveBeenCalled()
+  })
+
+  it('calls pipeParse() strategy method', () => {
+    const mock = { pipeParse: jest.fn() }
+    const parser = new Parser(mock)
+    parser.pipeParse()
+    expect(mock.pipeParse).toHaveBeenCalled()
+  })
 })

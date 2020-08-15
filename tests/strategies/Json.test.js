@@ -40,14 +40,19 @@ describe('Json Strategy', function () {
       expect(result).toBe(false)
     })
 
-    it('returns true for valid input data', () => {
+    it('returns true for valid array as input data', () => {
+      const result = strategy.valid('[]')
+      expect(result).toBe(true)
+    })
+
+    it('returns true for valid object as input data', () => {
       const result = strategy.valid('{}')
       expect(result).toBe(true)
     })
   })
 
   describe('Json.prototype.pipeStringify', () => {
-    fit('stringifies an array of objects', () => {
+    it('stringifies an array of objects', () => {
       const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
 
       const reader = new Stream.Readable({

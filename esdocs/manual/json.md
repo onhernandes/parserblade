@@ -84,7 +84,9 @@ reader
 
 ### Stringify an object
 
-You must pass `{ type: 'object' }` as param. Defaults to `array`
+You must pass `{ type: 'object' }` as param. Defaults to `array`. 
+
+Data must be an array of `[ key, value ]`. Like from `Object.entries({ game: 'Stardew Valley' })`
 
 ```javascript
 const { json } = require('parserblade')

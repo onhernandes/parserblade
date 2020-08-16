@@ -121,4 +121,44 @@ describe('Json Strategy', function () {
       })
     })
   })
+
+  describe('Json.prototype.pipeParse', () => {
+    fit('parses an object', () => {
+      const input = JSON.stringify({
+        services: [
+          { url: 'cloud.google.com' }
+        ]
+      })
+      let position = 0
+
+      const reader = new Stream.Readable({
+        read (size) {
+          const hasCharAtPosition = input.charAt(position) !== ''
+          const hasCharAtPositionAndSize = input.charAt(position + size) !== ''
+          if (!hasCharAtPosition || !hasCharAtPositionAndSize) {
+            this.push(null)
+            return
+          }
+
+          const next = input.slice(position, size)
+          position = position + size
+          this.push(next)
+        }
+      })
+
+      const result = []
+      const writer = strategy.pipeParse()
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+      writer.on('end', () => {
+        console.log(result)
+        expect(true).toBe(true)
+      })
+    })
+  })
 })

@@ -37,7 +37,7 @@ Json.prototype.stringify = function stringify (data) {
 }
 
 /**
- * Json.prototype.pipeStringify - receives * valid JS data and returns it as JSON
+ * Json.prototype.pipeStringify - helps to stream object or array into JSON valid data
  *
  * @param {object} [config] - sets config for stream
  * @param {string} [config.type='array'] - which type of data you're streaming, defaults do array
@@ -60,12 +60,13 @@ Json.prototype.pipeStringify = function pipeStringify (config = {}) {
 }
 
 /**
- * Json.prototype.pipeStringify - receives * valid JS data and returns it as JSON
+ * Json.prototype.pipeStringify - helps to stream JSON data to JS
  *
- * @param {object} config
+ * @param {object} [config] - sets config for stream
+ * @param {string} [config.path] - select which data path to be parsed from JSON to JS
  * @returns {Stream}
  */
-Json.prototype.pipeParse = function pipeStringify (config) {
+Json.prototype.pipeParse = function pipeParse (config) {
   return JSONStream.parse()
 }
 

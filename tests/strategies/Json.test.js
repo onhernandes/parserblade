@@ -84,23 +84,23 @@ describe('Json Strategy', function () {
       })
     })
 
-    fit('stringifies an object', () => {
+    it('stringifies an object', () => {
       const input = {
         services: [
           { url: 'cloud.google.com' }
         ]
       }
-
-      let dataSent = false
+      const entries = Object.entries(input)
 
       const reader = new Stream.Readable({
         objectMode: true,
         read (size) {
-          if (!dataSent) {
-            this.push(input)
-            dataSent = true
-          } else {
+          const next = entries.shift()
+
+          if (!next) {
             this.push(null)
+          } else {
+            this.push(next)
           }
         }
       })
@@ -116,9 +116,8 @@ describe('Json Strategy', function () {
       writer.on('error', console.log)
       writer.on('end', () => {
         const jsonString = result.join('')
-        console.log('MYSTRSSSSSS', jsonString)
         const parsed = JSON.parse(jsonString)
-        expect(parsed).toEqual(expect.arrayContaining(input))
+        expect(parsed).toMatchObject(input)
       })
     })
   })

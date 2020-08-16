@@ -1,8 +1,6 @@
 # JSON
 
-## Usage
-
-### Parse
+## Parse
 
 There's no magic here. It just calls native's `JSON.parse`, currently there's no additional parameters.
 
@@ -18,7 +16,7 @@ assert.deepStrictEqual(
 )
 ```
 
-### Stringify
+## Stringify
 
 There's no magic here. It just calls native's `JSON.stringify`, currently there's no additional parameters.
 
@@ -34,7 +32,7 @@ assert.equal(
 )
 ```
 
-### Valid
+## Valid
 
 Just checks if given string is a valid JSON data
 
@@ -47,4 +45,77 @@ assert.equal(
   result,
   false
 )
+```
+
+## Stream
+
+### Stringify an array
+
+```javascript
+const { json } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+
+    if (!next) {
+      this.push(null)
+    } else {
+      this.push(next)
+    }
+  }
+})
+
+const writer = json.pipeStringify()
+const toFile = fs.createWriteStream('./data-test.json')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### Stringify an object
+
+You must pass `{ type: 'object' }` as param. Defaults to `array`
+
+```javascript
+const { json } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = Object.entries({
+  name: 'Rodolfo'
+})
+
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+
+    if (!next) {
+      this.push(null)
+    } else {
+      this.push(next)
+    }
+  }
+})
+
+const writer = json.pipeStringify({ type: 'object' })
+const toFile = fs.createWriteStream('./data-test.json')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
 ```

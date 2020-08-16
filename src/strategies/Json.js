@@ -39,11 +39,24 @@ Json.prototype.stringify = function stringify (data) {
 /**
  * Json.prototype.pipeStringify - receives * valid JS data and returns it as JSON
  *
- * @param {object} config
- * @returns {Stream}
+ * @param {object} [config] - sets config for stream
+ * @param {string} [config.type='array'] - which type of data you're streaming, defaults do array
+ * @returns {WritableStream}
  */
-Json.prototype.pipeStringify = function pipeStringify (config) {
-  return JSONStream.stringify()
+Json.prototype.pipeStringify = function pipeStringify (config = {}) {
+  config.type = config.type || 'array'
+  const streams = {
+    object: JSONStream.stringifyObject,
+    array: JSONStream.stringify
+  }
+
+  const fn = streams[config.type]
+
+  if (!fn) {
+    throw new ParserError('Supplied type "${config.type}" is not allowed. Use either "array" or "object"')
+  }
+
+  return fn()
 }
 
 /**

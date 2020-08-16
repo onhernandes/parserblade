@@ -83,5 +83,43 @@ describe('Json Strategy', function () {
         expect(parsed).toEqual(expect.arrayContaining(input))
       })
     })
+
+    fit('stringifies an object', () => {
+      const input = {
+        services: [
+          { url: 'cloud.google.com' }
+        ]
+      }
+
+      let dataSent = false
+
+      const reader = new Stream.Readable({
+        objectMode: true,
+        read (size) {
+          if (!dataSent) {
+            this.push(input)
+            dataSent = true
+          } else {
+            this.push(null)
+          }
+        }
+      })
+
+      const result = []
+      const writer = strategy.pipeStringify({ type: 'object' })
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+      writer.on('end', () => {
+        const jsonString = result.join('')
+        console.log('MYSTRSSSSSS', jsonString)
+        const parsed = JSON.parse(jsonString)
+        expect(parsed).toEqual(expect.arrayContaining(input))
+      })
+    })
   })
 })

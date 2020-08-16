@@ -53,7 +53,7 @@ Json.prototype.pipeStringify = function pipeStringify (config = {}) {
   const fn = streams[config.type]
 
   if (!fn) {
-    throw new ParserError('Supplied type "${config.type}" is not allowed. Use either "array" or "object"')
+    throw new ParserError(`Supplied type "${config.type}" is not allowed. Use either "array" or "object"`)
   }
 
   return fn()

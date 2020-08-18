@@ -38,6 +38,20 @@ Parser.prototype.valid = function stringify (data, options) {
   return this.strategy.valid(data, options)
 }
 
+/**
+ * Parser.prototype.pipeStringify - Exposes the pipeStringify() method from strategy. Streams data through stringify
+ */
+Parser.prototype.pipeStringify = function pipeStringify () {
+  return this.strategy.pipeStringify()
+}
+
+/**
+ * Parser.prototype.pipeParse - Exposes the pipeParse() method from strategy. Streams data through parse
+ */
+Parser.prototype.pipeParse = function pipeParse () {
+  return this.strategy.pipeParse()
+}
+
 Parser.prototype.get = function get (data, path) {}
 
 Parser.prototype.has = function has (data, path) {}

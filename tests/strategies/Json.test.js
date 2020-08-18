@@ -1,7 +1,12 @@
 const Json = require('../../src/strategies/Json')
 const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
+const Stream = require('stream')
 const strategy = new Json()
+const fs = require('fs')
+const path = require('path')
+
+const TEST_FILE = path.resolve(__dirname, '../data/services.json')
 
 describe('Json Strategy', function () {
   describe('Json.prototype.parse', function () {
@@ -39,9 +44,108 @@ describe('Json Strategy', function () {
       expect(result).toBe(false)
     })
 
-    it('returns true for valid input data', () => {
+    it('returns true for valid array as input data', () => {
+      const result = strategy.valid('[]')
+      expect(result).toBe(true)
+    })
+
+    it('returns true for valid object as input data', () => {
       const result = strategy.valid('{}')
       expect(result).toBe(true)
+    })
+  })
+
+  describe('Json.prototype.pipeStringify', () => {
+    it('stringifies an array of objects', () => {
+      const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+
+      const reader = new Stream.Readable({
+        objectMode: true,
+        read (size) {
+          const next = input.shift()
+
+          if (!next) {
+            this.push(null)
+          } else {
+            this.push(next)
+          }
+        }
+      })
+
+      const result = []
+      const writer = strategy.pipeStringify()
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+      writer.on('end', () => {
+        const jsonString = result.join('')
+        const parsed = JSON.parse(jsonString)
+        expect(parsed).toEqual(expect.arrayContaining(input))
+      })
+    })
+
+    it('stringifies an object', () => {
+      const input = {
+        services: [
+          { url: 'cloud.google.com' }
+        ]
+      }
+      const entries = Object.entries(input)
+
+      const reader = new Stream.Readable({
+        objectMode: true,
+        read (size) {
+          const next = entries.shift()
+
+          if (!next) {
+            this.push(null)
+          } else {
+            this.push(next)
+          }
+        }
+      })
+
+      const result = []
+      const writer = strategy.pipeStringify({ type: 'object' })
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+      writer.on('end', () => {
+        const jsonString = result.join('')
+        const parsed = JSON.parse(jsonString)
+        expect(parsed).toMatchObject(input)
+      })
+    })
+  })
+
+  describe('Json.prototype.pipeParse', () => {
+    it('parses an object', () => {
+      const reader = fs.createReadStream(TEST_FILE)
+
+      const result = []
+      const writer = strategy.pipeParse()
+      reader.pipe(writer)
+
+      writer.on('data', (data) => {
+        result.push(data)
+      })
+
+      writer.on('error', console.log)
+
+      writer.on('end', () => {
+        expect(result).toHaveLength(1)
+        expect(result[0]).toMatchObject({
+          services: [{ url: 'netflix.com' }]
+        })
+      })
     })
   })
 })

@@ -121,3 +121,23 @@ reader
     console.log('done')
   })
 ```
+
+### Parse
+
+```javascript
+const { json } = require('parserblade')
+const fs = require('fs')
+const path = require('path')
+const filepath = path.resolve(__dirname, '../data/services.json')
+
+const reader = fs.createReadStream(filepath)
+const writer = json.pipeParse()
+
+reader
+  .pipe(writer)
+  .on('data', console.log)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```

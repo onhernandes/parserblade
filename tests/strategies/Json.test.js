@@ -3,6 +3,10 @@ const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
 const Stream = require('stream')
 const strategy = new Json()
+const fs = require('fs')
+const path = require('path')
+
+const TEST_FILE = path.resolve(__dirname, '../data/services.json')
 
 describe('Json Strategy', function () {
   describe('Json.prototype.parse', function () {
@@ -123,28 +127,8 @@ describe('Json Strategy', function () {
   })
 
   describe('Json.prototype.pipeParse', () => {
-    fit('parses an object', () => {
-      const input = JSON.stringify({
-        services: [
-          { url: 'cloud.google.com' }
-        ]
-      })
-      let position = 0
-
-      const reader = new Stream.Readable({
-        read (size) {
-          const hasCharAtPosition = input.charAt(position) !== ''
-          const hasCharAtPositionAndSize = input.charAt(position + size) !== ''
-          if (!hasCharAtPosition || !hasCharAtPositionAndSize) {
-            this.push(null)
-            return
-          }
-
-          const next = input.slice(position, size)
-          position = position + size
-          this.push(next)
-        }
-      })
+    it('parses an object', () => {
+      const reader = fs.createReadStream(TEST_FILE)
 
       const result = []
       const writer = strategy.pipeParse()
@@ -155,9 +139,12 @@ describe('Json Strategy', function () {
       })
 
       writer.on('error', console.log)
+
       writer.on('end', () => {
-        console.log(result)
-        expect(true).toBe(true)
+        expect(result).toHaveLength(1)
+        expect(result[0]).toMatchObject({
+          services: [{ url: 'netflix.com' }]
+        })
       })
     })
   })

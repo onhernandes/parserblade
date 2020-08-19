@@ -1,6 +1,8 @@
 const Base = require('../Base')
 const ParserError = require('../../errors/ParserError')
 const xml = require('xml-js')
+const StreamParser = require('node-xml-stream')
+const { Transform } = require('stream')
 
 /**
  * Xml - Support for XML filetype
@@ -15,6 +17,20 @@ function Xml () {
         encoding: 'utf-8'
       }
     }
+  }
+
+  this.XML_JS_KEYS = {
+    declarationKey: '_declaration',
+    instructionKey: '_instruction',
+    attributesKey: '_attributes',
+    textKey: '_text',
+    cdataKey: '_cdata',
+    doctypeKey: '_doctype',
+    commentKey: '_comment',
+    parentKey: '_parent',
+    typeKey: '_type',
+    nameKey: '_name',
+    elementsKey: '_elements'
   }
 }
 
@@ -42,14 +58,6 @@ Xml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {
  * @param {(object|array)} data
  * @param {Object} options - options for turning JS data into XML
  * @param {boolean} options.ignoreDeclaration - don't output XML version tag, default is true
- * @example
- * // returns '<?xml version="1.0" encoding="utf-8"?><package>parser</package>'
- * const data = { package: 'parser' }
- * Xml().stringify(data)
- * @example
- * // returns '<package>parser</package>'
- * const data = { package: 'parser' }
- * Xml().stringify(data, { ignoreDeclaration: true })
  * @returns {string}
  */
 Xml.prototype.stringify = function stringify (data, options = {}) {
@@ -74,6 +82,7 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
  * @param {object} options
  * @param {object} options.showDeclaration - force parsing XML declaration tag
  * @param {boolean} options.verbose - makes xml2js return non compact mode, defaults to false
+ * @param {boolean} options.experimentalXmlTag - use experimental XmlTag prototype, default is false
  * @throws {NotImplemented} This method must be implemented
  */
 Xml.prototype.parse = function parse (data, options = {}) {
@@ -93,10 +102,41 @@ Xml.prototype.parse = function parse (data, options = {}) {
       config.compact = false
     }
 
-    return xml.xml2js(data, config)
+    const result = xml.xml2js(data, config)
+
+    if (options.experimentalXmlTag) {
+      return this.toXmlTag(result)
+    }
+
+    return result
   } catch (error) {
     throw new ParserError(error.message)
   }
+}
+
+/**
+ * Xml.prototype.pipeParse - stream
+ *
+ * Using repl.it: https://repl.it/@onhernandes/AnnualEnormousRegisters
+ */
+Xml.prototype.pipeParse = function pipeParse () {
+  const history = [] // eslint-disable-line
+  const parser = new StreamParser()
+
+  const currentTag = { // eslint-disable-line
+    name: '',
+    text: '',
+    attributes: ''
+  }
+
+  parser.on('opentag', (name, attrs) => {
+  })
+
+  return new Transform({
+    transform (chunk, encoding, ack) {
+      parser.write(chunk.toString())
+    }
+  })
 }
 
 module.exports = Xml

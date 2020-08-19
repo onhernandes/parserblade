@@ -1,5 +1,5 @@
-const Base = require('./Base')
-const ParserError = require('../errors/ParserError')
+const Base = require('../Base')
+const ParserError = require('../../errors/ParserError')
 const xml = require('xml-js')
 
 /**

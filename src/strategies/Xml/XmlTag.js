@@ -1,11 +1,11 @@
 function XmlResult (declaration, tags) {
   this.declaration = declaration
-  this.tags = tags
+  this.content = tags
 }
 
-function XmlTag (name, text, attributes, tags) {
+function XmlTag (name, value, attributes, tags) {
   this.name = name
-  this.text = text
+  this.value = value
   this.attributes = attributes
   this.tags = tags
 }

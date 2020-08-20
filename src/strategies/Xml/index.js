@@ -3,6 +3,7 @@ const ParserError = require('../../errors/ParserError')
 const xml = require('xml-js')
 const StreamParser = require('node-xml-stream')
 const { Transform } = require('stream')
+const XmlTag = require('./XmlTag')
 
 /**
  * Xml - Support for XML filetype
@@ -123,18 +124,47 @@ Xml.prototype.pipeParse = function pipeParse () {
   const history = [] // eslint-disable-line
   const parser = new StreamParser()
 
-  const currentTag = { // eslint-disable-line
+  let currentTagFinished = false
+  let currentTag = { // eslint-disable-line
     name: '',
     text: '',
-    attributes: ''
+    attributes: {}
   }
 
   parser.on('opentag', (name, attrs) => {
+    currentTag.name = name
+    currentTag.attributes = attrs || {}
+  })
+
+  parser.on('text', (text) => {
+    currentTag.text = text
+  })
+
+  parser.on('closetag', (name) => {
+    if (currentTag.name !== name) {
+      throw new ParserError('Current tag name does not match closing tag')
+    }
+
+    currentTagFinished = true
   })
 
   return new Transform({
     transform (chunk, encoding, ack) {
+      if (currentTagFinished) {
+        const tag = new XmlTag(
+          currentTag.name,
+          currentTag.text,
+          currentTag.attributes,
+          currentTag.tags || []
+        )
+
+        this.push(tag)
+        currentTag = {}
+        currentTagFinished = false
+      }
+
       parser.write(chunk.toString())
+      ack()
     }
   })
 }

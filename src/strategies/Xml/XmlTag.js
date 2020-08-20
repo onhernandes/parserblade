@@ -1,3 +1,8 @@
+function XmlResult (declaration, tags) {
+  this.declaration = declaration
+  this.tags = tags
+}
+
 function XmlTag (name, text, attributes, tags) {
   this.name = name
   this.text = text
@@ -5,4 +10,4 @@ function XmlTag (name, text, attributes, tags) {
   this.tags = tags
 }
 
-module.exports = XmlTag
+module.exports = { XmlTag, XmlResult }

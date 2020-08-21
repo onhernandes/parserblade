@@ -2,7 +2,7 @@ const { Transform, Readable } = require('stream')
 const StreamParser = require('node-xml-stream')
 const parser = new StreamParser()
 
-const depth = 1
+const depth = 0
 let currentDepth = 0
 let hasReachedDepth = false
 const mainTag = {
@@ -16,10 +16,6 @@ let currentTag = { // eslint-disable-line
 }
 
 parser.on('opentag', (name, attrs) => {
-  if (currentDepth !== depth && currentTag.name === '') {
-    currentDepth = currentDepth + 1
-  }
-
   if (currentDepth === depth) {
     mainTag.name = name
     mainTag.attributes = attrs || {}
@@ -27,10 +23,12 @@ parser.on('opentag', (name, attrs) => {
     currentTag.name = name
     currentTag.attributes = attrs || {}
   }
+
+  currentDepth = currentDepth + 1
 })
 
 parser.on('text', (text) => {
-  if (currentTag.name !== '') {
+  if (depth !== (currentDepth - 1)) {
     currentTag.text = text
   } else {
     mainTag.text = text
@@ -50,6 +48,8 @@ parser.on('closetag', (name) => {
   if (name === mainTag.name) {
     hasReachedDepth = true
   }
+
+  currentDepth = currentDepth - 1
 })
 
 const transformData = new Transform({
@@ -57,12 +57,18 @@ const transformData = new Transform({
   transform (chunk, encoding, ack) {
     if (hasReachedDepth) {
       this.push(Object.assign({}, mainTag))
+
       mainTag.name = ''
       mainTag.text = ''
       mainTag.attributes = {}
       mainTag.tags = []
+
+      currentTag.name = ''
+      currentTag.text = ''
+      currentTag.attributes = {}
+      currentTag.tags = []
+
       hasReachedDepth = false
-      currentDepth = 0
     }
 
     parser.write(chunk.toString())

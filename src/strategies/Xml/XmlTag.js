@@ -3,6 +3,11 @@ function XmlResult (declaration, tags) {
   this.content = tags
 }
 
+function XmlDeclaration (version, encoding) {
+  this.version = version
+  this.encoding = encoding
+}
+
 function XmlTag (name, value, attributes, tags) {
   this.name = name
   this.value = value
@@ -10,4 +15,4 @@ function XmlTag (name, value, attributes, tags) {
   this.tags = tags
 }
 
-module.exports = { XmlTag, XmlResult }
+module.exports = { XmlTag, XmlResult, XmlDeclaration }

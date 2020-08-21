@@ -15,4 +15,8 @@ function XmlTag (name, value, attributes, tags) {
   this.tags = tags
 }
 
-module.exports = { XmlTag, XmlResult, XmlDeclaration }
+function XmlCharacterData (cdata) {
+  this.cdata = cdata
+}
+
+module.exports = { XmlTag, XmlResult, XmlDeclaration, XmlCharacterData }

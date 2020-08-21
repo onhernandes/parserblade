@@ -1,9 +1,7 @@
 const Base = require('../Base')
 const ParserError = require('../../errors/ParserError')
 const xml = require('xml-js')
-const StreamParser = require('node-xml-stream')
-const { Transform } = require('stream')
-const XmlTag = require('./XmlTag')
+const NotImplemented = require('../../errors/NotImplemented')
 
 /**
  * Xml - Support for XML filetype
@@ -116,57 +114,13 @@ Xml.prototype.parse = function parse (data, options = {}) {
 }
 
 /**
- * Xml.prototype.pipeParse - stream
+ * Xml.prototype.toXmlTag - turns xml2js non-compact result into XmlTag and XmlResult
  *
- * Using repl.it: https://repl.it/@onhernandes/AnnualEnormousRegisters
+ * @param {object} xml2jsResult
+ * @throws {NotImplemented}
  */
-Xml.prototype.pipeParse = function pipeParse () {
-  const history = [] // eslint-disable-line
-  const parser = new StreamParser()
-
-  let currentTagFinished = false
-  let currentTag = { // eslint-disable-line
-    name: '',
-    text: '',
-    attributes: {}
-  }
-
-  parser.on('opentag', (name, attrs) => {
-    currentTag.name = name
-    currentTag.attributes = attrs || {}
-  })
-
-  parser.on('text', (text) => {
-    currentTag.text = text
-  })
-
-  parser.on('closetag', (name) => {
-    if (currentTag.name !== name) {
-      throw new ParserError('Current tag name does not match closing tag')
-    }
-
-    currentTagFinished = true
-  })
-
-  return new Transform({
-    transform (chunk, encoding, ack) {
-      if (currentTagFinished) {
-        const tag = new XmlTag(
-          currentTag.name,
-          currentTag.text,
-          currentTag.attributes,
-          currentTag.tags || []
-        )
-
-        this.push(tag)
-        currentTag = {}
-        currentTagFinished = false
-      }
-
-      parser.write(chunk.toString())
-      ack()
-    }
-  })
+Xml.prototype.toXmlTag = function toXmlTag (xml2jsResult) {
+  throw new NotImplemented()
 }
 
 module.exports = Xml

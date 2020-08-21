@@ -2,7 +2,6 @@ const Xml = require('../../src/strategies/Xml')
 const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
 const strategy = new Xml()
-const { Readable } = require('stream')
 
 describe('Xml Strategy', function () {
   describe('Xml.prototype.setXmlDeclaration()', function () {
@@ -154,29 +153,6 @@ describe('Xml Strategy', function () {
     it('returns true for valid input data', () => {
       const result = strategy.valid('<game>Stardew Valley</game>')
       expect(result).toBe(true)
-    })
-  })
-
-  describe('Xml.prototype.pipeParse', () => {
-    it('parses XML', () => {
-      const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'.split('')
-
-      const reader = new Readable({
-        read () {
-          const next = input.shift()
-          if (typeof next === 'string') {
-            this.push(next)
-          } else {
-            this.push(null)
-          }
-        }
-      })
-
-      reader
-        .pipe(strategy.pipeParse())
-        .on('data', console.log)
-        .on('error', console.log)
-        .on('end', console.log)
     })
   })
 })

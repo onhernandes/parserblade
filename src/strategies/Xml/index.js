@@ -4,7 +4,7 @@ const xml = require('xml-js')
 const NotImplemented = require('../../errors/NotImplemented')
 const { Transform } = require('stream')
 const StreamParser = require('node-xml-stream')
-const { XmlTag } = require('./XmlTag')
+const { XmlTag, XmlCharacterData, XmlDeclaration } = require('./XmlTag')
 
 /**
  * Xml - Support for XML filetype
@@ -130,51 +130,149 @@ Xml.prototype.toXmlTag = function toXmlTag (xml2jsResult) {
  * Xml.prototype.pipeParse - stream
  *
  * Using repl.it: https://repl.it/@onhernandes/AnnualEnormousRegisters
+ * @param {object} [options]
+ * @param {Number} [options.depth=0]
  */
-Xml.prototype.pipeParse = function pipeParse () {
-  const history = [] // eslint-disable-line
+Xml.prototype.pipeParse = function pipeParse (options = {}) {
+  options.depth = options.depth || 0
   const parser = new StreamParser()
 
-  let currentTagFinished = false
-  let currentTag = { // eslint-disable-line
-    name: '',
-    text: '',
-    attributes: {}
+  let index = 0
+  let parsedTags = new Map()
+  const toEmit = []
+  const lastTag = {
+    index: null,
+    name: null,
+    tagIndex: null
+  }
+
+  const getFirstTagName = map => {
+    if (map.has(0) === false) {
+      return null
+    }
+
+    const mapPosZero = map.get(0)
+    const arrayMap = Array.from(mapPosZero)
+
+    if (arrayMap.length === 0) {
+      return null
+    }
+
+    const keyValue = arrayMap[0]
+
+    if (keyValue.length === 0) {
+      return null
+    }
+
+    return keyValue[0]
   }
 
   parser.on('opentag', (name, attrs) => {
-    currentTag.name = name
-    currentTag.attributes = attrs || {}
+    const inheritFrom = {
+      index: null,
+      name: null
+    }
+
+    if (index >= 1) {
+      const beforeIndex = index - 1
+      const beforeKey = [
+        ...parsedTags
+          .get(beforeIndex)
+          .keys()
+      ].reverse()[0]
+      inheritFrom.index = beforeIndex
+      inheritFrom.name = beforeKey
+    }
+
+    if (!parsedTags.has(index)) {
+      parsedTags.set(index, new Map())
+    }
+
+    if (!parsedTags.get(index).has(name)) {
+      parsedTags.get(index).set(name, [])
+    }
+
+    const tag = new XmlTag(name, null, attrs, [])
+    tag.inheritFrom = inheritFrom
+
+    lastTag.index = index
+    lastTag.name = name
+    lastTag.tagIndex = parsedTags.get(index).get(name).push(tag) - 1
+    tag.inheritFrom.tagIndex = lastTag.tagIndex
+    index = index + 1
   })
 
   parser.on('text', (text) => {
-    currentTag.text = text
+    parsedTags
+      .get(lastTag.index)
+      .get(lastTag.name)[lastTag.tagIndex]
+      .value = text
+
+    lastTag.index = null
+    lastTag.name = null
+    lastTag.tagIndex = null
   })
 
   parser.on('closetag', (name) => {
-    if (currentTag.name !== name) {
-      throw new ParserError('Current tag name does not match closing tag')
+    index = index - 1
+
+    if (index === options.depth) {
+      /**
+       * must reorganize data to a single object
+       * them emit it
+      */
+      let entries = Array.from(parsedTags).reverse()
+      entries = entries.map(
+        ([intIndex, tagsMap]) => ({
+          intIndex, tagsMap: Array.from(tagsMap).reverse()
+        })
+      )
+      entries.pop()
+      entries.forEach(entry => {
+        const intIndex = entry.intIndex === 0 ? entry.intIndex : entry.intIndex - 1
+        const indexedTags = parsedTags.get(intIndex)
+
+        entry.tagsMap.forEach(tag => {
+          const list = tag[1]
+          list.forEach(tagToBePushed => {
+            indexedTags
+              .get(tagToBePushed.inheritFrom.name)[0]
+              .tags
+              .push(tagToBePushed.reset())
+          })
+        })
+      })
+
+      parsedTags
+        .get(index)
+        .get(name)
+        .forEach(tag => toEmit.push(tag.reset()))
     }
 
-    currentTagFinished = true
+    if (name === getFirstTagName(parsedTags)) {
+      parsedTags = new Map()
+    }
+  })
+
+  parser.on('cdata', cdata => {
+    const CData = new XmlCharacterData(cdata)
+    toEmit.push(CData)
+  })
+
+  parser.on('instruction', (name, attrs) => {
+    const declaration = new XmlDeclaration(attrs.version, attrs.encoding)
+    toEmit.push(declaration)
   })
 
   return new Transform({
+    objectMode: true,
     transform (chunk, encoding, ack) {
-      if (currentTagFinished) {
-        const tag = new XmlTag(
-          currentTag.name,
-          currentTag.text,
-          currentTag.attributes,
-          currentTag.tags || []
-        )
+      parser.write(chunk.toString())
 
-        this.push(tag)
-        currentTag = {}
-        currentTagFinished = false
+      if (toEmit.length > 0) {
+        this.push(toEmit.shift())
       }
 
-      parser.write(chunk.toString())
       ack()
     }
   })

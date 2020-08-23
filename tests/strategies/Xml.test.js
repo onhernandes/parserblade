@@ -2,6 +2,41 @@ const Xml = require('../../src/strategies/Xml')
 const ParserError = require('../../src/errors/ParserError')
 const NotImplemented = require('../../src/errors/NotImplemented')
 const strategy = new Xml()
+const { Readable } = require('stream')
+const { XmlTag, XmlDeclaration } = require('../../src/strategies/Xml/XmlTag')
+
+const input = `
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+  <name>Naruto Shippuden Storm 3</name>
+  <platform>
+    platform
+    <another>
+      This is another tag
+    </another>
+    <another>
+      Third tag another
+    </another>
+  </platform>
+  <site url="netflix">
+    Netflix
+    <description>
+      Possible description here
+    </description>
+  </site>
+</games>
+`.split('')
+
+const getReader = inputArray => new Readable({
+  read () {
+    const next = inputArray.shift()
+    if (typeof next === 'string') {
+      this.push(next)
+    } else {
+      this.push(null)
+    }
+  }
+})
 
 describe('Xml Strategy', function () {
   describe('Xml.prototype.setXmlDeclaration()', function () {
@@ -153,6 +188,60 @@ describe('Xml Strategy', function () {
     it('returns true for valid input data', () => {
       const result = strategy.valid('<game>Stardew Valley</game>')
       expect(result).toBe(true)
+    })
+  })
+
+  describe('Xml.prototype.pipeParse', () => {
+    it('parses with default options.depth', () => {
+      const reader = getReader(Array.from(input))
+      const toExpect = {
+        declaration: data => {
+          expect(data).toBeInstanceOf(XmlDeclaration)
+          expect(data.version).toEqual('1.0')
+          expect(data.encoding).toEqual('utf-8')
+        },
+        games: data => {
+          expect(data).toBeInstanceOf(XmlTag)
+          expect(data.tags).toHaveLength(3)
+        }
+      }
+      reader
+        .pipe(strategy.pipeParse())
+        .on('data', data => {
+          toExpect[data.name](data)
+        })
+        .on('error', console.log)
+        .on('end', () => {})
+    })
+
+    it('parses with custom options.depth 1', () => {
+      const reader = getReader(Array.from(input))
+      const toExpect = {
+        declaration: data => {
+          expect(data).toBeInstanceOf(XmlDeclaration)
+          expect(data.version).toEqual('1.0')
+          expect(data.encoding).toEqual('utf-8')
+        },
+        name: data => {
+          expect(data).toBeInstanceOf(XmlTag)
+          expect(data.tags).toHaveLength(0)
+        },
+        platform: data => {
+          expect(data).toBeInstanceOf(XmlTag)
+          expect(data.tags).toHaveLength(2)
+        },
+        site: data => {
+          expect(data).toBeInstanceOf(XmlTag)
+          expect(data.tags).toHaveLength(1)
+        }
+      }
+      reader
+        .pipe(strategy.pipeParse({ depth: 1 }))
+        .on('data', data => {
+          toExpect[data.name](data)
+        })
+        .on('error', console.log)
+        .on('end', () => {})
     })
   })
 })

@@ -179,3 +179,52 @@ assert.equal(
   false
 )
 ```
+
+## Stream
+
+### pipeParse
+
+You may specify in which depth it should emit data, defaults to 0.
+
+```javascript
+const { Readable } = require('stream')
+const { xml } = require('parserblade')
+const input = `
+<?xml version="1.0" encoding="utf-8"?>
+<info>
+  <name>Naruto Shippuden Storm 3</name>
+  <platform>
+    platform
+    <another>
+      This is another tag
+    </another>
+    <another>
+      Third tag another
+    </another>
+  </platform>
+  <site url="netflix">
+    Netflix
+    <description>
+      Possible description here
+    </description>
+  </site>
+</info>
+`.split('')
+
+const reader = new Readable({
+  read () {
+    const next = input.shift()
+    if (typeof next === 'string') {
+      this.push(next)
+    } else {
+      this.push(null)
+    }
+  }
+})
+
+reader
+  .pipe(xml.pipeParse())
+  .on('data', console.log)
+  .on('error', console.log)
+  .on('end', () => console.log('stream ended'))
+```

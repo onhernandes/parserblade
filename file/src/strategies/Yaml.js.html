@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parser"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
@@ -72,7 +72,17 @@ Yaml.prototype.stringify = function stringify (data, options = {}) {
  * @returns {object} Parsed YAML data as JS object
  */
 Yaml.prototype.parse = function parse (data, options = {}) {
-  return yaml.safeLoad(data)
+  try {
+    return yaml.safeLoad(data)
+  } catch (e) {
+    const context = {
+      errorName: e.name,
+      message: e.message,
+      mark: e.mark
+    }
+
+    throw new ParserError(&apos;yaml&apos;, context)
+  }
 }
 
 module.exports = Yaml

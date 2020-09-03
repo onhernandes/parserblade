@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/strategies/Xml/index.js | parserblade</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-parser.css"><meta name="description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="parserblade"><meta property="twitter:description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/strategies/Xml/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const Base = require(&apos;../Base&apos;)
+const ParserError = require(&apos;../../errors/ParserError&apos;)
+const xml = require(&apos;xml-js&apos;)
+const NotImplemented = require(&apos;../../errors/NotImplemented&apos;)
+const { Transform } = require(&apos;stream&apos;)
+const StreamParser = require(&apos;node-xml-stream&apos;)
+const { XmlTag, XmlCharacterData, XmlDeclaration } = require(&apos;./XmlTag&apos;)
+
+/**
+ * Xml - Support for XML filetype
+ *
+ * @constructor
+ */
+function Xml () {
+  this.XML_VERSION_TAG = {
+    _declaration: {
+      _attributes: {
+        version: &apos;1.0&apos;,
+        encoding: &apos;utf-8&apos;
+      }
+    }
+  }
+
+  this.XML_JS_KEYS = {
+    declarationKey: &apos;_declaration&apos;,
+    instructionKey: &apos;_instruction&apos;,
+    attributesKey: &apos;_attributes&apos;,
+    textKey: &apos;_text&apos;,
+    cdataKey: &apos;_cdata&apos;,
+    doctypeKey: &apos;_doctype&apos;,
+    commentKey: &apos;_comment&apos;,
+    parentKey: &apos;_parent&apos;,
+    typeKey: &apos;_type&apos;,
+    nameKey: &apos;_name&apos;,
+    elementsKey: &apos;_elements&apos;
+  }
+}
+
+Xml.prototype = Object.create(Base.prototype)
+
+/**
+ * Xml.prototype.setXmlDeclaration - sets XML declaration tag on first position of array or object
+ *
+ * @param {(object|array)} data - input data
+ * @returns {(object|array)}
+ */
+Xml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {
+  if (Array.isArray(data)) {
+    data = [this.XML_VERSION_TAG, ...data]
+  } else {
+    data = { ...this.XML_VERSION_TAG, ...data }
+  }
+
+  return data
+}
+
+/**
+ * Xml.prototype.stringify - receives * valid JS data and returns it as XML
+ *
+ * @param {(object|array)} data
+ * @param {Object} options - options for turning JS data into XML
+ * @param {boolean} options.ignoreDeclaration - don&apos;t output XML version tag, default is true
+ * @returns {string}
+ */
+Xml.prototype.stringify = function stringify (data, options = {}) {
+  const config = {
+    compact: true,
+    ignoreDeclaration: false
+  }
+
+  data = this.setXmlDeclaration(data)
+
+  if (options.ignoreDeclaration) {
+    config.ignoreDeclaration = true
+  }
+
+  return xml.js2xml(data, config)
+}
+
+/**
+ * Xml.prototype.parse - receives an XML string and translate it to valid JavaScript
+ *
+ * @param {string} data
+ * @param {object} options
+ * @param {object} options.showDeclaration - force parsing XML declaration tag
+ * @param {boolean} options.verbose - makes xml2js return non compact mode, defaults to false
+ * @param {boolean} options.experimentalXmlTag - use experimental XmlTag prototype, default is false
+ * @throws {NotImplemented} This method must be implemented
+ */
+Xml.prototype.parse = function parse (data, options = {}) {
+  try {
+    const config = {
+      compact: true,
+      ignoreDeclaration: true,
+      nativeType: true,
+      nativeTypeAttributes: true
+    }
+
+    if (options.showDeclaration) {
+      config.ignoreDeclaration = false
+    }
+
+    if (options.verbose) {
+      config.compact = false
+    }
+
+    const result = xml.xml2js(data, config)
+
+    if (options.experimentalXmlTag) {
+      return this.toXmlTag(result)
+    }
+
+    return result
+  } catch (error) {
+    throw new ParserError(error.message)
+  }
+}
+
+/**
+ * Xml.prototype.toXmlTag - turns xml2js non-compact result into XmlTag and XmlResult
+ *
+ * @param {object} xml2jsResult
+ * @throws {NotImplemented}
+ */
+Xml.prototype.toXmlTag = function toXmlTag (xml2jsResult) {
+  throw new NotImplemented()
+}
+
+/**
+ * Xml.prototype.pipeParse - stream
+ *
+ * @param {object} [options]
+ * @param {Number} [options.depth=0]
+ */
+Xml.prototype.pipeParse = function pipeParse (options = {}) {
+  options.depth = options.depth || 0
+  const parser = new StreamParser()
+
+  let index = 0
+  let parsedTags = new Map()
+  const toEmit = []
+  const lastTag = {
+    index: null,
+    name: null,
+    tagIndex: null
+  }
+
+  const getFirstTagName = map =&gt; {
+    if (map.has(0) === false) {
+      return null
+    }
+
+    const mapPosZero = map.get(0)
+    const arrayMap = Array.from(mapPosZero)
+
+    if (arrayMap.length === 0) {
+      return null
+    }
+
+    const keyValue = arrayMap[0]
+
+    if (keyValue.length === 0) {
+      return null
+    }
+
+    return keyValue[0]
+  }
+
+  parser.on(&apos;opentag&apos;, (name, attrs) =&gt; {
+    const inheritFrom = {
+      index: null,
+      name: null
+    }
+
+    if (index &gt;= 1) {
+      const beforeIndex = index - 1
+      const beforeKey = [
+        ...parsedTags
+          .get(beforeIndex)
+          .keys()
+      ].reverse()[0]
+      inheritFrom.index = beforeIndex
+      inheritFrom.name = beforeKey
+    }
+
+    if (!parsedTags.has(index)) {
+      parsedTags.set(index, new Map())
+    }
+
+    if (!parsedTags.get(index).has(name)) {
+      parsedTags.get(index).set(name, [])
+    }
+
+    const tag = new XmlTag(name, null, attrs, [])
+    tag.inheritFrom = inheritFrom
+
+    lastTag.index = index
+    lastTag.name = name
+    lastTag.tagIndex = parsedTags.get(index).get(name).push(tag) - 1
+    tag.inheritFrom.tagIndex = lastTag.tagIndex
+    index = index + 1
+  })
+
+  parser.on(&apos;text&apos;, (text) =&gt; {
+    parsedTags
+      .get(lastTag.index)
+      .get(lastTag.name)[lastTag.tagIndex]
+      .value = text
+
+    lastTag.index = null
+    lastTag.name = null
+    lastTag.tagIndex = null
+  })
+
+  parser.on(&apos;closetag&apos;, (name) =&gt; {
+    index = index - 1
+
+    if (index === options.depth) {
+      /**
+       * must reorganize data to a single object
+       * them emit it
+      */
+      let entries = Array.from(parsedTags).reverse()
+      entries = entries.map(
+        ([intIndex, tagsMap]) =&gt; ({
+          intIndex, tagsMap: Array.from(tagsMap).reverse()
+        })
+      )
+      entries.pop()
+      entries.forEach(entry =&gt; {
+        const intIndex = entry.intIndex === 0 ? entry.intIndex : entry.intIndex - 1
+        const indexedTags = parsedTags.get(intIndex)
+
+        entry.tagsMap.forEach(tag =&gt; {
+          const list = tag[1]
+          list.forEach(tagToBePushed =&gt; {
+            indexedTags
+              .get(tagToBePushed.inheritFrom.name)[0]
+              .tags
+              .push(tagToBePushed.reset())
+          })
+        })
+      })
+
+      parsedTags
+        .get(index)
+        .get(name)
+        .forEach(tag =&gt; toEmit.push(tag.reset()))
+    }
+
+    if (name === getFirstTagName(parsedTags)) {
+      parsedTags = new Map()
+    }
+  })
+
+  parser.on(&apos;cdata&apos;, cdata =&gt; {
+    const CData = new XmlCharacterData(cdata)
+    toEmit.push(CData)
+  })
+
+  parser.on(&apos;instruction&apos;, (name, attrs) =&gt; {
+    const declaration = new XmlDeclaration(attrs.version, attrs.encoding)
+    toEmit.push(declaration)
+  })
+
+  return new Transform({
+    objectMode: true,
+    transform (chunk, encoding, ack) {
+      parser.write(chunk.toString())
+
+      if (toEmit.length &gt; 0) {
+        this.push(toEmit.shift())
+      }
+
+      ack()
+    }
+  })
+}
+
+module.exports = Xml
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

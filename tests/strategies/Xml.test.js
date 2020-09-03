@@ -244,4 +244,7 @@ describe('Xml Strategy', function () {
         .on('end', () => {})
     })
   })
+
+  describe('Xml.prototype.pipeStringify', () => {
+  })
 })

@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parser"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
@@ -62,6 +62,30 @@ Parser.prototype.parse = function parse (data, options) {
  */
 Parser.prototype.stringify = function stringify (data, options) {
   return this.strategy.stringify(data, options)
+}
+
+/**
+ * Parser.prototype.valid - Exposes the valid() method from strategy. Checks if given data is valid
+ *
+ * @param {string} data
+ * @param {object} options
+ */
+Parser.prototype.valid = function stringify (data, options) {
+  return this.strategy.valid(data, options)
+}
+
+/**
+ * Parser.prototype.pipeStringify - Exposes the pipeStringify() method from strategy. Streams data through stringify
+ */
+Parser.prototype.pipeStringify = function pipeStringify () {
+  return this.strategy.pipeStringify()
+}
+
+/**
+ * Parser.prototype.pipeParse - Exposes the pipeParse() method from strategy. Streams data through parse
+ */
+Parser.prototype.pipeParse = function pipeParse () {
+  return this.strategy.pipeParse()
 }
 
 Parser.prototype.get = function get (data, path) {}

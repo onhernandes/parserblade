@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "name": "valid",
+    "filePath": "src/strategies/Base.js",
+    "lines": [
+      {
+        "lineNumber": 49,
+        "line": "Base.prototype.valid = function valid (data, options = {}) {"
+      }
+    ],
+    "codeParams": [
+      "data",
+      "options"
+    ],
+    "docParams": [
+      "options"
+    ]
+  }
+]

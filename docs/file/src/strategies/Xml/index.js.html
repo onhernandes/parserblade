@@ -1,10 +1,46 @@
-const Base = require('../Base')
-const ParserError = require('../../errors/ParserError')
-const xml = require('xml-js')
-const NotImplemented = require('../../errors/NotImplemented')
-const { Transform } = require('stream')
-const StreamParser = require('node-xml-stream')
-const { XmlTag, XmlCharacterData, XmlDeclaration } = require('./XmlTag')
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/strategies/Xml/index.js | parserblade</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-parser.css"><meta name="description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="parserblade"><meta property="twitter:description" content="The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/strategies/Xml/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const Base = require(&apos;../Base&apos;)
+const ParserError = require(&apos;../../errors/ParserError&apos;)
+const xml = require(&apos;xml-js&apos;)
+const NotImplemented = require(&apos;../../errors/NotImplemented&apos;)
+const { Transform } = require(&apos;stream&apos;)
+const StreamParser = require(&apos;node-xml-stream&apos;)
+const { XmlTag, XmlCharacterData, XmlDeclaration } = require(&apos;./XmlTag&apos;)
 
 /**
  * Xml - Support for XML filetype
@@ -15,24 +51,24 @@ function Xml () {
   this.XML_VERSION_TAG = {
     _declaration: {
       _attributes: {
-        version: '1.0',
-        encoding: 'utf-8'
+        version: &apos;1.0&apos;,
+        encoding: &apos;utf-8&apos;
       }
     }
   }
 
   this.XML_JS_KEYS = {
-    declarationKey: '_declaration',
-    instructionKey: '_instruction',
-    attributesKey: '_attributes',
-    textKey: '_text',
-    cdataKey: '_cdata',
-    doctypeKey: '_doctype',
-    commentKey: '_comment',
-    parentKey: '_parent',
-    typeKey: '_type',
-    nameKey: '_name',
-    elementsKey: '_elements'
+    declarationKey: &apos;_declaration&apos;,
+    instructionKey: &apos;_instruction&apos;,
+    attributesKey: &apos;_attributes&apos;,
+    textKey: &apos;_text&apos;,
+    cdataKey: &apos;_cdata&apos;,
+    doctypeKey: &apos;_doctype&apos;,
+    commentKey: &apos;_comment&apos;,
+    parentKey: &apos;_parent&apos;,
+    typeKey: &apos;_type&apos;,
+    nameKey: &apos;_name&apos;,
+    elementsKey: &apos;_elements&apos;
   }
 }
 
@@ -59,7 +95,7 @@ Xml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {
  *
  * @param {(object|array)} data
  * @param {Object} options - options for turning JS data into XML
- * @param {boolean} options.ignoreDeclaration - don't output XML version tag, default is true
+ * @param {boolean} options.ignoreDeclaration - don&apos;t output XML version tag, default is true
  * @returns {string}
  */
 Xml.prototype.stringify = function stringify (data, options = {}) {
@@ -145,7 +181,7 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     tagIndex: null
   }
 
-  const getFirstTagName = map => {
+  const getFirstTagName = map =&gt; {
     if (map.has(0) === false) {
       return null
     }
@@ -166,13 +202,13 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     return keyValue[0]
   }
 
-  parser.on('opentag', (name, attrs) => {
+  parser.on(&apos;opentag&apos;, (name, attrs) =&gt; {
     const inheritFrom = {
       index: null,
       name: null
     }
 
-    if (index >= 1) {
+    if (index &gt;= 1) {
       const beforeIndex = index - 1
       const beforeKey = [
         ...parsedTags
@@ -201,7 +237,7 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     index = index + 1
   })
 
-  parser.on('text', (text) => {
+  parser.on(&apos;text&apos;, (text) =&gt; {
     parsedTags
       .get(lastTag.index)
       .get(lastTag.name)[lastTag.tagIndex]
@@ -212,7 +248,7 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     lastTag.tagIndex = null
   })
 
-  parser.on('closetag', (name) => {
+  parser.on(&apos;closetag&apos;, (name) =&gt; {
     index = index - 1
 
     if (index === options.depth) {
@@ -222,18 +258,18 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
       */
       let entries = Array.from(parsedTags).reverse()
       entries = entries.map(
-        ([intIndex, tagsMap]) => ({
+        ([intIndex, tagsMap]) =&gt; ({
           intIndex, tagsMap: Array.from(tagsMap).reverse()
         })
       )
       entries.pop()
-      entries.forEach(entry => {
+      entries.forEach(entry =&gt; {
         const intIndex = entry.intIndex === 0 ? entry.intIndex : entry.intIndex - 1
         const indexedTags = parsedTags.get(intIndex)
 
-        entry.tagsMap.forEach(tag => {
+        entry.tagsMap.forEach(tag =&gt; {
           const list = tag[1]
-          list.forEach(tagToBePushed => {
+          list.forEach(tagToBePushed =&gt; {
             indexedTags
               .get(tagToBePushed.inheritFrom.name)[0]
               .tags
@@ -245,7 +281,7 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
       parsedTags
         .get(index)
         .get(name)
-        .forEach(tag => toEmit.push(tag.reset()))
+        .forEach(tag =&gt; toEmit.push(tag.reset()))
     }
 
     if (name === getFirstTagName(parsedTags)) {
@@ -253,12 +289,12 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     }
   })
 
-  parser.on('cdata', cdata => {
+  parser.on(&apos;cdata&apos;, cdata =&gt; {
     const CData = new XmlCharacterData(cdata)
     toEmit.push(CData)
   })
 
-  parser.on('instruction', (name, attrs) => {
+  parser.on(&apos;instruction&apos;, (name, attrs) =&gt; {
     const declaration = new XmlDeclaration(attrs.version, attrs.encoding)
     toEmit.push(declaration)
   })
@@ -268,7 +304,7 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
     transform (chunk, encoding, ack) {
       parser.write(chunk.toString())
 
-      if (toEmit.length > 0) {
+      if (toEmit.length &gt; 0) {
         this.push(toEmit.shift())
       }
 
@@ -278,3 +314,20 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
 }
 
 module.exports = Xml
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

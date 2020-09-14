@@ -27,10 +27,11 @@ const input = `
 </games>
 `.split('')
 
-const getReader = inputArray => new Readable({
+const getReader = (inputArray, options = {}) => new Readable({
+  objectMode: !!options.objectMode,
   read () {
     const next = inputArray.shift()
-    if (typeof next === 'string') {
+    if (next) {
       this.push(next)
     } else {
       this.push(null)
@@ -242,6 +243,57 @@ describe('Xml Strategy', function () {
         })
         .on('error', console.log)
         .on('end', () => {})
+    })
+  })
+
+  describe('Xml.prototype.pipeStringify', () => {
+    it('stringifies an array of object', () => {
+      const object = {
+        games: 'none'
+      }
+
+      const contents = [object, object]
+
+      const reader = getReader(contents, { objectMode: true })
+
+      const expected = strategy.stringify(object) + strategy.stringify(object, { ignoreDeclaration: true })
+      let parsed = ''
+      reader
+        .pipe(strategy.pipeStringify())
+        .on('data', data => {
+          parsed = parsed + data
+        })
+        .on('error', console.log)
+        .on('end', () => {
+          expect(parsed).toBe(expected)
+        })
+    })
+
+    it('stringifies an array of object with custom parent', () => {
+      const object = {
+        games: 'none'
+      }
+
+      const contents = [object, object]
+
+      const reader = getReader(contents, { objectMode: true })
+
+      const expected = '<?xml version="1.0" encoding="utf-8"?><my-games>All my games<games>none</games><games>none</games></my-games>'
+
+      const mainTag = {
+        name: 'my-games',
+        text: 'All my games'
+      }
+      let parsed = ''
+      reader
+        .pipe(strategy.pipeStringify({ mainTag }))
+        .on('data', data => {
+          parsed = parsed + data
+        })
+        .on('error', console.log)
+        .on('end', () => {
+          expect(parsed).toBe(expected)
+        })
     })
   })
 })

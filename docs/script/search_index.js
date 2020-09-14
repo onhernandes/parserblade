@@ -324,9 +324,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/strategies/xml.js",
-    "file/src/strategies/Xml.js.html",
-    "src/strategies/Xml.js",
+    "src/strategies/xml/xmltag.js",
+    "file/src/strategies/Xml/XmlTag.js.html",
+    "src/strategies/Xml/XmlTag.js",
+    "file"
+  ],
+  [
+    "src/strategies/xml/index.js",
+    "file/src/strategies/Xml/index.js.html",
+    "src/strategies/Xml/index.js",
     "file"
   ],
   [

@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parser"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
@@ -36,6 +36,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/strategies/Json.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const Base = require(&apos;./Base&apos;)
 const ParserError = require(&apos;../errors/ParserError&apos;)
+const JSONStream = require(&apos;JSONStream&apos;)
 
 /**
  * Json - Support for JSON filetype
@@ -69,6 +70,40 @@ Json.prototype.parse = function parse (data) {
  */
 Json.prototype.stringify = function stringify (data) {
   return JSON.stringify(data)
+}
+
+/**
+ * Json.prototype.pipeStringify - helps to stream object or array into JSON valid data
+ *
+ * @param {object} [config] - sets config for stream
+ * @param {string} [config.type=&apos;array&apos;] - which type of data you&apos;re streaming, defaults do array
+ * @returns {WritableStream}
+ */
+Json.prototype.pipeStringify = function pipeStringify (config = {}) {
+  config.type = config.type || &apos;array&apos;
+  const streams = {
+    object: JSONStream.stringifyObject,
+    array: JSONStream.stringify
+  }
+
+  const fn = streams[config.type]
+
+  if (!fn) {
+    throw new ParserError(`Supplied type &quot;${config.type}&quot; is not allowed. Use either &quot;array&quot; or &quot;object&quot;`)
+  }
+
+  return fn()
+}
+
+/**
+ * Json.prototype.pipeStringify - helps to stream JSON data to JS
+ *
+ * @param {object} [config] - sets config for stream
+ * @param {string} [config.path] - select which data path to be parsed from JSON to JS
+ * @returns {Stream}
+ */
+Json.prototype.pipeParse = function pipeParse (config) {
+  return JSONStream.parse()
 }
 
 module.exports = Json

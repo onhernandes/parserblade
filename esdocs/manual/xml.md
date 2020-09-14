@@ -228,3 +228,27 @@ reader
   .on('error', console.log)
   .on('end', () => console.log('stream ended'))
 ```
+
+### pipeStringify
+
+You can set which tag wraps everything with `{ mainTag: { name, text, attributes } }`
+
+```javascript
+const { Readable } = require('stream')
+const { xml } = require('parserblade')
+const input = [{ name: 'Starcraft II' }]
+
+const reader = new Readable({
+  objectMode: true,
+  read () {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+reader
+  .pipe(xml.pipeParse({ mainTag: { name: 'games' } }))
+  .on('data', console.log)
+  .on('error', console.log)
+  .on('end', () => console.log('stream ended'))
+```

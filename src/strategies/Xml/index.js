@@ -277,4 +277,64 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
   })
 }
 
+/**
+ * Xml.prototype.pipeStringify - stream from JS data into XML
+ *
+ * @param {object} [options] - all options to stringify
+ * @param {object} [options.mainTag] - the wrapping tag
+ * @param {string} [options.mainTag.name] - the wrapping tag's name
+ */
+Xml.prototype.pipeStringify = function pipeStringify (options = {}) {
+  options.mainTag = options.mainTag || {}
+  const defaultContent = 'FAKE_CONTENT'
+  const name = options.mainTag.name
+  const contents = options.mainTag.text || defaultContent
+  const tag = { [name || 'fake']: contents }
+  const stringified = this.stringify(tag)
+
+  const lastIndexOfArrow = stringified.lastIndexOf('<')
+  let initialTag = stringified.substr(0, lastIndexOfArrow)
+
+  if (initialTag.indexOf(defaultContent) !== -1) {
+    initialTag.replace(defaultContent, '')
+  }
+
+  let endingTag = stringified.substr(
+    lastIndexOfArrow,
+    stringified.length
+  )
+
+  if (Reflect.has(options.mainTag, 'name') === false) {
+    const firstArrowIndex = initialTag.indexOf('>') + 1
+    initialTag = initialTag.substr(0, firstArrowIndex)
+    endingTag = ''
+  }
+
+  const xml = this
+  let isFirstData = true
+
+  return new Transform({
+    objectMode: true,
+    transform (chunk, encoding, ack) {
+      const options = {
+        ignoreDeclaration: true
+      }
+
+      if (isFirstData) {
+        this.push(initialTag)
+        isFirstData = false
+      }
+
+      const toBePushed = xml.stringify(chunk, options)
+      this.push(toBePushed)
+
+      ack()
+    },
+    flush (cb) {
+      this.push(endingTag)
+      cb()
+    }
+  })
+}
+
 module.exports = Xml

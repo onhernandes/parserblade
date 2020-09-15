@@ -58,8 +58,8 @@ Xml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {
  * Xml.prototype.stringify - receives * valid JS data and returns it as XML
  *
  * @param {(object|array)} data
- * @param {Object} options - options for turning JS data into XML
- * @param {boolean} options.ignoreDeclaration - don't output XML version tag, default is true
+ * @param {Object} [options] - options for turning JS data into XML
+ * @param {boolean} [options.ignoreDeclaration] - don't output XML version tag, default is true
  * @returns {string}
  */
 Xml.prototype.stringify = function stringify (data, options = {}) {
@@ -81,10 +81,10 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
  * Xml.prototype.parse - receives an XML string and translate it to valid JavaScript
  *
  * @param {string} data
- * @param {object} options
- * @param {object} options.showDeclaration - force parsing XML declaration tag
- * @param {boolean} options.verbose - makes xml2js return non compact mode, defaults to false
- * @param {boolean} options.experimentalXmlTag - use experimental XmlTag prototype, default is false
+ * @param {object} [options]
+ * @param {boolean} [options.showDeclaration] - force parsing XML declaration tag
+ * @param {boolean} [options.verbose] - makes xml2js return non compact mode, defaults to false
+ * @param {boolean} [options.experimentalXmlTag] - use experimental XmlTag prototype, default is false
  * @throws {NotImplemented} This method must be implemented
  */
 Xml.prototype.parse = function parse (data, options = {}) {

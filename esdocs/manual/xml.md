@@ -165,6 +165,31 @@ assert.deepStrictEqual(
 )
 ```
 
+#### Stringify with metadata
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = {
+  packages: [
+    {
+      _text: 'lodash',
+      _attributes: { lang: 'nodejs' }
+    },
+    {
+      _text: 'flash',
+      _attributes: { lang: 'python' }
+    }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  '<?xml version="1.0" encoding="utf-8"?><packages lang="nodejs">lodash</packages><packages lang="python">flash</packages>'
+)
+```
+
 ### Valid
 
 Just checks if given string is a valid XML

@@ -94,8 +94,8 @@ Xml.prototype.setXmlDeclaration = function setXmlDeclaration (data) {
  * Xml.prototype.stringify - receives * valid JS data and returns it as XML
  *
  * @param {(object|array)} data
- * @param {Object} options - options for turning JS data into XML
- * @param {boolean} options.ignoreDeclaration - don&apos;t output XML version tag, default is true
+ * @param {Object} [options] - options for turning JS data into XML
+ * @param {boolean} [options.ignoreDeclaration] - don&apos;t output XML version tag, default is true
  * @returns {string}
  */
 Xml.prototype.stringify = function stringify (data, options = {}) {
@@ -117,10 +117,10 @@ Xml.prototype.stringify = function stringify (data, options = {}) {
  * Xml.prototype.parse - receives an XML string and translate it to valid JavaScript
  *
  * @param {string} data
- * @param {object} options
- * @param {object} options.showDeclaration - force parsing XML declaration tag
- * @param {boolean} options.verbose - makes xml2js return non compact mode, defaults to false
- * @param {boolean} options.experimentalXmlTag - use experimental XmlTag prototype, default is false
+ * @param {object} [options]
+ * @param {boolean} [options.showDeclaration] - force parsing XML declaration tag
+ * @param {boolean} [options.verbose] - makes xml2js return non compact mode, defaults to false
+ * @param {boolean} [options.experimentalXmlTag] - use experimental XmlTag prototype, default is false
  * @throws {NotImplemented} This method must be implemented
  */
 Xml.prototype.parse = function parse (data, options = {}) {
@@ -309,6 +309,66 @@ Xml.prototype.pipeParse = function pipeParse (options = {}) {
       }
 
       ack()
+    }
+  })
+}
+
+/**
+ * Xml.prototype.pipeStringify - stream from JS data into XML
+ *
+ * @param {object} [options] - all options to stringify
+ * @param {object} [options.mainTag] - the wrapping tag
+ * @param {string} [options.mainTag.name] - the wrapping tag&apos;s name
+ */
+Xml.prototype.pipeStringify = function pipeStringify (options = {}) {
+  options.mainTag = options.mainTag || {}
+  const defaultContent = &apos;FAKE_CONTENT&apos;
+  const name = options.mainTag.name
+  const contents = options.mainTag.text || defaultContent
+  const tag = { [name || &apos;fake&apos;]: contents }
+  const stringified = this.stringify(tag)
+
+  const lastIndexOfArrow = stringified.lastIndexOf(&apos;&lt;&apos;)
+  let initialTag = stringified.substr(0, lastIndexOfArrow)
+
+  if (initialTag.indexOf(defaultContent) !== -1) {
+    initialTag.replace(defaultContent, &apos;&apos;)
+  }
+
+  let endingTag = stringified.substr(
+    lastIndexOfArrow,
+    stringified.length
+  )
+
+  if (Reflect.has(options.mainTag, &apos;name&apos;) === false) {
+    const firstArrowIndex = initialTag.indexOf(&apos;&gt;&apos;) + 1
+    initialTag = initialTag.substr(0, firstArrowIndex)
+    endingTag = &apos;&apos;
+  }
+
+  const xml = this
+  let isFirstData = true
+
+  return new Transform({
+    objectMode: true,
+    transform (chunk, encoding, ack) {
+      const options = {
+        ignoreDeclaration: true
+      }
+
+      if (isFirstData) {
+        this.push(initialTag)
+        isFirstData = false
+      }
+
+      const toBePushed = xml.stringify(chunk, options)
+      this.push(toBePushed)
+
+      ack()
+    },
+    flush (cb) {
+      this.push(endingTag)
+      cb()
     }
   })
 }

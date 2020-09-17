@@ -1,7 +1,7 @@
 {
-  "coverage": "50.79%",
-  "expectCount": 63,
-  "actualCount": 32,
+  "coverage": "51.47%",
+  "expectCount": 68,
+  "actualCount": 35,
   "files": {
     "src/Parser.js": {
       "expectCount": 8,
@@ -38,13 +38,15 @@
       ]
     },
     "src/strategies/Csv.js": {
-      "expectCount": 7,
-      "actualCount": 3,
+      "expectCount": 11,
+      "actualCount": 5,
       "undocumentLines": [
         1,
         2,
         3,
-        4
+        4,
+        5,
+        6
       ]
     },
     "src/strategies/Json.js": {
@@ -67,8 +69,8 @@
       ]
     },
     "src/strategies/Xml/index.js": {
-      "expectCount": 13,
-      "actualCount": 6,
+      "expectCount": 14,
+      "actualCount": 7,
       "undocumentLines": [
         1,
         2,

@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parser"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/onhernandes/parserblade"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
@@ -32,9 +32,13 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/json.html"><a href="manual/json.html" data-ice="link">JSON</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#valid" data-ice="link">Valid</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/json.html"><a href="manual/json.html#stream" data-ice="link">Stream</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#stringify-an-array" data-ice="link">Stringify an array</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#stringify-an-object" data-ice="link">Stringify an object</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#parse" data-ice="link">Parse</a></li>
-<li data-ice="manualNav" class="indent-h3" data-link="manual/json.html"><a href="manual/json.html#stringify" data-ice="link">Stringify</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -42,14 +46,23 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/csv.html"><a href="manual/csv.html" data-ice="link">CSV</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#usage" data-ice="link">Usage</a></li>
-<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse" data-ice="link">Parse</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-without-headers" data-ice="link">Parse without headers</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-with-custom-delimiters" data-ice="link">Parse with custom delimiters</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-skipping-some-lines" data-ice="link">Parse skipping some lines</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#parse-offset" data-ice="link">Parse offset</a></li>
-<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#stringify" data-ice="link">Stringify</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#stringify-omitting-headers" data-ice="link">Stringify omitting headers</a></li>
-<li data-ice="manualNav" class="indent-h4" data-link="manual/csv.html"><a href="manual/csv.html#stringify-with-custom-column-names-headers" data-ice="link">Stringify with custom column names/headers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#parse" data-ice="link">Parse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse-headers" data-ice="link">Parse headers</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse-with-custom-delimiters" data-ice="link">Parse with custom delimiters</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse-skipping-some-lines" data-ice="link">Parse skipping some lines</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#parse-offset" data-ice="link">Parse offset</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#stringify-omitting-headers" data-ice="link">Stringify omitting headers</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#stringify-with-custom-column-names-headers" data-ice="link">Stringify with custom column names/headers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#valid" data-ice="link">Valid</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/csv.html"><a href="manual/csv.html#stream" data-ice="link">Stream</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipestringify" data-ice="link">pipeStringify</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipestringify-with-custom-delimiter" data-ice="link">pipeStringify with custom delimiter</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipestringify-with-custom-column-names" data-ice="link">pipeStringify with custom column names</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipestringify-reordering-columns" data-ice="link">pipeStringify reordering columns</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipeparse" data-ice="link">pipeParse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipeparse-setting-custom-delimiter" data-ice="link">pipeParse setting custom delimiter</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/csv.html"><a href="manual/csv.html#pipeparse-without-using-first-line-as-header" data-ice="link">pipeParse without using first line as header</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -59,9 +72,15 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/xml.html"><a href="manual/xml.html#usage" data-ice="link">Usage</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#parse" data-ice="link">Parse</a></li>
 <li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#parse-xml-including-declaration" data-ice="link">Parse XML including declaration</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#parse-xml-in-verbose-mode" data-ice="link">Parse XML in verbose mode</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#stringify" data-ice="link">Stringify</a></li>
 <li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-without-xml-declaration" data-ice="link">Stringify without XML declaration</a></li>
 <li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-array" data-ice="link">Stringify array</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/xml.html"><a href="manual/xml.html#stringify-with-metadata" data-ice="link">Stringify with metadata</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#valid" data-ice="link">Valid</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/xml.html"><a href="manual/xml.html#stream" data-ice="link">Stream</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#pipeparse" data-ice="link">pipeParse</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/xml.html"><a href="manual/xml.html#pipestringify" data-ice="link">pipeStringify</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -71,6 +90,7 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/yaml.html"><a href="manual/yaml.html#usage" data-ice="link">Usage</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#parse" data-ice="link">Parse</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#stringify" data-ice="link">Stringify</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/yaml.html"><a href="manual/yaml.html#valid" data-ice="link">Valid</a></li>
 </ul>
   </div>
 </div>
@@ -93,6 +113,16 @@ const result = yaml.parse(data)
 assert.equal(
   result,
   &apos;series: Bleach\nseasons: 16&apos;
+)</code>
+</code></pre>
+<h3 id="valid">Valid</h3><p>Just checks if given string is a valid YAML</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const assert = require(&apos;assert&apos;)
+const { yaml } = require(&apos;parserblade&apos;)
+const result = yaml.valid(&apos;[name:\nStardew&apos;)
+
+assert.equal(
+  result,
+  false
 )</code>
 </code></pre>
 </div>

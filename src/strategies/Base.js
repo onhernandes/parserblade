@@ -60,4 +60,22 @@ Base.prototype.valid = function valid (data, options = {}) {
   }
 }
 
+/**
+ * Base.prototype.pipeParse - prototype for streams
+ *
+ * @throws {NotImplemented} This method must be implemented
+ */
+Base.prototype.pipeParse = function pipeParse () {
+  throw new NotImplemented()
+}
+
+/**
+ * Base.prototype.pipeStringify - prototype for streams
+ *
+ * @throws {NotImplemented} This method must be implemented
+ */
+Base.prototype.pipeStringify = function pipeStringify () {
+  throw new NotImplemented()
+}
+
 module.exports = Base

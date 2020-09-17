@@ -22,6 +22,14 @@ describe('Base Strategy implementation', function () {
     expect(instance.pipe).toThrow(NotImplemented)
   })
 
+  it('throws NotImplemented for pipeParse() method', () => {
+    expect(instance.pipeParse).toThrow(NotImplemented)
+  })
+
+  it('throws NotImplemented for pipeStringify() method', () => {
+    expect(instance.pipeStringify).toThrow(NotImplemented)
+  })
+
   /*
   it('throws NotImplemented for valid() method, because parse() is not implemented', () => {
     expect(instance.valid).toThrow(NotImplemented)

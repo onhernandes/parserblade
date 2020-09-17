@@ -73,6 +73,52 @@ assert.deepStrictEqual(
 )
 ```
 
+#### Parse XML in verbose mode
+
+Pass `{ verbose: true }` as option.
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
+const result = xml.parse(input, { verbose: true })
+const expected = {
+  elements: [
+    {
+      type: 'element',
+      name: 'games',
+      elements: [
+        {
+          type: 'element',
+          name: 'name',
+          elements: [
+            {
+              type: 'text',
+              text: 'Naruto Shippuden Storm 3'
+            }
+          ]
+        },
+        {
+          type: 'element',
+          name: 'platform',
+          elements: [
+            {
+              type: 'text',
+              text: 'playstation'
+            }
+          ]
+        },
+      ]
+    }
+  ]
+}
+
+assert.deepStrictEqual(
+  result,
+  expected
+)
+```
+
 ### Stringify
 
 ```javascript
@@ -119,6 +165,31 @@ assert.deepStrictEqual(
 )
 ```
 
+#### Stringify with metadata
+
+```javascript
+const assert = require('assert')
+const { xml } = require('parserblade')
+const input = {
+  packages: [
+    {
+      _text: 'lodash',
+      _attributes: { lang: 'nodejs' }
+    },
+    {
+      _text: 'flash',
+      _attributes: { lang: 'python' }
+    }
+  ]
+}
+const result = xml.stringify(input)
+
+assert.deepStrictEqual(
+  result,
+  '<?xml version="1.0" encoding="utf-8"?><packages lang="nodejs">lodash</packages><packages lang="python">flash</packages>'
+)
+```
+
 ### Valid
 
 Just checks if given string is a valid XML
@@ -132,4 +203,77 @@ assert.equal(
   result,
   false
 )
+```
+
+## Stream
+
+### pipeParse
+
+You may specify in which depth it should emit data, defaults to 0.
+
+```javascript
+const { Readable } = require('stream')
+const { xml } = require('parserblade')
+const input = `
+<?xml version="1.0" encoding="utf-8"?>
+<info>
+  <name>Naruto Shippuden Storm 3</name>
+  <platform>
+    platform
+    <another>
+      This is another tag
+    </another>
+    <another>
+      Third tag another
+    </another>
+  </platform>
+  <site url="netflix">
+    Netflix
+    <description>
+      Possible description here
+    </description>
+  </site>
+</info>
+`.split('')
+
+const reader = new Readable({
+  read () {
+    const next = input.shift()
+    if (typeof next === 'string') {
+      this.push(next)
+    } else {
+      this.push(null)
+    }
+  }
+})
+
+reader
+  .pipe(xml.pipeParse())
+  .on('data', console.log)
+  .on('error', console.log)
+  .on('end', () => console.log('stream ended'))
+```
+
+### pipeStringify
+
+You can set which tag wraps everything with `{ mainTag: { name, text, attributes } }`
+
+```javascript
+const { Readable } = require('stream')
+const { xml } = require('parserblade')
+const input = [{ name: 'Starcraft II' }]
+
+const reader = new Readable({
+  objectMode: true,
+  read () {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+reader
+  .pipe(xml.pipeParse({ mainTag: { name: 'games' } }))
+  .on('data', console.log)
+  .on('error', console.log)
+  .on('end', () => console.log('stream ended'))
 ```

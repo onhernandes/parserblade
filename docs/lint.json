@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "name": "valid",
+    "filePath": "src/strategies/Base.js",
+    "lines": [
+      {
+        "lineNumber": 49,
+        "line": "Base.prototype.valid = function valid (data, options = {}) {"
+      }
+    ],
+    "codeParams": [
+      "data",
+      "options"
+    ],
+    "docParams": [
+      "options"
+    ]
+  },
+  {
+    "name": "pipeStringify",
+    "filePath": "src/strategies/Csv.js",
+    "lines": [
+      {
+        "lineNumber": 112,
+        "line": "Csv.prototype.pipeStringify = function pipeStringify (options = {}) {"
+      }
+    ],
+    "codeParams": [
+      "options"
+    ],
+    "docParams": [
+      "data",
+      "options"
+    ]
+  }
+]

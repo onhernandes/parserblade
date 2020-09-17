@@ -6,7 +6,7 @@ Works with CSV data. I haven't tested with xlsx or other similar data types yet.
 
 Both `csv.parse()` and `csv.stringify()` accepts the data to be parsed/stringified as the first argument, and an option's object as the second.
 
-### Parse
+## Parse
 
 Parses CSV string to JS data, automatically uses first line as headers. Pass data as first argument.
 
@@ -22,7 +22,7 @@ assert.deepStrictEqual(
 )
 ```
 
-#### Parse headers
+### Parse headers
 
 Don't use first line as headers. Pass `{ headers: false }` as second parameter.
 
@@ -73,7 +73,7 @@ assert.deepStrictEqual(
 )
 ```
 
-#### Parse with custom delimiters
+### Parse with custom delimiters
 
 Uses custom delimiters. Anything you want! Pass `{ delimiter: ';' }` as option.
 ```javascript
@@ -88,7 +88,7 @@ assert.deepStrictEqual(
 )
 ```
 
-#### Parse skipping some lines
+### Parse skipping some lines
 
 Pass `{ skipLines: 2 }` as option.
 
@@ -104,7 +104,7 @@ assert.deepStrictEqual(
 )
 ```
 
-#### Parse offset
+### Parse offset
 
 Pass `{ offset: 2 }` as option.
 
@@ -120,7 +120,7 @@ assert.deepStrictEqual(
 )
 ```
 
-### Stringify
+## Stringify
 
 Simply transforms JS array of objects into CSV
 
@@ -138,7 +138,7 @@ assert.equal(
 )
 ```
 
-#### Stringify omitting headers
+### Stringify omitting headers
 
 Pass `{ headers: false }` as options
 
@@ -156,7 +156,7 @@ assert.equal(
 )
 ```
 
-#### Stringify with custom column names/headers
+### Stringify with custom column names/headers
 
 Specifying custom columns is easy in many forms, like just pass `{ columns: [ { key: '', header: '' } ] }` as options.
 
@@ -184,7 +184,7 @@ assert.equal(
 )
 ```
 
-### Valid
+## Valid
 
 Just checks if given string is a valid CSV
 
@@ -197,4 +197,189 @@ assert.equal(
   result,
   false
 )
+```
+
+## Stream
+
+### pipeStringify
+
+Turns JS data into CSV
+
+```javascript
+const { csv } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+const writer = csv.pipeStringify()
+const toFile = fs.createWriteStream('./data-test.csv')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeStringify with custom delimiter
+
+```javascript
+const { csv } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+const writer = csv.pipeStringify({ delimiter: ';' })
+const toFile = fs.createWriteStream('./data-test.csv')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeStringify with custom column names
+
+```javascript
+const { csv } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }]
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+const columns = [
+  { key: 'game', header: 'title' }
+]
+
+const writer = csv.pipeStringify({ columns })
+const toFile = fs.createWriteStream('./data-test.csv')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeStringify reordering columns
+
+```javascript
+const { csv } = require('parserblade')
+const { Readable } = require('stream')
+const fs = require('fs')
+
+const input = [{ game: 'Killing Floor', platform: 'Windows 10' }, { game: 'Stardew Valley', platform: 'Windows 10' }]
+const reader = new Readable({
+  objectMode: true,
+  read (size) {
+    const next = input.shift()
+    this.push(next || null)
+  }
+})
+
+const columns = [
+  { key: 'platform' },
+  { key: 'game' }
+]
+
+const writer = csv.pipeStringify({ columns })
+const toFile = fs.createWriteStream('./data-test.csv')
+
+reader
+  .pipe(writer)
+  .pipe(toFile)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeParse
+
+```javascript
+const { csv } = require('parserblade')
+const fs = require('fs')
+const path = require('path')
+const filepath = path.resolve(__dirname, '../data/services.csv')
+
+const reader = fs.createReadStream(filepath)
+const writer = csv.pipeParse()
+
+reader
+  .pipe(writer)
+  .on('readable', console.log)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeParse setting custom delimiter
+
+```javascript
+const { csv } = require('parserblade')
+const fs = require('fs')
+const path = require('path')
+const filepath = path.resolve(__dirname, '../data/services.csv')
+
+const reader = fs.createReadStream(filepath)
+const writer = csv.pipeParse({ delimiter: ';' })
+
+reader
+  .pipe(writer)
+  .on('readable', console.log)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
+```
+
+### pipeParse without using first line as header
+
+```javascript
+const { csv } = require('parserblade')
+const fs = require('fs')
+const path = require('path')
+const filepath = path.resolve(__dirname, '../data/services.csv')
+
+const reader = fs.createReadStream(filepath)
+const writer = csv.pipeParse({ headers: false })
+
+reader
+  .pipe(writer)
+  .on('readable', console.log)
+  .on('error', console.log)
+  .on('end', () => {
+    console.log('done')
+  })
 ```

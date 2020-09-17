@@ -15,5 +15,22 @@
     "docParams": [
       "options"
     ]
+  },
+  {
+    "name": "pipeStringify",
+    "filePath": "src/strategies/Csv.js",
+    "lines": [
+      {
+        "lineNumber": 112,
+        "line": "Csv.prototype.pipeStringify = function pipeStringify (options = {}) {"
+      }
+    ],
+    "codeParams": [
+      "options"
+    ],
+    "docParams": [
+      "data",
+      "options"
+    ]
   }
 ]

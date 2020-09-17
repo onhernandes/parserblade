@@ -1,5 +1,20 @@
 const Csv = require('../../src/strategies/Csv')
 const strategy = new Csv()
+const { Readable } = require('stream')
+
+const input = [
+  'name,email',
+  'Netflix,contact@netflix.com',
+  'Prime Video,contact@primevideo.com'
+]
+
+const getReader = (inputArray, options = {}) => new Readable({
+  objectMode: !!options.objectMode,
+  read () {
+    const next = inputArray.shift()
+    this.push(next || null)
+  }
+})
 
 describe('Csv Strategy', () => {
   describe('Csv.prototype.parse()', function () {
@@ -92,6 +107,189 @@ describe('Csv Strategy', () => {
     it('returns true for valid input data', () => {
       const result = strategy.valid('name,email\nNetflix,contact@netflix.com')
       expect(result).toBe(true)
+    })
+  })
+
+  describe('Csv.prototype.pipeParse', () => {
+    it('parses with default options', () => {
+      const reader = getReader(Array.from(input))
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeParse())
+        .on('readable', data => {
+          parsedData.push(data)
+        })
+        .on('error', console.log)
+        .on('end', () => {
+          expect(parsedData).toHaveLength(2)
+
+          const netflix = {
+            name: 'Netflix',
+            email: 'contact@netflix.com'
+          }
+          expect(parsedData[0]).toMatchObject(netflix)
+
+          const prime = {
+            name: 'Prime Video',
+            email: 'contact@primevideo.com'
+          }
+          expect(parsedData[1]).toMatchObject(prime)
+        })
+    })
+
+    it('parses with custom options.delimiter', () => {
+      const input = [
+        'name;email',
+        'Netflix;contact@netflix.com',
+        'Prime Video;contact@primevideo.com'
+      ]
+      const reader = getReader(Array.from(input))
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeParse({ delimiter: ';' }))
+        .on('readable', data => {
+          parsedData.push(data)
+        })
+        .on('error', console.log)
+        .on('end', () => {
+          expect(parsedData).toHaveLength(2)
+
+          const netflix = {
+            name: 'Netflix',
+            email: 'contact@netflix.com'
+          }
+          expect(parsedData[0]).toMatchObject(netflix)
+
+          const prime = {
+            name: 'Prime Video',
+            email: 'contact@primevideo.com'
+          }
+          expect(parsedData[1]).toMatchObject(prime)
+        })
+    })
+  })
+
+  describe('Csv.prototype.pipeStringify', () => {
+    it('stringify with default options', () => {
+      const input = [
+        { name: 'Netflix', site: 'netflix.com' },
+        { name: 'Prime Video', site: 'primevideo.com' }
+      ]
+      const reader = getReader(
+        Array.from(input),
+        { objectMode: true }
+      )
+
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeStringify())
+        .on('readable', function () {
+          let row
+
+          while (row = this.read()) { // eslint-disable-line
+            parsedData.push(row.toString())
+          }
+        })
+        .on('error', e => { throw e })
+        .on('end', () => {
+          const str = parsedData[0]
+          expect(str).toEqual('name,site\nNetflix,netflix.com\nPrime Video,primevideo.com\n')
+        })
+    })
+
+    it('stringify with custom delimiter', () => {
+      const input = [
+        { name: 'Netflix', site: 'netflix.com' },
+        { name: 'Prime Video', site: 'primevideo.com' }
+      ]
+      const reader = getReader(
+        Array.from(input),
+        { objectMode: true }
+      )
+
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeStringify({ delimiter: ';' }))
+        .on('readable', function () {
+          let row
+
+          while (row = this.read()) { // eslint-disable-line
+            parsedData.push(row.toString())
+          }
+        })
+        .on('error', e => { throw e })
+        .on('end', () => {
+          const str = parsedData[0]
+          expect(str).toEqual('name;site\nNetflix;netflix.com\nPrime Video;primevideo.com\n')
+        })
+    })
+
+    it('stringify with custom column', () => {
+      const input = [
+        { name: 'Netflix', site: 'netflix.com' },
+        { name: 'Prime Video', site: 'primevideo.com' }
+      ]
+      const reader = getReader(
+        Array.from(input),
+        { objectMode: true }
+      )
+
+      const config = {
+        columns: [
+          { key: 'name', header: 'Name' },
+          { key: 'site', header: 'Website URL' }
+        ]
+      }
+
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeStringify(config))
+        .on('readable', function () {
+          let row
+
+          while (row = this.read()) { // eslint-disable-line
+            parsedData.push(row.toString())
+          }
+        })
+        .on('error', e => { throw e })
+        .on('end', () => {
+          const str = parsedData[0]
+          expect(str).toEqual('Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n')
+        })
+    })
+
+    it('stringify reordering columns', () => {
+      const input = [
+        { name: 'Netflix', site: 'netflix.com' },
+        { name: 'Prime Video', site: 'primevideo.com' }
+      ]
+      const reader = getReader(
+        Array.from(input),
+        { objectMode: true }
+      )
+
+      const config = {
+        columns: [
+          { key: 'site' },
+          { key: 'name' }
+        ]
+      }
+
+      const parsedData = []
+      reader
+        .pipe(strategy.pipeStringify(config))
+        .on('readable', function () {
+          let row
+
+          while (row = this.read()) { // eslint-disable-line
+            parsedData.push(row.toString())
+          }
+        })
+        .on('error', e => { throw e })
+        .on('end', () => {
+          const str = parsedData[0]
+          expect(str).toEqual('site,name\nnetflix.com,Netflix\nprimevideo.com,Prime Video\n')
+        })
     })
   })
 })

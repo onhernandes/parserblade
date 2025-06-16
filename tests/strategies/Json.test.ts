@@ -60,7 +60,7 @@ describe("Json Strategy", () => {
   });
 
   describe("Json.prototype.pipeStringify", () => {
-    it("stringifies an array of objects", (done) => {
+    it("stringifies an array of objects", () => {
       const input = [{ game: "Killing Floor" }, { game: "Stardew Valley" }];
       const inputCopy = [...input];
 
@@ -80,27 +80,29 @@ describe("Json Strategy", () => {
       const writer = strategy.pipeStringify();
       reader.pipe(writer);
 
-      writer.on("data", (data: string) => {
-        result.push(data);
-      });
+      return new Promise<void>((resolve, reject) => {
+        writer.on("data", (data: string) => {
+          result.push(data);
+        });
 
-      writer.on("error", (err) => {
-        done(err);
-      });
+        writer.on("error", (err) => {
+          reject(err);
+        });
 
-      writer.on("end", () => {
-        try {
-          const jsonString = result.join("");
-          const parsed = JSON.parse(jsonString);
-          expect(parsed).toEqual(expect.arrayContaining(inputCopy));
-          done();
-        } catch (err) {
-          done(err);
-        }
+        writer.on("end", () => {
+          try {
+            const jsonString = result.join("");
+            const parsed = JSON.parse(jsonString);
+            expect(parsed).toEqual(expect.arrayContaining(inputCopy));
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
 
-    it("stringifies an object", (done) => {
+    it("stringifies an object", () => {
       const input = {
         services: [{ url: "cloud.google.com" }],
       };
@@ -122,53 +124,57 @@ describe("Json Strategy", () => {
       const writer = strategy.pipeStringify({ type: "object" });
       reader.pipe(writer);
 
-      writer.on("data", (data: string) => {
-        result.push(data);
-      });
+      return new Promise<void>((resolve, reject) => {
+        writer.on("data", (data: string) => {
+          result.push(data);
+        });
 
-      writer.on("error", (err) => {
-        done(err);
-      });
+        writer.on("error", (err) => {
+          reject(err);
+        });
 
-      writer.on("end", () => {
-        try {
-          const jsonString = result.join("");
-          const parsed = JSON.parse(jsonString);
-          expect(parsed).toMatchObject(input);
-          done();
-        } catch (err) {
-          done(err);
-        }
+        writer.on("end", () => {
+          try {
+            const jsonString = result.join("");
+            const parsed = JSON.parse(jsonString);
+            expect(parsed).toMatchObject(input);
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
   });
 
   describe("Json.prototype.pipeParse", () => {
-    it("parses an object", (done) => {
+    it("parses an object", () => {
       const reader = fs.createReadStream(TEST_FILE);
 
       const result: unknown[] = [];
       const writer = strategy.pipeParse();
       reader.pipe(writer);
 
-      writer.on("data", (data: unknown) => {
-        result.push(data);
-      });
+      return new Promise<void>((resolve, reject) => {
+        writer.on("data", (data: unknown) => {
+          result.push(data);
+        });
 
-      writer.on("error", (err) => {
-        done(err);
-      });
+        writer.on("error", (err) => {
+          reject(err);
+        });
 
-      writer.on("end", () => {
-        try {
-          expect(result).toHaveLength(1);
-          expect(result[0]).toMatchObject({
-            services: [{ url: "netflix.com" }],
-          });
-          done();
-        } catch (err) {
-          done(err);
-        }
+        writer.on("end", () => {
+          try {
+            expect(result).toHaveLength(1);
+            expect(result[0]).toMatchObject({
+              services: [{ url: "netflix.com" }],
+            });
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
   });

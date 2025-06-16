@@ -197,7 +197,7 @@ describe("Csv Strategy", () => {
   });
 
   describe("Csv.prototype.pipeStringify", () => {
-    it("stringify with default options", (done) => {
+    it("stringify with default options", () => {
       const input = [
         { name: "Netflix", site: "netflix.com" },
         { name: "Prime Video", site: "primevideo.com" },
@@ -209,26 +209,28 @@ describe("Csv Strategy", () => {
       const parsedData: string[] = [];
       const stream = reader.pipe(strategy.pipeStringify());
 
-      stream.on("data", (row: any) => {
-        parsedData.push(row.toString());
-      });
+      return new Promise<void>((resolve, reject) => {
+        stream.on("data", (row: any) => {
+          parsedData.push(row.toString());
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
 
-      stream.on("end", () => {
-        try {
-          const str = parsedData.join("");
-          expect(str).toEqual(
-            "name,site\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
-          );
-          done();
-        } catch (err) {
-          done(err);
-        }
+        stream.on("end", () => {
+          try {
+            const str = parsedData.join("");
+            expect(str).toEqual(
+              "name,site\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
+            );
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
 
-    it("stringify with custom delimiter", (done) => {
+    it("stringify with custom delimiter", () => {
       const input = [
         { name: "Netflix", site: "netflix.com" },
         { name: "Prime Video", site: "primevideo.com" },
@@ -240,26 +242,28 @@ describe("Csv Strategy", () => {
       const parsedData: string[] = [];
       const stream = reader.pipe(strategy.pipeStringify({ delimiter: ";" }));
 
-      stream.on("data", (row: any) => {
-        parsedData.push(row.toString());
-      });
+      return new Promise<void>((resolve, reject) => {
+        stream.on("data", (row: any) => {
+          parsedData.push(row.toString());
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
 
-      stream.on("end", () => {
-        try {
-          const str = parsedData.join("");
-          expect(str).toEqual(
-            "name;site\nNetflix;netflix.com\nPrime Video;primevideo.com\n"
-          );
-          done();
-        } catch (err) {
-          done(err);
-        }
+        stream.on("end", () => {
+          try {
+            const str = parsedData.join("");
+            expect(str).toEqual(
+              "name;site\nNetflix;netflix.com\nPrime Video;primevideo.com\n"
+            );
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
 
-    it("stringify with custom column", (done) => {
+    it("stringify with custom column", () => {
       const input = [
         { name: "Netflix", site: "netflix.com" },
         { name: "Prime Video", site: "primevideo.com" },
@@ -275,26 +279,28 @@ describe("Csv Strategy", () => {
       const parsedData: string[] = [];
       const stream = reader.pipe(strategy.pipeStringify(config));
 
-      stream.on("data", (row: any) => {
-        parsedData.push(row.toString());
-      });
+      return new Promise<void>((resolve, reject) => {
+        stream.on("data", (row: any) => {
+          parsedData.push(row.toString());
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
 
-      stream.on("end", () => {
-        try {
-          const str = parsedData.join("");
-          expect(str).toEqual(
-            "Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
-          );
-          done();
-        } catch (err) {
-          done(err);
-        }
+        stream.on("end", () => {
+          try {
+            const str = parsedData.join("");
+            expect(str).toEqual(
+              "Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
+            );
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
 
-    it("stringify reordering columns", (done) => {
+    it("stringify reordering columns", () => {
       const input = [
         { name: "Netflix", site: "netflix.com" },
         { name: "Prime Video", site: "primevideo.com" },
@@ -310,22 +316,24 @@ describe("Csv Strategy", () => {
       const parsedData: string[] = [];
       const stream = reader.pipe(strategy.pipeStringify(config));
 
-      stream.on("data", (row: any) => {
-        parsedData.push(row.toString());
-      });
+      return new Promise<void>((resolve, reject) => {
+        stream.on("data", (row: any) => {
+          parsedData.push(row.toString());
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
 
-      stream.on("end", () => {
-        try {
-          const str = parsedData.join("");
-          expect(str).toEqual(
-            "site,name\nnetflix.com,Netflix\nprimevideo.com,Prime Video\n"
-          );
-          done();
-        } catch (err) {
-          done(err);
-        }
+        stream.on("end", () => {
+          try {
+            const str = parsedData.join("");
+            expect(str).toEqual(
+              "site,name\nnetflix.com,Netflix\nprimevideo.com,Prime Video\n"
+            );
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
       });
     });
   });

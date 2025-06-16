@@ -51,11 +51,7 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(
-        chunk: Buffer,
-        _encoding: string,
-        callback: (error?: Error) => void
-      ) {
+      transform(chunk: Buffer, _encoding: string, callback: (error?: Error) => void) {
         try {
           const result = yamlInstance.parse(chunk.toString());
           this.push(result);
@@ -75,11 +71,7 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(
-        chunk: unknown,
-        _encoding: string,
-        callback: (error?: Error) => void
-      ) {
+      transform(chunk: unknown, _encoding: string, callback: (error?: Error) => void) {
         try {
           const result = yamlInstance.stringify(chunk);
           this.push(result);

@@ -129,11 +129,7 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(
-        chunk: Buffer,
-        _encoding: string,
-        callback: (error?: Error) => void
-      ) {
+      transform(chunk: Buffer, _encoding: string, callback: (error?: Error) => void) {
         try {
           const result = xmlInstance.parse(chunk.toString(), options);
           this.push(result);
@@ -153,11 +149,7 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(
-        chunk: unknown,
-        _encoding: string,
-        callback: (error?: Error) => void
-      ) {
+      transform(chunk: unknown, _encoding: string, callback: (error?: Error) => void) {
         try {
           const result = xmlInstance.stringify(chunk, options);
           this.push(result);

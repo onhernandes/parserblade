@@ -64,8 +64,7 @@ describe("Xml Strategy", () => {
   describe("Xml.prototype.stringify()", () => {
     it("transforms JS object into Xml string", () => {
       const data = { game: "Stardew Valley" };
-      const expected =
-        '<?xml version="1.0" encoding="utf-8"?><game>Stardew Valley</game>';
+      const expected = '<?xml version="1.0" encoding="utf-8"?><game>Stardew Valley</game>';
       expect(strategy.stringify(data)).toBe(expected);
     });
 

@@ -19,8 +19,7 @@ export interface CsvParseOptionsExtended extends CsvParseOptions {
 /**
  * Extended CSV stringify options with additional fields
  */
-export interface CsvStringifyOptionsExtended
-  extends Omit<CsvStringifyOptions, "columns"> {
+export interface CsvStringifyOptionsExtended extends Omit<CsvStringifyOptions, "columns"> {
   headers?: boolean;
   columns?: string[] | Record<string, string>;
 }
@@ -70,10 +69,7 @@ export class Csv extends Base {
   /**
    * Stringify JavaScript data into CSV format
    */
-  stringify(
-    data: unknown[],
-    options: CsvStringifyOptionsExtended = {}
-  ): string {
+  stringify(data: unknown[], options: CsvStringifyOptionsExtended = {}): string {
     const config: any = {
       header: true,
     };
@@ -99,9 +95,7 @@ export class Csv extends Base {
   pipeParse(options: CsvParseOptionsExtended = {}): Transform {
     const config: any = {
       delimiter: options.delimiter || ",",
-      columns: Object.prototype.hasOwnProperty.call(options, "headers")
-        ? options.headers
-        : true,
+      columns: Object.prototype.hasOwnProperty.call(options, "headers") ? options.headers : true,
     };
 
     return csvParserStream(config);
@@ -113,9 +107,7 @@ export class Csv extends Base {
   pipeStringify(options: CsvStringifyOptionsExtended = {}): Transform {
     const config: any = {
       delimiter: options.delimiter || ",",
-      header: Object.prototype.hasOwnProperty.call(options, "headers")
-        ? !!options.headers
-        : true,
+      header: Object.prototype.hasOwnProperty.call(options, "headers") ? !!options.headers : true,
     };
 
     if (Object.prototype.hasOwnProperty.call(options, "columns")) {

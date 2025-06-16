@@ -93,7 +93,7 @@
       "arrowParentheses": "always",
       "bracketSameLine": false,
       "bracketSpacing": true,
-      "quoteStyle": "single"
+      "quoteStyle": "double"
     },
     "globals": [
       "describe",
@@ -113,13 +113,6 @@
     }
   },
   "files": {
-    "ignore": [
-      "dist/**",
-      "coverage/**",
-      "node_modules/**",
-      "*.d.ts",
-      ".git/**",
-      "docs/**"
-    ]
+    "ignore": ["dist/**", "coverage/**", "node_modules/**", "*.d.ts", ".git/**", "docs/**"]
   }
 }

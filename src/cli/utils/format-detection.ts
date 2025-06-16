@@ -37,10 +37,7 @@ export const detectFormat = (content: string): DataFormat => {
   }
 
   // Simple heuristic for YAML (starts with --- or has key: value pattern)
-  if (
-    trimmed.startsWith("---") ||
-    /^[a-zA-Z_][a-zA-Z0-9_]*\s*:/.test(trimmed)
-  ) {
+  if (trimmed.startsWith("---") || /^[a-zA-Z_][a-zA-Z0-9_]*\s*:/.test(trimmed)) {
     return "yaml";
   }
 

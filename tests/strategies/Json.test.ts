@@ -26,9 +26,7 @@ describe("Json Strategy", () => {
   describe("Json.prototype.stringify", () => {
     it("transforms JS object into JSON string", () => {
       const data = { name: "Hernandes", package: "parser" };
-      expect(strategy.stringify(data)).toBe(
-        '{"name":"Hernandes","package":"parser"}'
-      );
+      expect(strategy.stringify(data)).toBe('{"name":"Hernandes","package":"parser"}');
     });
   });
 

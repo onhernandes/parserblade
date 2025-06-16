@@ -2,11 +2,7 @@ import { Readable } from "node:stream";
 import { Csv } from "../../src/strategies/Csv";
 
 const strategy = new Csv();
-const input = [
-  "name,email",
-  "Netflix,contact@netflix.com",
-  "Prime Video,contact@primevideo.com",
-];
+const input = ["name,email", "Netflix,contact@netflix.com", "Prime Video,contact@primevideo.com"];
 
 interface ReadableOptions {
   objectMode?: boolean;
@@ -36,37 +32,28 @@ describe("Csv Strategy", () => {
       const input = "name,email\nNetflix,contact@netflix.com";
       const result = strategy.parse(input);
 
-      expect(result).toEqual([
-        { name: "Netflix", email: "contact@netflix.com" },
-      ]);
+      expect(result).toEqual([{ name: "Netflix", email: "contact@netflix.com" }]);
     });
 
     it("parse CSV string with custom delimiters", () => {
       const input = "name;email\nNetflix;contact@netflix.com";
       const result = strategy.parse(input, { delimiter: ";" });
 
-      expect(result).toEqual([
-        { name: "Netflix", email: "contact@netflix.com" },
-      ]);
+      expect(result).toEqual([{ name: "Netflix", email: "contact@netflix.com" }]);
     });
 
     it("parse CSV string skipping lines", () => {
       const input = "insights\nname,email\nNetflix,contact@netflix.com";
       const result = strategy.parse(input, { skipLines: 2 });
 
-      expect(result).toEqual([
-        { name: "Netflix", email: "contact@netflix.com" },
-      ]);
+      expect(result).toEqual([{ name: "Netflix", email: "contact@netflix.com" }]);
     });
 
     it("parse CSV string with offset", () => {
-      const input =
-        "name,email\nNetflix,contact@netflix.com\nAmazon,contact@amazon.com";
+      const input = "name,email\nNetflix,contact@netflix.com\nAmazon,contact@amazon.com";
       const result = strategy.parse(input, { offset: 2 });
 
-      expect(result).toEqual([
-        { name: "Netflix", email: "contact@netflix.com" },
-      ]);
+      expect(result).toEqual([{ name: "Netflix", email: "contact@netflix.com" }]);
     });
   });
 
@@ -75,18 +62,14 @@ describe("Csv Strategy", () => {
       const input = [{ name: "Netflix", email: "contact@netflix.com" }];
       const result = strategy.stringify(input);
 
-      expect(result).toEqual(
-        expect.stringMatching("name,email\nNetflix,contact@netflix.com")
-      );
+      expect(result).toEqual(expect.stringMatching("name,email\nNetflix,contact@netflix.com"));
     });
 
     it("turns array of objects into CSV string without header", () => {
       const input = [{ name: "Netflix", email: "contact@netflix.com" }];
       const result = strategy.stringify(input, { headers: false });
 
-      expect(result).toEqual(
-        expect.stringMatching("Netflix,contact@netflix.com")
-      );
+      expect(result).toEqual(expect.stringMatching("Netflix,contact@netflix.com"));
     });
 
     it("turns array of objects into CSV string with custom column names", () => {
@@ -95,9 +78,7 @@ describe("Csv Strategy", () => {
 
       const result = strategy.stringify(input, { columns });
 
-      expect(result).toEqual(
-        expect.stringMatching("Platform,e-mail\nNetflix,contact@netflix.com")
-      );
+      expect(result).toEqual(expect.stringMatching("Platform,e-mail\nNetflix,contact@netflix.com"));
     });
   });
 
@@ -219,9 +200,7 @@ describe("Csv Strategy", () => {
         stream.on("end", () => {
           try {
             const str = parsedData.join("");
-            expect(str).toEqual(
-              "name,site\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
-            );
+            expect(str).toEqual("name,site\nNetflix,netflix.com\nPrime Video,primevideo.com\n");
             resolve();
           } catch (err) {
             reject(err);
@@ -252,9 +231,7 @@ describe("Csv Strategy", () => {
         stream.on("end", () => {
           try {
             const str = parsedData.join("");
-            expect(str).toEqual(
-              "name;site\nNetflix;netflix.com\nPrime Video;primevideo.com\n"
-            );
+            expect(str).toEqual("name;site\nNetflix;netflix.com\nPrime Video;primevideo.com\n");
             resolve();
           } catch (err) {
             reject(err);
@@ -290,7 +267,7 @@ describe("Csv Strategy", () => {
           try {
             const str = parsedData.join("");
             expect(str).toEqual(
-              "Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n"
+              "Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n",
             );
             resolve();
           } catch (err) {
@@ -326,9 +303,7 @@ describe("Csv Strategy", () => {
         stream.on("end", () => {
           try {
             const str = parsedData.join("");
-            expect(str).toEqual(
-              "site,name\nnetflix.com,Netflix\nprimevideo.com,Prime Video\n"
-            );
+            expect(str).toEqual("site,name\nnetflix.com,Netflix\nprimevideo.com,Prime Video\n");
             resolve();
           } catch (err) {
             reject(err);

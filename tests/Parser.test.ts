@@ -4,9 +4,7 @@ import { Parser } from "../src/Parser";
 import type { BaseStrategyProps } from "../src/types";
 
 describe("Parser implements Strategy", () => {
-  const createMockStrategy = (
-    overrides: Partial<BaseStrategyProps> = {}
-  ): BaseStrategyProps => ({
+  const createMockStrategy = (overrides: Partial<BaseStrategyProps> = {}): BaseStrategyProps => ({
     parse: vi.fn(),
     stringify: vi.fn(),
     valid: vi.fn(),

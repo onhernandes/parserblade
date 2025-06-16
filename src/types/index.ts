@@ -155,14 +155,7 @@ export interface BaseParserProps {
 /**
  * Data types that can be parsed/stringified
  */
-export type ParseableData =
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | object
-  | unknown[];
+export type ParseableData = string | number | boolean | null | undefined | object | unknown[];
 
 /**
  * Supported data formats

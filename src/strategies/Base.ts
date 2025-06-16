@@ -1,10 +1,6 @@
 import type { Transform } from "node:stream";
 import { NotImplementedError, ParserError } from "../errors";
-import type {
-  BaseStrategyProps,
-  ParseOptions,
-  StringifyOptions,
-} from "../types";
+import type { BaseStrategyProps, ParseOptions, StringifyOptions } from "../types";
 
 /**
  * Base class for all parsing strategies

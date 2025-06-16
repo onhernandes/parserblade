@@ -2,7 +2,7 @@
  * XML Declaration class for XML version and encoding information
  */
 export class XmlDeclaration {
-  public readonly name = 'declaration';
+  public readonly name = "declaration";
   public readonly version: string;
   public readonly encoding: string;
 
@@ -50,7 +50,7 @@ export class XmlTag {
  * XML Character Data (CDATA) class
  */
 export class XmlCharacterData {
-  public readonly name = 'cdata';
+  public readonly name = "cdata";
   public readonly cdata: string;
 
   constructor(cdata: string) {

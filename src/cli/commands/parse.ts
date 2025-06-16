@@ -14,10 +14,7 @@ export const parseCommand = new Command("parse")
   .argument("<file>", "input file to parse")
   .option("-t, --to <format>", "output format (json, xml, csv, yaml)")
   .option("-o, --output <file>", "output file (default: stdout)")
-  .option(
-    "-f, --from <format>",
-    "input format (auto-detected if not specified)"
-  )
+  .option("-f, --from <format>", "input format (auto-detected if not specified)")
   .option("--pretty", "pretty print the output (for JSON and YAML)")
   .option("--minify", "minify the output")
   .action(
@@ -29,7 +26,7 @@ export const parseCommand = new Command("parse")
         from?: string;
         pretty?: boolean;
         minify?: boolean;
-      }
+      },
     ) => {
       try {
         // Read input file
@@ -39,34 +36,21 @@ export const parseCommand = new Command("parse")
         let inputFormat: DataFormat;
         if (options.from) {
           if (!isValidFormat(options.from)) {
-            console.error(
-              chalk.red(`Error: Unsupported input format '${options.from}'`)
-            );
-            console.error(
-              chalk.gray(
-                `Supported formats: ${getSupportedFormats().join(", ")}`
-              )
-            );
+            console.error(chalk.red(`Error: Unsupported input format '${options.from}'`));
+            console.error(chalk.gray(`Supported formats: ${getSupportedFormats().join(", ")}`));
             process.exit(1);
           }
           inputFormat = options.from as DataFormat;
         } else {
-          inputFormat =
-            getFormatFromExtension(inputFile) || detectFormat(content);
+          inputFormat = getFormatFromExtension(inputFile) || detectFormat(content);
         }
 
         // Determine output format
         let outputFormat: DataFormat;
         if (options.to) {
           if (!isValidFormat(options.to)) {
-            console.error(
-              chalk.red(`Error: Unsupported output format '${options.to}'`)
-            );
-            console.error(
-              chalk.gray(
-                `Supported formats: ${getSupportedFormats().join(", ")}`
-              )
-            );
+            console.error(chalk.red(`Error: Unsupported output format '${options.to}'`));
+            console.error(chalk.gray(`Supported formats: ${getSupportedFormats().join(", ")}`));
             process.exit(1);
           }
           outputFormat = options.to as DataFormat;
@@ -99,23 +83,19 @@ export const parseCommand = new Command("parse")
           writeFileSync(options.output, result);
           console.log(
             chalk.green(
-              `✓ Converted ${chalk.bold(
-                inputFile
-              )} (${inputFormat}) to ${chalk.bold(
-                options.output
-              )} (${outputFormat})`
-            )
+              `✓ Converted ${chalk.bold(inputFile)} (${inputFormat}) to ${chalk.bold(
+                options.output,
+              )} (${outputFormat})`,
+            ),
           );
         } else {
           console.log(result);
         }
       } catch (error) {
         console.error(
-          chalk.red(
-            `Error: ${error instanceof Error ? error.message : "Unknown error"}`
-          )
+          chalk.red(`Error: ${error instanceof Error ? error.message : "Unknown error"}`),
         );
         process.exit(1);
       }
-    }
+    },
   );

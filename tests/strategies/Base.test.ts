@@ -1,5 +1,5 @@
-import { NotImplementedError } from '../../src/errors/NotImplemented';
-import { Base } from '../../src/strategies/Base';
+import { NotImplementedError } from "../../src/errors/NotImplemented";
+import { Base } from "../../src/strategies/Base";
 
 class TestImplementation extends Base {
   // This class intentionally doesn't implement the Base methods
@@ -8,20 +8,20 @@ class TestImplementation extends Base {
 
 const instance = new TestImplementation();
 
-describe('Base Strategy implementation', () => {
-  it('throws NotImplementedError for stringify() method', () => {
+describe("Base Strategy implementation", () => {
+  it("throws NotImplementedError for stringify() method", () => {
     expect(() => instance.stringify({})).toThrow(NotImplementedError);
   });
 
-  it('throws NotImplementedError for parse() method', () => {
-    expect(() => instance.parse('')).toThrow(NotImplementedError);
+  it("throws NotImplementedError for parse() method", () => {
+    expect(() => instance.parse("")).toThrow(NotImplementedError);
   });
 
-  it('throws NotImplementedError for pipeParse() method', () => {
+  it("throws NotImplementedError for pipeParse() method", () => {
     expect(() => instance.pipeParse()).toThrow(NotImplementedError);
   });
 
-  it('throws NotImplementedError for pipeStringify() method', () => {
+  it("throws NotImplementedError for pipeStringify() method", () => {
     expect(() => instance.pipeStringify()).toThrow(NotImplementedError);
   });
 

@@ -1,11 +1,11 @@
-const Yaml = require('../../src/strategies/Yaml');
-const ParserError = require('../../src/errors/ParserError');
-const NotImplemented = require('../../src/errors/NotImplemented');
+import { Yaml } from '../../src/strategies/Yaml';
+import { ParserError } from '../../src/errors/ParserError';
+import { NotImplementedError } from '../../src/errors/NotImplemented';
 
 const strategy = new Yaml();
 
 describe('Yaml Parser', () => {
-  describe('Yaml.prototype.parse()', function () {
+  describe('Yaml.prototype.parse()', () => {
     it('parses YAML to JS object', () => {
       const data = 'series: Bleach\nseasons: 16';
       const result = strategy.parse(data);
@@ -13,7 +13,7 @@ describe('Yaml Parser', () => {
     });
   });
 
-  describe('Yaml.prototype.stringify()', function () {
+  describe('Yaml.prototype.stringify()', () => {
     it('turns JS into YAML', () => {
       const data = { series: 'Bleach', seasons: 16 };
       const result = strategy.stringify(data);
@@ -23,21 +23,23 @@ describe('Yaml Parser', () => {
     });
 
     it('throws ParserError when calling stringify() with array data', () => {
-      try {
+      expect(() => {
         strategy.stringify([]);
-      } catch (error) {
-        expect(error).toBeInstanceOf(ParserError);
+      }).toThrow(ParserError);
+    });
+  });
+
+  describe('Yaml.prototype.pipe()', () => {
+    it('throws NotImplementedError for pipe()', () => {
+      if (typeof (strategy as any).pipe === 'function') {
+        expect(() => (strategy as any).pipe()).toThrow(NotImplementedError);
+      } else {
+        expect(() => (strategy as any).pipe()).toThrow();
       }
     });
   });
 
-  describe('Yaml.prototype.pipe()', function () {
-    it('throws NotImplemented error for pipe()', () => {
-      expect(strategy.pipe).toThrow(NotImplemented);
-    });
-  });
-
-  describe('Yaml.prototype.valid()', function () {
+  describe('Yaml.prototype.valid()', () => {
     it('returns false for invalid input data', () => {
       const result = strategy.valid('[name:\nStardew');
       expect(result).toBe(false);

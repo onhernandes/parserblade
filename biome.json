@@ -58,7 +58,7 @@
         "noDuplicateObjectKeys": "error",
         "noDuplicateParameters": "error",
         "noEmptyBlockStatements": "error",
-        "noExplicitAny": "warn",
+        "noExplicitAny": "off",
         "noExtraNonNullAssertion": "error",
         "noFallthroughSwitchClause": "error",
         "noFunctionAssign": "error",
@@ -94,7 +94,18 @@
       "bracketSameLine": false,
       "bracketSpacing": true,
       "quoteStyle": "single"
-    }
+    },
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "expect",
+      "beforeEach",
+      "afterEach",
+      "beforeAll",
+      "afterAll",
+      "vi"
+    ]
   },
   "json": {
     "formatter": {
@@ -102,6 +113,13 @@
     }
   },
   "files": {
-    "ignore": ["dist/**", "coverage/**", "node_modules/**", "*.d.ts", ".git/**"]
+    "ignore": [
+      "dist/**",
+      "coverage/**",
+      "node_modules/**",
+      "*.d.ts",
+      ".git/**",
+      "docs/**"
+    ]
   }
 }

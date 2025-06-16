@@ -1,8 +1,8 @@
-import { Transform } from 'stream';
-import * as yaml from 'js-yaml';
-import { ParserError } from '../errors';
-import type { YamlParseOptions, YamlStringifyOptions } from '../types';
-import { Base } from './Base';
+import { Transform } from "node:stream";
+import * as yaml from "js-yaml";
+import { ParserError } from "../errors";
+import type { YamlParseOptions, YamlStringifyOptions } from "../types";
+import { Base } from "./Base";
 
 /**
  * YAML strategy - Support for YAML file type
@@ -21,7 +21,7 @@ export class Yaml extends Base {
         mark: error.mark,
       };
 
-      throw new ParserError('yaml', context);
+      throw new ParserError("yaml", context);
     }
   }
 
@@ -31,15 +31,15 @@ export class Yaml extends Base {
    */
   stringify(data: unknown, options: YamlStringifyOptions = {}): string {
     if (Array.isArray(data)) {
-      throw new ParserError('yaml', {
-        message: 'Only plain objects are accepted for stringify()',
+      throw new ParserError("yaml", {
+        message: "Only plain objects are accepted for stringify()",
       });
     }
 
     try {
       return yaml.dump(data, options);
     } catch (error) {
-      throw new ParserError('yaml', { originalError: error });
+      throw new ParserError("yaml", { originalError: error });
     }
   }
 
@@ -51,13 +51,17 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: Buffer, encoding: string, callback: Function) {
+      transform(
+        chunk: Buffer,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = yamlInstance.parse(chunk.toString());
           this.push(result);
           callback();
         } catch (error) {
-          callback(error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
     });
@@ -71,13 +75,17 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: unknown, encoding: string, callback: Function) {
+      transform(
+        chunk: unknown,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = yamlInstance.stringify(chunk);
           this.push(result);
           callback();
         } catch (error) {
-          callback(error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
     });

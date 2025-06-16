@@ -1,6 +1,10 @@
-import type { Transform } from 'stream';
-import { NotImplementedError, ParserError } from '../errors';
-import type { BaseStrategyProps, ParseOptions, StringifyOptions } from '../types';
+import type { Transform } from "node:stream";
+import { NotImplementedError, ParserError } from "../errors";
+import type {
+  BaseStrategyProps,
+  ParseOptions,
+  StringifyOptions,
+} from "../types";
 
 /**
  * Base class for all parsing strategies
@@ -11,16 +15,16 @@ export abstract class Base implements BaseStrategyProps {
    * Parse a string into a JavaScript value
    * Must be implemented by subclasses
    */
-  parse(data: string, options?: ParseOptions): unknown {
-    throw new NotImplementedError('parse method must be implemented');
+  parse(_data: string, _options?: ParseOptions): unknown {
+    throw new NotImplementedError("parse method must be implemented");
   }
 
   /**
    * Stringify a JavaScript value into a string
    * Must be implemented by subclasses
    */
-  stringify(data: unknown, options?: StringifyOptions): string {
-    throw new NotImplementedError('stringify method must be implemented');
+  stringify(_data: unknown, _options?: StringifyOptions): string {
+    throw new NotImplementedError("stringify method must be implemented");
   }
 
   /**
@@ -28,7 +32,7 @@ export abstract class Base implements BaseStrategyProps {
    * Must be implemented by subclasses
    */
   pipeParse(): Transform {
-    throw new NotImplementedError('pipeParse method must be implemented');
+    throw new NotImplementedError("pipeParse method must be implemented");
   }
 
   /**
@@ -36,7 +40,7 @@ export abstract class Base implements BaseStrategyProps {
    * Must be implemented by subclasses
    */
   pipeStringify(): Transform {
-    throw new NotImplementedError('pipeStringify method must be implemented');
+    throw new NotImplementedError("pipeStringify method must be implemented");
   }
 
   /**

@@ -1,4 +1,4 @@
-import type { Transform } from 'stream';
+import type { Transform } from "node:stream";
 
 /**
  * Common parsing options that can be passed to any strategy
@@ -155,12 +155,19 @@ export interface BaseParserProps {
 /**
  * Data types that can be parsed/stringified
  */
-export type ParseableData = string | number | boolean | null | undefined | object | unknown[];
+export type ParseableData =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | object
+  | unknown[];
 
 /**
  * Supported data formats
  */
-export type DataFormat = 'json' | 'xml' | 'csv' | 'yaml';
+export type DataFormat = "json" | "xml" | "csv" | "yaml";
 
 /**
  * Parser instances for each supported format

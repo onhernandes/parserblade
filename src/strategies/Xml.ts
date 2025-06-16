@@ -1,8 +1,8 @@
-import { Transform } from 'stream';
-import * as xml from 'xml-js';
-import { NotImplementedError, ParserError } from '../errors';
-import type { XmlParseOptions, XmlStringifyOptions } from '../types';
-import { Base } from './Base';
+import { Transform } from "node:stream";
+import * as xml from "xml-js";
+import { NotImplementedError, ParserError } from "../errors";
+import type { XmlParseOptions, XmlStringifyOptions } from "../types";
+import { Base } from "./Base";
 
 /**
  * Extended XML parsing options
@@ -37,8 +37,8 @@ export class Xml extends Base {
   private readonly XML_VERSION_TAG = {
     _declaration: {
       _attributes: {
-        version: '1.0',
-        encoding: 'utf-8',
+        version: "1.0",
+        encoding: "utf-8",
       },
     },
   };
@@ -49,7 +49,8 @@ export class Xml extends Base {
   private setXmlDeclaration(data: unknown): unknown {
     if (Array.isArray(data)) {
       return [this.XML_VERSION_TAG, ...data];
-    } else if (typeof data === 'object' && data !== null) {
+    }
+    if (typeof data === "object" && data !== null) {
       return { ...this.XML_VERSION_TAG, ...data };
     }
     return data;
@@ -83,7 +84,10 @@ export class Xml extends Base {
 
       return result;
     } catch (error: any) {
-      throw new ParserError('xml', { originalError: error, message: error.message });
+      throw new ParserError("xml", {
+        originalError: error,
+        message: error.message,
+      });
     }
   }
 
@@ -105,7 +109,7 @@ export class Xml extends Base {
 
       return xml.js2xml(processedData as any, config);
     } catch (error) {
-      throw new ParserError('xml', { originalError: error });
+      throw new ParserError("xml", { originalError: error });
     }
   }
 
@@ -113,8 +117,8 @@ export class Xml extends Base {
    * Turn xml2js non-compact result into XmlTag and XmlResult
    * TODO: Implement this experimental feature
    */
-  private toXmlTag(xml2jsResult: unknown): unknown {
-    throw new NotImplementedError('toXmlTag method is not yet implemented');
+  private toXmlTag(_xml2jsResult: unknown): unknown {
+    throw new NotImplementedError("toXmlTag method is not yet implemented");
   }
 
   /**
@@ -125,13 +129,17 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: Buffer, encoding: string, callback: Function) {
+      transform(
+        chunk: Buffer,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = xmlInstance.parse(chunk.toString(), options);
           this.push(result);
           callback();
         } catch (error) {
-          callback(error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
     });
@@ -145,13 +153,17 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: unknown, encoding: string, callback: Function) {
+      transform(
+        chunk: unknown,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = xmlInstance.stringify(chunk, options);
           this.push(result);
           callback();
         } catch (error) {
-          callback(error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
     });

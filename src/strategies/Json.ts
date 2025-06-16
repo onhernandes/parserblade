@@ -1,8 +1,8 @@
-import type { Transform } from 'stream';
-import * as JSONStream from 'JSONStream';
-import { ParserError } from '../errors';
-import type { ParseOptions, StringifyOptions } from '../types';
-import { Base } from './Base';
+import type { Transform } from "node:stream";
+import * as JSONStream from "JSONStream";
+import { ParserError } from "../errors";
+import type { ParseOptions, StringifyOptions } from "../types";
+import { Base } from "./Base";
 
 /**
  * JSON parsing and stringifying options
@@ -21,7 +21,7 @@ export interface JsonPipeParseOptions {
 }
 
 export interface JsonPipeStringifyOptions {
-  type?: 'array' | 'object';
+  type?: "array" | "object";
 }
 
 /**
@@ -31,11 +31,11 @@ export class Json extends Base {
   /**
    * Parse a JSON string and return valid JavaScript data
    */
-  parse(data: string, options?: JsonParseOptions): unknown {
+  parse(data: string, _options?: JsonParseOptions): unknown {
     try {
       return JSON.parse(data);
     } catch (error) {
-      throw new ParserError('json', { originalError: error });
+      throw new ParserError("json", { originalError: error });
     }
   }
 
@@ -46,7 +46,7 @@ export class Json extends Base {
     try {
       return JSON.stringify(data, options?.replacer as any, options?.space);
     } catch (error) {
-      throw new ParserError('json', { originalError: error });
+      throw new ParserError("json", { originalError: error });
     }
   }
 
@@ -54,7 +54,7 @@ export class Json extends Base {
    * Create a transform stream for stringifying objects/arrays into JSON
    */
   pipeStringify(config: JsonPipeStringifyOptions = {}): Transform {
-    const { type = 'array' } = config;
+    const { type = "array" } = config;
 
     const streams = {
       object: JSONStream.stringifyObject,
@@ -64,7 +64,7 @@ export class Json extends Base {
     const streamFunction = streams[type];
 
     if (!streamFunction) {
-      throw new ParserError('json', {
+      throw new ParserError("json", {
         message: `Supplied type "${type}" is not allowed. Use either "array" or "object"`,
       });
     }

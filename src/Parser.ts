@@ -1,5 +1,10 @@
-import type { Transform } from 'stream';
-import type { BaseParserProps, BaseStrategyProps, ParseOptions, StringifyOptions } from './types';
+import type { Transform } from "node:stream";
+import type {
+  BaseParserProps,
+  BaseStrategyProps,
+  ParseOptions,
+  StringifyOptions,
+} from "./types";
 
 /**
  * Parser - Receives any strategy and safely implements it

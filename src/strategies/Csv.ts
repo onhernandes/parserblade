@@ -1,11 +1,11 @@
-import type { Transform } from 'stream';
-import { parse as csvParserStream } from 'csv-parse';
-import { parse as csvParser } from 'csv-parse/sync';
-import { stringify as csvStringifyStream } from 'csv-stringify';
-import { stringify as csvStringify } from 'csv-stringify/sync';
-import { ParserError } from '../errors';
-import type { CsvParseOptions, CsvStringifyOptions } from '../types';
-import { Base } from './Base';
+import type { Transform } from "node:stream";
+import { parse as csvParserStream } from "csv-parse";
+import { parse as csvParser } from "csv-parse/sync";
+import { stringify as csvStringifyStream } from "csv-stringify";
+import { stringify as csvStringify } from "csv-stringify/sync";
+import { ParserError } from "../errors";
+import type { CsvParseOptions, CsvStringifyOptions } from "../types";
+import { Base } from "./Base";
 
 /**
  * Extended CSV parsing options with additional fields
@@ -19,7 +19,8 @@ export interface CsvParseOptionsExtended extends CsvParseOptions {
 /**
  * Extended CSV stringify options with additional fields
  */
-export interface CsvStringifyOptionsExtended extends Omit<CsvStringifyOptions, 'columns'> {
+export interface CsvStringifyOptionsExtended
+  extends Omit<CsvStringifyOptions, "columns"> {
   headers?: boolean;
   columns?: string[] | Record<string, string>;
 }
@@ -35,11 +36,11 @@ export class Csv extends Base {
     const config: any = {
       columns: true,
       skip_empty_lines: true,
-      delimiter: options.delimiter || ',',
+      delimiter: options.delimiter || ",",
       from_line: options.skipLines || 1,
     };
 
-    if (Object.prototype.hasOwnProperty.call(options, 'headers')) {
+    if (Object.prototype.hasOwnProperty.call(options, "headers")) {
       config.columns = options.headers;
     }
 
@@ -62,14 +63,17 @@ export class Csv extends Base {
         records: error.records,
       };
 
-      throw new ParserError('csv', context);
+      throw new ParserError("csv", context);
     }
   }
 
   /**
    * Stringify JavaScript data into CSV format
    */
-  stringify(data: unknown[], options: CsvStringifyOptionsExtended = {}): string {
+  stringify(
+    data: unknown[],
+    options: CsvStringifyOptionsExtended = {}
+  ): string {
     const config: any = {
       header: true,
     };
@@ -85,7 +89,7 @@ export class Csv extends Base {
     try {
       return csvStringify(data, config);
     } catch (error) {
-      throw new ParserError('csv', { originalError: error });
+      throw new ParserError("csv", { originalError: error });
     }
   }
 
@@ -94,8 +98,10 @@ export class Csv extends Base {
    */
   pipeParse(options: CsvParseOptionsExtended = {}): Transform {
     const config: any = {
-      delimiter: options.delimiter || ',',
-      columns: Object.prototype.hasOwnProperty.call(options, 'headers') ? options.headers : true,
+      delimiter: options.delimiter || ",",
+      columns: Object.prototype.hasOwnProperty.call(options, "headers")
+        ? options.headers
+        : true,
     };
 
     return csvParserStream(config);
@@ -106,11 +112,13 @@ export class Csv extends Base {
    */
   pipeStringify(options: CsvStringifyOptionsExtended = {}): Transform {
     const config: any = {
-      delimiter: options.delimiter || ',',
-      header: Object.prototype.hasOwnProperty.call(options, 'headers') ? !!options.headers : true,
+      delimiter: options.delimiter || ",",
+      header: Object.prototype.hasOwnProperty.call(options, "headers")
+        ? !!options.headers
+        : true,
     };
 
-    if (Object.prototype.hasOwnProperty.call(options, 'columns')) {
+    if (Object.prototype.hasOwnProperty.call(options, "columns")) {
       config.columns = options.columns;
     }
 

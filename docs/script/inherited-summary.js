@@ -1,8 +1,8 @@
-(function(){
+(function () {
   function toggle(ev) {
     var button = ev.target;
     var parent = ev.target.parentElement;
-    while(parent) {
+    while (parent) {
       if (parent.tagName === 'TABLE' && parent.classList.contains('summary')) break;
       parent = parent.parentElement;
     }

@@ -19,49 +19,43 @@ Every filetype has two main methods: `stringify()` and `parse()`, both receives 
 ### CSV
 
 ```javascript
-const { csv } = require('parserblade')
+const { csv } = require('parserblade');
 
 // Parsing
-const input = 'title,platform\nStardew Valley,Steam'
-const result = csv.parse(input)
-console.log(result) // [ { title: 'Stardew Valley', platform: 'Steam' } ]
+const input = 'title,platform\nStardew Valley,Steam';
+const result = csv.parse(input);
+console.log(result); // [ { title: 'Stardew Valley', platform: 'Steam' } ]
 
 // Stringifying
-console.log(
-  csv.stringify(result)
-) // 'title,platform\nStardew Valley,Steam'
+console.log(csv.stringify(result)); // 'title,platform\nStardew Valley,Steam'
 ```
 
 ### YAML
 
 ```javascript
-const { yaml } = require('parserblade')
+const { yaml } = require('parserblade');
 
 // Parsing
-const input = 'title: Stardew Valley\nplatform: Steam'
-const result = yaml.parse(input)
-console.log(result) // { title: 'Stardew Valley', platform: 'Steam' }
+const input = 'title: Stardew Valley\nplatform: Steam';
+const result = yaml.parse(input);
+console.log(result); // { title: 'Stardew Valley', platform: 'Steam' }
 
 // Stringifying
-console.log(
-  yaml.stringify(result)
-) // 'title: Stardew Valley\nplatform: Steam'
+console.log(yaml.stringify(result)); // 'title: Stardew Valley\nplatform: Steam'
 ```
 
 ### XML
 
 ```javascript
-const { xml } = require('parserblade')
+const { xml } = require('parserblade');
 
 // Parsing
-const input = '<?xml version="1.0" encoding="utf-8"?><package>lodash</package>'
-const result = xml.parse(input)
-console.log(result) // { package: 'lodash' }
+const input = '<?xml version="1.0" encoding="utf-8"?><package>lodash</package>';
+const result = xml.parse(input);
+console.log(result); // { package: 'lodash' }
 
 // Stringifying
-console.log(
-  xml.stringify(result)
-) // '<?xml version="1.0" encoding="utf-8"?><package>lodash</package>'
+console.log(xml.stringify(result)); // '<?xml version="1.0" encoding="utf-8"?><package>lodash</package>'
 ```
 
 ## License

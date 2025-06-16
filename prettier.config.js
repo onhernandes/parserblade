@@ -9,4 +9,4 @@ module.exports = {
   arrowParens: 'avoid',
   endOfLine: 'lf',
   quoteProps: 'as-needed',
-}; 
+};

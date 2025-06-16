@@ -8,13 +8,8 @@
         "line": "Base.prototype.valid = function valid (data, options = {}) {"
       }
     ],
-    "codeParams": [
-      "data",
-      "options"
-    ],
-    "docParams": [
-      "options"
-    ]
+    "codeParams": ["data", "options"],
+    "docParams": ["options"]
   },
   {
     "name": "pipeStringify",
@@ -25,12 +20,7 @@
         "line": "Csv.prototype.pipeStringify = function pipeStringify (options = {}) {"
       }
     ],
-    "codeParams": [
-      "options"
-    ],
-    "docParams": [
-      "data",
-      "options"
-    ]
+    "codeParams": ["options"],
+    "docParams": ["data", "options"]
   }
 ]

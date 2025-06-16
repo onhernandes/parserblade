@@ -9,39 +9,32 @@ Both `xml.parse()` and `xml.stringify()` accepts the data to be parsed/stringifi
 ### Parse
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
-const result = xml.parse(input)
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input =
+  '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>';
+const result = xml.parse(input);
 
-assert.deepStrictEqual(
-  result,
-  {
-    games: {
-      name: { _text: 'Naruto Shippuden Storm 3' },
-      platform: { _text: 'playstation' }
-    }
-  }
-)
+assert.deepStrictEqual(result, {
+  games: {
+    name: { _text: 'Naruto Shippuden Storm 3' },
+    platform: { _text: 'playstation' },
+  },
+});
 ```
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>'
-const result = xml.parse(input)
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input =
+  '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>';
+const result = xml.parse(input);
 
-assert.deepStrictEqual(
-  result,
-  {
-    packages: {
-      name: [
-        { _text: 'mongoose' },
-        { _text: 'sequelize' }
-      ]
-    }
-  }
-)
+assert.deepStrictEqual(result, {
+  packages: {
+    name: [{ _text: 'mongoose' }, { _text: 'sequelize' }],
+  },
+});
 ```
 
 #### Parse XML including declaration
@@ -49,28 +42,23 @@ assert.deepStrictEqual(
 Pass `{ showDeclaration: true }` as option.
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>'
-const result = xml.parse(input, { showDeclaration: true })
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input =
+  '<?xml version="1.0" encoding="utf-8"?><packages><name>mongoose</name><name>sequelize</name></packages>';
+const result = xml.parse(input, { showDeclaration: true });
 
-assert.deepStrictEqual(
-  result,
-  {
-    _declaration: {
-      _attributes: {
-        encoding: 'utf-8',
-        version: 1
-      }
+assert.deepStrictEqual(result, {
+  _declaration: {
+    _attributes: {
+      encoding: 'utf-8',
+      version: 1,
     },
-    packages: {
-      name: [
-        { _text: 'mongoose' },
-        { _text: 'sequelize' }
-      ]
-    }
-  }
-)
+  },
+  packages: {
+    name: [{ _text: 'mongoose' }, { _text: 'sequelize' }],
+  },
+});
 ```
 
 #### Parse XML in verbose mode
@@ -78,10 +66,11 @@ assert.deepStrictEqual(
 Pass `{ verbose: true }` as option.
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>'
-const result = xml.parse(input, { verbose: true })
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input =
+  '<?xml version="1.0" encoding="utf-8"?><games><name>Naruto Shippuden Storm 3</name><platform>playstation</platform></games>';
+const result = xml.parse(input, { verbose: true });
 const expected = {
   elements: [
     {
@@ -94,9 +83,9 @@ const expected = {
           elements: [
             {
               type: 'text',
-              text: 'Naruto Shippuden Storm 3'
-            }
-          ]
+              text: 'Naruto Shippuden Storm 3',
+            },
+          ],
         },
         {
           type: 'element',
@@ -104,90 +93,79 @@ const expected = {
           elements: [
             {
               type: 'text',
-              text: 'playstation'
-            }
-          ]
+              text: 'playstation',
+            },
+          ],
         },
-      ]
-    }
-  ]
-}
+      ],
+    },
+  ],
+};
 
-assert.deepStrictEqual(
-  result,
-  expected
-)
+assert.deepStrictEqual(result, expected);
 ```
 
 ### Stringify
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = { game: 'Stardew Valley' }
-const result = xml.stringify(input)
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input = { game: 'Stardew Valley' };
+const result = xml.stringify(input);
 
-assert.deepStrictEqual(
-  result,
-  '<?xml version="1.0" encoding="utf-8"?><game>Stardew Valley</game>'
-)
+assert.deepStrictEqual(result, '<?xml version="1.0" encoding="utf-8"?><game>Stardew Valley</game>');
 ```
 
 #### Stringify without XML declaration
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const input = { game: 'Stardew Valley' }
-const result = xml.stringify(input, { ignoreDeclaration: true })
+const assert = require('assert');
+const { xml } = require('parserblade');
+const input = { game: 'Stardew Valley' };
+const result = xml.stringify(input, { ignoreDeclaration: true });
 
-assert.deepStrictEqual(
-  result,
-  '<game>Stardew Valley</game>'
-)
+assert.deepStrictEqual(result, '<game>Stardew Valley</game>');
 ```
 
 #### Stringify array
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
+const assert = require('assert');
+const { xml } = require('parserblade');
 const input = {
-  packages: [
-    { name: 'lodash' }
-  ]
-}
-const result = xml.stringify(input)
+  packages: [{ name: 'lodash' }],
+};
+const result = xml.stringify(input);
 
 assert.deepStrictEqual(
   result,
   '<?xml version="1.0" encoding="utf-8"?><packages><name>lodash</name></packages>'
-)
+);
 ```
 
 #### Stringify with metadata
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
+const assert = require('assert');
+const { xml } = require('parserblade');
 const input = {
   packages: [
     {
       _text: 'lodash',
-      _attributes: { lang: 'nodejs' }
+      _attributes: { lang: 'nodejs' },
     },
     {
       _text: 'flash',
-      _attributes: { lang: 'python' }
-    }
-  ]
-}
-const result = xml.stringify(input)
+      _attributes: { lang: 'python' },
+    },
+  ],
+};
+const result = xml.stringify(input);
 
 assert.deepStrictEqual(
   result,
   '<?xml version="1.0" encoding="utf-8"?><packages lang="nodejs">lodash</packages><packages lang="python">flash</packages>'
-)
+);
 ```
 
 ### Valid
@@ -195,14 +173,11 @@ assert.deepStrictEqual(
 Just checks if given string is a valid XML
 
 ```javascript
-const assert = require('assert')
-const { xml } = require('parserblade')
-const result = xml.valid('phrase<tag />')
+const assert = require('assert');
+const { xml } = require('parserblade');
+const result = xml.valid('phrase<tag />');
 
-assert.equal(
-  result,
-  false
-)
+assert.equal(result, false);
 ```
 
 ## Stream
@@ -212,8 +187,8 @@ assert.equal(
 You may specify in which depth it should emit data, defaults to 0.
 
 ```javascript
-const { Readable } = require('stream')
-const { xml } = require('parserblade')
+const { Readable } = require('stream');
+const { xml } = require('parserblade');
 const input = `
 <?xml version="1.0" encoding="utf-8"?>
 <info>
@@ -234,24 +209,24 @@ const input = `
     </description>
   </site>
 </info>
-`.split('')
+`.split('');
 
 const reader = new Readable({
-  read () {
-    const next = input.shift()
+  read() {
+    const next = input.shift();
     if (typeof next === 'string') {
-      this.push(next)
+      this.push(next);
     } else {
-      this.push(null)
+      this.push(null);
     }
-  }
-})
+  },
+});
 
 reader
   .pipe(xml.pipeParse())
   .on('data', console.log)
   .on('error', console.log)
-  .on('end', () => console.log('stream ended'))
+  .on('end', () => console.log('stream ended'));
 ```
 
 ### pipeStringify
@@ -259,21 +234,21 @@ reader
 You can set which tag wraps everything with `{ mainTag: { name, text, attributes } }`
 
 ```javascript
-const { Readable } = require('stream')
-const { xml } = require('parserblade')
-const input = [{ name: 'Starcraft II' }]
+const { Readable } = require('stream');
+const { xml } = require('parserblade');
+const input = [{ name: 'Starcraft II' }];
 
 const reader = new Readable({
   objectMode: true,
-  read () {
-    const next = input.shift()
-    this.push(next || null)
-  }
-})
+  read() {
+    const next = input.shift();
+    this.push(next || null);
+  },
+});
 
 reader
   .pipe(xml.pipeParse({ mainTag: { name: 'games' } }))
   .on('data', console.log)
   .on('error', console.log)
-  .on('end', () => console.log('stream ended'))
+  .on('end', () => console.log('stream ended'));
 ```

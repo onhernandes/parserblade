@@ -1,6 +1,6 @@
 // inner link(#foo) can not correctly scroll, because page has fixed header,
 // so, I manually scroll.
-(function(){
+(function () {
   var matched = location.hash.match(/errorLines=([\d,]+)/);
   if (matched) return;
 
@@ -22,7 +22,7 @@
   }
 })();
 
-(function(){
+(function () {
   var els = document.querySelectorAll('[href^="#"]');
   var href = location.href.replace(/#.*$/, ''); // remove existed hash
   for (var i = 0; i < els.length; i++) {

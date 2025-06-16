@@ -598,9 +598,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "Base"
-        ],
+        "types": ["Base"],
         "spread": false,
         "optional": false,
         "name": "strategy",
@@ -628,9 +626,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -638,9 +634,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -648,9 +642,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -672,9 +664,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "*"
-        ],
+        "types": ["*"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -682,9 +672,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -692,9 +680,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -716,9 +702,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -726,9 +710,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -736,9 +718,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -759,9 +739,7 @@
     "lineNumber": 44,
     "params": [],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -782,9 +760,7 @@
     "lineNumber": 51,
     "params": [],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -807,15 +783,11 @@
     "params": [
       {
         "name": "data",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "path",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       }
     ],
     "return": null,
@@ -840,15 +812,11 @@
     "params": [
       {
         "name": "data",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "path",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       }
     ],
     "return": null,
@@ -913,9 +881,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "format",
@@ -923,9 +889,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "context",
@@ -961,9 +925,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -982,9 +944,7 @@
     "lineNumber": 7,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1014,9 +974,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1035,9 +993,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1084,9 +1040,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "*"
-        ],
+        "types": ["*"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1094,9 +1048,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -1105,9 +1057,7 @@
     ],
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
@@ -1132,9 +1082,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1142,9 +1090,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -1153,9 +1099,7 @@
     ],
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
@@ -1179,9 +1123,7 @@
     "lineNumber": 40,
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
@@ -1213,9 +1155,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -1224,9 +1164,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "boolean"
-      ],
+      "types": ["boolean"],
       "spread": false,
       "description": "wether or not the given data is a valid format"
     },
@@ -1249,9 +1187,7 @@
     "lineNumber": 68,
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
@@ -1276,9 +1212,7 @@
     "lineNumber": 77,
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
@@ -1312,9 +1246,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1333,9 +1265,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1354,9 +1284,7 @@
     "lineNumber": 3,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1375,9 +1303,7 @@
     "lineNumber": 4,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1396,9 +1322,7 @@
     "lineNumber": 5,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1417,9 +1341,7 @@
     "lineNumber": 6,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1472,9 +1394,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1482,9 +1402,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -1492,11 +1410,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean",
-          "array",
-          "function"
-        ],
+        "types": ["boolean", "array", "function"],
         "spread": false,
         "optional": true,
         "name": "options.headers",
@@ -1504,10 +1418,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string",
-          "Buffer"
-        ],
+        "types": ["string", "Buffer"],
         "spread": false,
         "optional": true,
         "name": "options.delimiter",
@@ -1515,9 +1426,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "number"
-        ],
+        "types": ["number"],
         "spread": false,
         "optional": true,
         "name": "options.skipLines",
@@ -1525,9 +1434,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "number"
-        ],
+        "types": ["number"],
         "spread": false,
         "optional": true,
         "name": "options.offset",
@@ -1536,9 +1443,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "array"
-      ],
+      "types": ["array"],
       "spread": false,
       "description": ""
     },
@@ -1568,9 +1473,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "array"
-        ],
+        "types": ["array"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1578,9 +1481,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -1588,9 +1489,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.headers",
@@ -1598,10 +1497,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "array",
-          "object"
-        ],
+        "types": ["array", "object"],
         "spread": false,
         "optional": true,
         "name": "options.columns",
@@ -1610,9 +1506,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "string"
-      ],
+      "types": ["string"],
       "spread": false,
       "description": ""
     },
@@ -1636,9 +1530,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -1646,11 +1538,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean",
-          "array",
-          "function"
-        ],
+        "types": ["boolean", "array", "function"],
         "spread": false,
         "optional": true,
         "name": "options.headers",
@@ -1658,9 +1546,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": true,
         "name": "options.delimiter",
@@ -1668,9 +1554,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1692,9 +1576,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "array"
-        ],
+        "types": ["array"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1702,9 +1584,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -1712,9 +1592,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.headers",
@@ -1722,9 +1600,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": true,
         "name": "options.delimiter",
@@ -1732,10 +1608,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "array",
-          "object"
-        ],
+        "types": ["array", "object"],
         "spread": false,
         "optional": true,
         "name": "options.columns",
@@ -1743,9 +1616,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1775,9 +1646,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1796,9 +1665,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1817,9 +1684,7 @@
     "lineNumber": 3,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -1872,9 +1737,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1883,17 +1746,13 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "*"
-      ],
+      "types": ["*"],
       "spread": false,
       "description": ""
     },
     "throws": [
       {
-        "types": [
-          "ParserError"
-        ],
+        "types": ["ParserError"],
         "description": "In case the JSON string is not valid, ParserError will be thrown"
       }
     ],
@@ -1923,9 +1782,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "*"
-        ],
+        "types": ["*"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -1934,9 +1791,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "string"
-      ],
+      "types": ["string"],
       "spread": false,
       "description": ""
     },
@@ -1966,9 +1821,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "config",
@@ -1976,9 +1829,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": true,
         "defaultValue": "'array'",
@@ -1989,9 +1840,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "WritableStream"
-      ],
+      "types": ["WritableStream"],
       "spread": false,
       "description": ""
     },
@@ -2021,9 +1870,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "config",
@@ -2031,9 +1878,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": true,
         "name": "config.path",
@@ -2042,9 +1887,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "Stream"
-      ],
+      "types": ["Stream"],
       "spread": false,
       "description": ""
     },
@@ -2080,15 +1923,11 @@
     "params": [
       {
         "name": "version",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "encoding",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       }
     ],
     "return": null,
@@ -2113,27 +1952,19 @@
     "params": [
       {
         "name": "name",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "value",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "attributes",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       },
       {
         "name": "tags",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       }
     ],
     "return": null,
@@ -2157,9 +1988,7 @@
     "undocument": true,
     "params": [],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2182,9 +2011,7 @@
     "params": [
       {
         "name": "cdata",
-        "types": [
-          "*"
-        ]
+        "types": ["*"]
       }
     ],
     "return": null,
@@ -2216,9 +2043,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2237,9 +2062,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2258,9 +2081,7 @@
     "lineNumber": 3,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2279,9 +2100,7 @@
     "lineNumber": 4,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2300,9 +2119,7 @@
     "lineNumber": 5,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2321,9 +2138,7 @@
     "lineNumber": 6,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2342,9 +2157,7 @@
     "lineNumber": 7,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2397,10 +2210,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object",
-          "array"
-        ],
+        "types": ["object", "array"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -2409,10 +2219,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "object",
-        "array"
-      ],
+      "types": ["object", "array"],
       "spread": false,
       "description": ""
     },
@@ -2442,10 +2249,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object",
-          "array"
-        ],
+        "types": ["object", "array"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -2453,9 +2257,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "Object"
-        ],
+        "types": ["Object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -2463,9 +2265,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.ignoreDeclaration",
@@ -2474,9 +2274,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "string"
-      ],
+      "types": ["string"],
       "spread": false,
       "description": ""
     },
@@ -2500,9 +2298,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -2510,9 +2306,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -2520,9 +2314,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.showDeclaration",
@@ -2530,9 +2322,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.verbose",
@@ -2540,9 +2330,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "boolean"
-        ],
+        "types": ["boolean"],
         "spread": false,
         "optional": true,
         "name": "options.experimentalXmlTag",
@@ -2551,16 +2339,12 @@
     ],
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": "This method must be implemented"
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2582,9 +2366,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "xml2jsResult",
@@ -2593,9 +2375,7 @@
     ],
     "throws": [
       {
-        "types": [
-          "NotImplemented"
-        ],
+        "types": ["NotImplemented"],
         "description": ""
       }
     ],
@@ -2620,9 +2400,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -2630,9 +2408,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "Number"
-        ],
+        "types": ["Number"],
         "spread": false,
         "optional": true,
         "defaultValue": "0",
@@ -2642,9 +2418,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2666,9 +2440,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options",
@@ -2676,9 +2448,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": true,
         "name": "options.mainTag",
@@ -2686,9 +2456,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": true,
         "name": "options.mainTag.name",
@@ -2696,9 +2464,7 @@
       }
     ],
     "return": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2728,9 +2494,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2749,9 +2513,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2770,9 +2532,7 @@
     "lineNumber": 3,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2825,9 +2585,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -2835,9 +2593,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "Object"
-        ],
+        "types": ["Object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -2846,17 +2602,13 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "string"
-      ],
+      "types": ["string"],
       "spread": false,
       "description": ""
     },
     "throws": [
       {
-        "types": [
-          "ParserError"
-        ],
+        "types": ["ParserError"],
         "description": "For invalid data type"
       }
     ],
@@ -2886,9 +2638,7 @@
     "params": [
       {
         "nullable": null,
-        "types": [
-          "string"
-        ],
+        "types": ["string"],
         "spread": false,
         "optional": false,
         "name": "data",
@@ -2896,9 +2646,7 @@
       },
       {
         "nullable": null,
-        "types": [
-          "object"
-        ],
+        "types": ["object"],
         "spread": false,
         "optional": false,
         "name": "options",
@@ -2907,9 +2655,7 @@
     ],
     "return": {
       "nullable": null,
-      "types": [
-        "object"
-      ],
+      "types": ["object"],
       "spread": false,
       "description": "Parsed YAML data as JS object"
     },
@@ -2941,9 +2687,7 @@
     "lineNumber": 1,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2962,9 +2706,7 @@
     "lineNumber": 2,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -2983,9 +2725,7 @@
     "lineNumber": 3,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },
@@ -3004,9 +2744,7 @@
     "lineNumber": 4,
     "undocument": true,
     "type": {
-      "types": [
-        "*"
-      ]
+      "types": ["*"]
     },
     "ignore": true
   },

@@ -1,4 +1,4 @@
-(function(){
+(function () {
   var matched = location.pathname.match(/\/(manual\/.*\.html)$/);
   if (!matched) return;
 

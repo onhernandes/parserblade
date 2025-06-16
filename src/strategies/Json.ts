@@ -1,8 +1,8 @@
-import { Transform } from 'stream';
+import type { Transform } from 'stream';
 import * as JSONStream from 'JSONStream';
-import { Base } from './Base';
 import { ParserError } from '../errors';
-import { ParseOptions, StringifyOptions } from '../types';
+import type { ParseOptions, StringifyOptions } from '../types';
+import { Base } from './Base';
 
 /**
  * JSON parsing and stringifying options

@@ -1,4 +1,4 @@
-import { Transform } from 'stream';
+import type { Transform } from 'stream';
 
 /**
  * Common parsing options that can be passed to any strategy
@@ -95,7 +95,7 @@ export interface XmlStringifyOptions extends StringifyOptions {
 /**
  * Base strategy interface that all parsing strategies must implement
  */
-export interface IStrategy {
+export interface BaseStrategyProps {
   /**
    * Parse a string into a JavaScript value
    */
@@ -125,7 +125,7 @@ export interface IStrategy {
 /**
  * Parser interface
  */
-export interface IParser {
+export interface BaseParserProps {
   /**
    * Parse a string using the configured strategy
    */
@@ -166,8 +166,8 @@ export type DataFormat = 'json' | 'xml' | 'csv' | 'yaml';
  * Parser instances for each supported format
  */
 export interface ParserInstances {
-  json: IParser;
-  xml: IParser;
-  csv: IParser;
-  yaml: IParser;
+  json: BaseParserProps;
+  xml: BaseParserProps;
+  csv: BaseParserProps;
+  yaml: BaseParserProps;
 }

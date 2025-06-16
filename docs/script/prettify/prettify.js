@@ -1,4 +1,4 @@
-!(function () {
+!(() => {
   /*
 
  Copyright (C) 2006 Google Inc.
@@ -16,7 +16,7 @@
  limitations under the License.
 */
   window.PR_SHOULD_USE_CONTINUATION = !0;
-  (function () {
+  (() => {
     function T(a) {
       function d(e) {
         var b = e.charCodeAt(0);
@@ -25,9 +25,9 @@
         return (b = w[a])
           ? b
           : '0' <= a && '7' >= a
-            ? parseInt(e.substring(1), 8)
+            ? Number.parseInt(e.substring(1), 8)
             : 'u' === a || 'x' === a
-              ? parseInt(e.substring(2), 16)
+              ? Number.parseInt(e.substring(2), 16)
               : e.charCodeAt(1);
       }
       function f(e) {
@@ -39,7 +39,7 @@
         var b = e
           .substring(1, e.length - 1)
           .match(
-            /\\u[0-9A-Fa-f]{4}|\\x[0-9A-Fa-f]{2}|\\[0-3][0-7]{0,2}|\\[0-7]{1,2}|\\[\s\S]|-|[^-\\]/g
+            /\\u[0-9A-Fa-f]{4}|\\x[0-9A-Fa-f]{2}|\\[0-3][0-7]{0,2}|\\[0-7]{1,2}|\\[\s\S]|-|[^-\\]/g,
           );
         e = [];
         var a = '^' === b[0],
@@ -59,9 +59,7 @@
               97 > k || 122 < h || e.push([Math.max(97, h) & -33, Math.min(k, 122) & -33]));
           }
         }
-        e.sort(function (e, a) {
-          return e[0] - a[0] || a[1] - e[1];
-        });
+        e.sort((e, a) => e[0] - a[0] || a[1] - e[1]);
         b = [];
         g = [];
         for (a = 0; a < e.length; ++a)
@@ -76,7 +74,7 @@
       function v(e) {
         for (
           var a = e.source.match(
-              /(?:\[(?:[^\x5C\x5D]|\\[\s\S])*\]|\\u[A-Fa-f0-9]{4}|\\x[A-Fa-f0-9]{2}|\\[0-9]+|\\[^ux0-9]|\(\?[:!=]|[\(\)\^]|[^\x5B\x5C\(\)\^]+)/g
+              /(?:\[(?:[^\x5C\x5D]|\\[\s\S])*\]|\\u[A-Fa-f0-9]{4}|\\x[A-Fa-f0-9]{2}|\\[0-9]+|\\[^ux0-9]|\(\?[:!=]|[\(\)\^]|[^\x5B\x5C\(\)\^]+)/g,
             ),
             c = a.length,
             d = [],
@@ -106,7 +104,7 @@
               2 <= k.length && '[' === e
                 ? (a[g] = b(k))
                 : '\\' !== e &&
-                  (a[g] = k.replace(/[a-zA-Z]/g, function (a) {
+                  (a[g] = k.replace(/[a-zA-Z]/g, (a) => {
                     a = a.charCodeAt(0);
                     return '[' + String.fromCharCode(a & -33, a | 32) + ']';
                   }));
@@ -166,7 +164,8 @@
     }
     function V(a) {
       for (var d = void 0, f = a.firstChild; f; f = f.nextSibling)
-        var b = f.nodeType, d = 1 === b ? (d ? a : f) : 3 === b ? (W.test(f.nodeValue) ? a : d) : d;
+        var b = f.nodeType,
+          d = 1 === b ? (d ? a : f) : 3 === b ? (W.test(f.nodeValue) ? a : d) : d;
       return d === a ? void 0 : d;
     }
     function G(a, d) {
@@ -221,7 +220,7 @@
       }
       var b = {},
         v;
-      (function () {
+      (() => {
         for (var f = a.concat(d), l = [], m = {}, c = 0, p = f.length; c < p; ++c) {
           var w = f[c],
             r = w[3];
@@ -296,7 +295,7 @@
                 ']|\\x5C' +
                 v +
                 ')*(?:\\x5D|$))+/') +
-              ')'
+              ')',
           ),
         ]);
       }
@@ -317,7 +316,7 @@
           '0123456789',
         ],
         ['pln', /^\\[\s\S]?/, null],
-        ['pun', new RegExp(b), null]
+        ['pun', new RegExp(b), null],
       );
       return G(d, f);
     }
@@ -351,7 +350,7 @@
           }
           return d;
         }
-        for (; !a.nextSibling; ) if (((a = a.parentNode), !a)) return;
+        while (!a.nextSibling) if (((a = a.parentNode), !a)) return;
         a = b(a.nextSibling, 0);
         for (var d; (d = a.parentNode) && 1 === d.nodeType; ) a = d;
         c.push(a);
@@ -362,7 +361,6 @@
           l = a.ownerDocument,
           m = l.createElement('li');
         a.firstChild;
-
       )
         m.appendChild(a.firstChild);
       for (var c = [m], p = 0; p < c.length; ++p) b(c[p]);
@@ -426,7 +424,7 @@
         a = '';
         g && ((a = g.style.display), (g.style.display = 'none'));
         try {
-          for (; b < m; ) {
+          while (b < m) {
             var h = l[b + 2] || n,
               k = c[w + 2] || n,
               q = Math.min(h, k),
@@ -525,9 +523,9 @@
           ['lang-js', /^<script\b[^>]*>([\s\S]*?)(<\/script\b[^>]*>)/i],
           ['lang-css', /^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],
           ['lang-in.tag', /^(<\/?[a-z][^<>]*>)/i],
-        ]
+        ],
       ),
-      'default-markup htm html mxml xhtml xml xsl'.split(' ')
+      'default-markup htm html mxml xhtml xml xsl'.split(' '),
     );
     t(
       G(
@@ -546,14 +544,14 @@
           ['lang-css', /^style\s*=\s*\"([^\"]+)\"/i],
           ['lang-css', /^style\s*=\s*\'([^\']+)\'/i],
           ['lang-css', /^style\s*=\s*([^\"\'>\s]+)/i],
-        ]
+        ],
       ),
-      ['in.tag']
+      ['in.tag'],
     );
     t(G([], [['atv', /^[\s\S]+/]]), ['uq.val']);
     t(
       y({ keywords: H, hashComments: !0, cStyleComments: !0, types: S }),
-      'c cc cpp cxx cyc m'.split(' ')
+      'c cc cpp cxx cyc m'.split(' '),
     );
     t(y({ keywords: 'null,true,false' }), ['json']);
     t(y({ keywords: P, hashComments: !0, cStyleComments: !0, verbatimStrings: !0, types: S }), [
@@ -574,7 +572,7 @@
         multiLineStrings: !0,
         regexLiterals: 2,
       }),
-      ['perl', 'pl', 'pm']
+      ['perl', 'pl', 'pm'],
     );
     t(y({ keywords: R, hashComments: !0, multiLineStrings: !0, regexLiterals: !0 }), [
       'rb',
@@ -596,7 +594,7 @@
         tripleQuotedStrings: !0,
         regexLiterals: !0,
       }),
-      ['coffee']
+      ['coffee'],
     );
     t(G([], [['str', /^[\s\S]+/]]), ['regex']);
     var Y = (E.PR = {
@@ -616,7 +614,7 @@
         PR_STRING: 'str',
         PR_TAG: 'tag',
         PR_TYPE: 'typ',
-        prettyPrintOne: (E.prettyPrintOne = function (a, d, f) {
+        prettyPrintOne: (E.prettyPrintOne = (a, d, f) => {
           f = f || !1;
           d = d || null;
           var b = document.createElement('div');
@@ -626,10 +624,10 @@
           M({ j: d, m: f, h: b, l: 1, a: null, i: null, c: null, g: null });
           return b.innerHTML;
         }),
-        prettyPrint: (E.prettyPrint = function (a, d) {
+        prettyPrint: (E.prettyPrint = (a, d) => {
           function f() {
             for (
-              var b = E.PR_SHOULD_USE_CONTINUATION ? c.now() + 250 : Infinity;
+              var b = E.PR_SHOULD_USE_CONTINUATION ? c.now() + 250 : Number.POSITIVE_INFINITY;
               p < t.length && c.now() < b;
               p++
             ) {
@@ -639,7 +637,7 @@
                 if (u ? !/^\??prettify\b/.test(u) : 3 !== n || /\S/.test(m.nodeValue)) break;
                 if (u) {
                   l = {};
-                  u.replace(/\b(\w+)=([\w:.%+-]+)/g, function (a, b, c) {
+                  u.replace(/\b(\w+)=([\w:.%+-]+)/g, (a, b, c) => {
                     l[b] = c;
                   });
                   break;
@@ -704,9 +702,7 @@
             c = Date;
           c.now ||
             (c = {
-              now: function () {
-                return +new Date();
-              },
+              now: () => +new Date(),
             });
           var p = 0,
             w = /\blang(?:uage)?-([\w.]+)(?!\S)/,
@@ -720,10 +716,6 @@
         }),
       }),
       H = E.define;
-    'function' === typeof H &&
-      H.amd &&
-      H('google-code-prettify', [], function () {
-        return Y;
-      });
+    'function' === typeof H && H.amd && H('google-code-prettify', [], () => Y);
   })();
 })();

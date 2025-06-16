@@ -1,5 +1,5 @@
-import { Csv } from '../../src/strategies/Csv';
 import { Readable } from 'stream';
+import { Csv } from '../../src/strategies/Csv';
 
 const strategy = new Csv();
 const input = ['name,email', 'Netflix,contact@netflix.com', 'Prime Video,contact@primevideo.com'];
@@ -95,7 +95,7 @@ describe('Csv Strategy', () => {
   });
 
   describe.skip('Csv.prototype.pipeParse', () => {
-    it('parses with default options', done => {
+    it('parses with default options', (done) => {
       const reader = getReader(Array.from(input));
       const parsedData: unknown[] = [];
       const stream = reader.pipe(strategy.pipeParse());
@@ -133,7 +133,7 @@ describe('Csv Strategy', () => {
       });
     });
 
-    it('parses with custom options.delimiter', done => {
+    it('parses with custom options.delimiter', (done) => {
       const input = [
         'name;email',
         'Netflix;contact@netflix.com',
@@ -178,7 +178,7 @@ describe('Csv Strategy', () => {
   });
 
   describe('Csv.prototype.pipeStringify', () => {
-    it('stringify with default options', done => {
+    it('stringify with default options', (done) => {
       const input = [
         { name: 'Netflix', site: 'netflix.com' },
         { name: 'Prime Video', site: 'primevideo.com' },
@@ -205,7 +205,7 @@ describe('Csv Strategy', () => {
       });
     });
 
-    it('stringify with custom delimiter', done => {
+    it('stringify with custom delimiter', (done) => {
       const input = [
         { name: 'Netflix', site: 'netflix.com' },
         { name: 'Prime Video', site: 'primevideo.com' },
@@ -232,7 +232,7 @@ describe('Csv Strategy', () => {
       });
     });
 
-    it('stringify with custom column', done => {
+    it('stringify with custom column', (done) => {
       const input = [
         { name: 'Netflix', site: 'netflix.com' },
         { name: 'Prime Video', site: 'primevideo.com' },
@@ -256,7 +256,7 @@ describe('Csv Strategy', () => {
         try {
           const str = parsedData.join('');
           expect(str).toEqual(
-            'Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n'
+            'Name,Website URL\nNetflix,netflix.com\nPrime Video,primevideo.com\n',
           );
           done();
         } catch (err) {
@@ -265,7 +265,7 @@ describe('Csv Strategy', () => {
       });
     });
 
-    it('stringify reordering columns', done => {
+    it('stringify reordering columns', (done) => {
       const input = [
         { name: 'Netflix', site: 'netflix.com' },
         { name: 'Prime Video', site: 'primevideo.com' },

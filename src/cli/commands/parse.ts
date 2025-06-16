@@ -1,12 +1,12 @@
-import { Command } from 'commander';
 import { readFileSync, writeFileSync } from 'fs';
 import chalk from 'chalk';
-import parserblade, { DataFormat } from '../../index';
+import { Command } from 'commander';
+import parserblade, { type DataFormat } from '../../index';
 import {
-  getFormatFromExtension,
   detectFormat,
-  isValidFormat,
+  getFormatFromExtension,
   getSupportedFormats,
+  isValidFormat,
 } from '../utils/format-detection';
 
 export const parseCommand = new Command('parse')
@@ -26,7 +26,7 @@ export const parseCommand = new Command('parse')
         from?: string;
         pretty?: boolean;
         minify?: boolean;
-      }
+      },
     ) => {
       try {
         // Read input file
@@ -83,17 +83,17 @@ export const parseCommand = new Command('parse')
           writeFileSync(options.output, result);
           console.log(
             chalk.green(
-              `✓ Converted ${chalk.bold(inputFile)} (${inputFormat}) to ${chalk.bold(options.output)} (${outputFormat})`
-            )
+              `✓ Converted ${chalk.bold(inputFile)} (${inputFormat}) to ${chalk.bold(options.output)} (${outputFormat})`,
+            ),
           );
         } else {
           console.log(result);
         }
       } catch (error) {
         console.error(
-          chalk.red(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
+          chalk.red(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`),
         );
         process.exit(1);
       }
-    }
+    },
   );

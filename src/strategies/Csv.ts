@@ -1,11 +1,11 @@
-import { Transform } from 'stream';
-import { parse as csvParser } from 'csv-parse/sync';
-import { stringify as csvStringify } from 'csv-stringify/sync';
+import type { Transform } from 'stream';
 import { parse as csvParserStream } from 'csv-parse';
+import { parse as csvParser } from 'csv-parse/sync';
 import { stringify as csvStringifyStream } from 'csv-stringify';
-import { Base } from './Base';
+import { stringify as csvStringify } from 'csv-stringify/sync';
 import { ParserError } from '../errors';
-import { CsvParseOptions, CsvStringifyOptions } from '../types';
+import type { CsvParseOptions, CsvStringifyOptions } from '../types';
+import { Base } from './Base';
 
 /**
  * Extended CSV parsing options with additional fields

@@ -1,6 +1,6 @@
 import { Parser } from './Parser';
-import { Json, Xml, Yaml, Csv } from './strategies';
-import { ParserInstances } from './types';
+import { Csv, Json, Xml, Yaml } from './strategies';
+import type { ParserInstances } from './types';
 
 /**
  * Pre-configured parser instances for each supported format

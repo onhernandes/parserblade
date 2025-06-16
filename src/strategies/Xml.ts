@@ -1,8 +1,8 @@
 import { Transform } from 'stream';
 import * as xml from 'xml-js';
-import { Base } from './Base';
 import { NotImplementedError, ParserError } from '../errors';
-import { XmlParseOptions, XmlStringifyOptions } from '../types';
+import type { XmlParseOptions, XmlStringifyOptions } from '../types';
+import { Base } from './Base';
 
 /**
  * Extended XML parsing options

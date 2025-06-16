@@ -30,7 +30,7 @@ export class XmlTag {
     name: string,
     value: string | null = null,
     attributes: Record<string, string> = {},
-    tags: XmlTag[] = []
+    tags: XmlTag[] = [],
   ) {
     this.name = name;
     this.value = value;

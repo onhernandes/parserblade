@@ -1,12 +1,12 @@
-import { Transform } from 'stream';
+import type { Transform } from 'stream';
 import { NotImplementedError, ParserError } from '../errors';
-import { IStrategy, ParseOptions, StringifyOptions } from '../types';
+import type { BaseStrategyProps, ParseOptions, StringifyOptions } from '../types';
 
 /**
  * Base class for all parsing strategies
  * Every method that hasn't been implemented will throw a NotImplementedError
  */
-export abstract class Base implements IStrategy {
+export abstract class Base implements BaseStrategyProps {
   /**
    * Parse a string into a JavaScript value
    * Must be implemented by subclasses

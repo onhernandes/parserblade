@@ -1,14 +1,15 @@
-import { Parser } from '../src/Parser';
-import { IStrategy } from '../src/types';
 import { Transform } from 'stream';
+import { describe, expect, it, vi } from 'vitest';
+import { Parser } from '../src/Parser';
+import type { BaseStrategyProps } from '../src/types';
 
 describe('Parser implements Strategy', () => {
-  const createMockStrategy = (overrides: Partial<IStrategy> = {}): IStrategy => ({
-    parse: jest.fn(),
-    stringify: jest.fn(),
-    valid: jest.fn(),
-    pipeParse: jest.fn(() => new Transform()),
-    pipeStringify: jest.fn(() => new Transform()),
+  const createMockStrategy = (overrides: Partial<BaseStrategyProps> = {}): BaseStrategyProps => ({
+    parse: vi.fn(),
+    stringify: vi.fn(),
+    valid: vi.fn(),
+    pipeParse: vi.fn(() => new Transform()),
+    pipeStringify: vi.fn(() => new Transform()),
     ...overrides,
   });
 

@@ -1,5 +1,5 @@
-import { Base } from '../../src/strategies/Base';
 import { NotImplementedError } from '../../src/errors/NotImplemented';
+import { Base } from '../../src/strategies/Base';
 
 class TestImplementation extends Base {
   // This class intentionally doesn't implement the Base methods

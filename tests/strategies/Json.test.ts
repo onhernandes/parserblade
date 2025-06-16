@@ -1,9 +1,9 @@
-import { Json } from '../../src/strategies/Json';
-import { ParserError } from '../../src/errors/ParserError';
-import { NotImplementedError } from '../../src/errors/NotImplemented';
-import { Readable } from 'stream';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Readable } from 'stream';
+import { NotImplementedError } from '../../src/errors/NotImplemented';
+import { ParserError } from '../../src/errors/ParserError';
+import { Json } from '../../src/strategies/Json';
 
 const strategy = new Json();
 const TEST_FILE = path.resolve(__dirname, '../data/services.json');
@@ -58,7 +58,7 @@ describe('Json Strategy', () => {
   });
 
   describe('Json.prototype.pipeStringify', () => {
-    it('stringifies an array of objects', done => {
+    it('stringifies an array of objects', (done) => {
       const input = [{ game: 'Killing Floor' }, { game: 'Stardew Valley' }];
       const inputCopy = [...input];
 
@@ -82,7 +82,7 @@ describe('Json Strategy', () => {
         result.push(data);
       });
 
-      writer.on('error', err => {
+      writer.on('error', (err) => {
         done(err);
       });
 
@@ -98,7 +98,7 @@ describe('Json Strategy', () => {
       });
     });
 
-    it('stringifies an object', done => {
+    it('stringifies an object', (done) => {
       const input = {
         services: [{ url: 'cloud.google.com' }],
       };
@@ -124,7 +124,7 @@ describe('Json Strategy', () => {
         result.push(data);
       });
 
-      writer.on('error', err => {
+      writer.on('error', (err) => {
         done(err);
       });
 
@@ -142,7 +142,7 @@ describe('Json Strategy', () => {
   });
 
   describe('Json.prototype.pipeParse', () => {
-    it('parses an object', done => {
+    it('parses an object', (done) => {
       const reader = fs.createReadStream(TEST_FILE);
 
       const result: unknown[] = [];
@@ -153,7 +153,7 @@ describe('Json Strategy', () => {
         result.push(data);
       });
 
-      writer.on('error', err => {
+      writer.on('error', (err) => {
         done(err);
       });
 

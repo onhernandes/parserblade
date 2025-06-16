@@ -1,8 +1,8 @@
 import { Transform } from 'stream';
 import * as yaml from 'js-yaml';
-import { Base } from './Base';
 import { ParserError } from '../errors';
-import { YamlParseOptions, YamlStringifyOptions } from '../types';
+import type { YamlParseOptions, YamlStringifyOptions } from '../types';
+import { Base } from './Base';
 
 /**
  * YAML strategy - Support for YAML file type

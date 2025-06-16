@@ -1,6 +1,6 @@
-import { Yaml } from '../../src/strategies/Yaml';
-import { ParserError } from '../../src/errors/ParserError';
 import { NotImplementedError } from '../../src/errors/NotImplemented';
+import { ParserError } from '../../src/errors/ParserError';
+import { Yaml } from '../../src/strategies/Yaml';
 
 const strategy = new Yaml();
 

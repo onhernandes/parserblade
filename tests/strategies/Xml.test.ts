@@ -1,8 +1,8 @@
-import { Xml } from '../../src/strategies/Xml';
-import { ParserError } from '../../src/errors/ParserError';
-import { NotImplementedError } from '../../src/errors/NotImplemented';
 import { Readable } from 'stream';
-import { XmlTag, XmlDeclaration } from '../../src/strategies/XmlTag';
+import { NotImplementedError } from '../../src/errors/NotImplemented';
+import { ParserError } from '../../src/errors/ParserError';
+import { Xml } from '../../src/strategies/Xml';
+import { XmlDeclaration, XmlTag } from '../../src/strategies/XmlTag';
 
 const strategy = new Xml();
 
@@ -199,7 +199,7 @@ describe('Xml Strategy', () => {
   });
 
   describe.skip('Xml.prototype.pipeParse', () => {
-    it('parses with default options.depth', done => {
+    it('parses with default options.depth', (done) => {
       const reader = getReader(Array.from(input));
       const toExpected: Record<string, (data: any) => void> = {
         declaration: (data: XmlDeclaration) => {
@@ -236,7 +236,7 @@ describe('Xml Strategy', () => {
         });
     });
 
-    it('parses with custom options.depth 1', done => {
+    it('parses with custom options.depth 1', (done) => {
       const reader = getReader(Array.from(input));
       const toExpected: Record<string, (data: any) => void> = {
         declaration: (data: XmlDeclaration) => {
@@ -283,7 +283,7 @@ describe('Xml Strategy', () => {
   });
 
   describe.skip('Xml.prototype.pipeStringify', () => {
-    it('stringifies an array of object', done => {
+    it('stringifies an array of object', (done) => {
       const objectData = {
         games: 'none',
       };
@@ -312,7 +312,7 @@ describe('Xml Strategy', () => {
         });
     });
 
-    it('stringifies an array of object with custom parent', done => {
+    it('stringifies an array of object with custom parent', (done) => {
       const objectData = {
         games: 'none',
       };

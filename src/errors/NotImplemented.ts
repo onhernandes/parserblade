@@ -2,7 +2,7 @@
  * NotImplementedError - Error thrown when a method hasn't been implemented
  */
 export class NotImplementedError extends Error {
-  constructor(message: string = "This method hasn't been implemented yet") {
+  constructor(message = "This method hasn't been implemented yet") {
     super(message);
     this.name = 'NotImplementedError';
 

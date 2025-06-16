@@ -1,14 +1,14 @@
-import { Transform } from 'stream';
-import { IStrategy, IParser, ParseOptions, StringifyOptions } from './types';
+import type { Transform } from 'stream';
+import type { BaseParserProps, BaseStrategyProps, ParseOptions, StringifyOptions } from './types';
 
 /**
  * Parser - Receives any strategy and safely implements it
  * Provides a uniform interface for parsing different data formats
  */
-export class Parser implements IParser {
-  private readonly strategy: IStrategy;
+export class Parser implements BaseParserProps {
+  private readonly strategy: BaseStrategyProps;
 
-  constructor(strategy: IStrategy) {
+  constructor(strategy: BaseStrategyProps) {
     this.strategy = strategy;
   }
 

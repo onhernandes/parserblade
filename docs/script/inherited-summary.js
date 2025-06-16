@@ -1,4 +1,4 @@
-(function () {
+(() => {
   function toggle(ev) {
     var button = ev.target;
     var parent = ev.target.parentElement;

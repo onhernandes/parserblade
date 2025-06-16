@@ -1,5 +1,5 @@
 import { extname } from 'path';
-import { DataFormat } from '../../types';
+import type { DataFormat } from '../../types';
 
 /**
  * Map file extensions to formats

@@ -1,4 +1,4 @@
-(function () {
+(() => {
   var searchIndex = window.esdocSearchIndex;
   var searchBox = document.querySelector('.search-box');
   var input = document.querySelector('.search-input');
@@ -7,13 +7,13 @@
   var prevText;
 
   // active search box and focus when mouse enter on search box.
-  searchBox.addEventListener('mouseenter', function () {
+  searchBox.addEventListener('mouseenter', () => {
     searchBox.classList.add('active');
     input.focus();
   });
 
   // search with text when key is upped.
-  input.addEventListener('keyup', function (ev) {
+  input.addEventListener('keyup', (ev) => {
     var text = ev.target.value.toLowerCase();
     if (!text) {
       result.style.display = 'none';
@@ -58,7 +58,7 @@
   });
 
   // down, up and enter key are pressed, select search result.
-  input.addEventListener('keydown', function (ev) {
+  input.addEventListener('keydown', (ev) => {
     if (ev.keyCode === 40) {
       // arrow down
       var current = result.children[selectedIndex];
@@ -102,7 +102,7 @@
   });
 
   // select search result when search result is mouse over.
-  result.addEventListener('mousemove', function (ev) {
+  result.addEventListener('mousemove', (ev) => {
     var current = result.children[selectedIndex];
     if (current) current.classList.remove('selected');
 
@@ -119,7 +119,7 @@
   });
 
   // clear search result when body is clicked.
-  document.body.addEventListener('click', function (ev) {
+  document.body.addEventListener('click', (ev) => {
     selectedIndex = -1;
     result.style.display = 'none';
     result.innerHTML = '';

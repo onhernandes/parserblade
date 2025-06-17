@@ -6,6 +6,8 @@ import { NotImplementedError } from "../../src/errors/NotImplemented";
 import { ParserError } from "../../src/errors/ParserError";
 import { Json } from "../../src/strategies/Json";
 import type { ValidationOptions } from "../../src/types";
+import { ZodAdapter } from "../../src/validation/adapters/ZodAdapter";
+import { describe, expect, it } from "vitest";
 
 const strategy = new Json();
 const TEST_FILE = path.resolve(__dirname, "../data/services.json");
@@ -189,9 +191,10 @@ describe("JSON Strategy - Zod Validation", () => {
       age: z.number(),
     });
 
+    const zodAdapter = new ZodAdapter(schema);
     const validData = '{"name": "John", "age": 30}';
     const validationOptions: ValidationOptions = {
-      schema,
+      adapter: zodAdapter,
     };
 
     const result = jsonStrategy.validateSchema(validData, validationOptions);
@@ -206,9 +209,10 @@ describe("JSON Strategy - Zod Validation", () => {
       age: z.number(),
     });
 
+    const zodAdapter = new ZodAdapter(schema);
     const invalidData = '{"name": "John", "age": "invalid"}';
     const validationOptions: ValidationOptions = {
-      schema,
+      adapter: zodAdapter,
       throwOnError: false,
     };
 
@@ -226,9 +230,10 @@ describe("JSON Strategy - Zod Validation", () => {
       }),
     );
 
+    const zodAdapter = new ZodAdapter(schema);
     const validData = '[{"id": 1, "name": "Item 1"}, {"id": 2, "name": "Item 2"}]';
     const validationOptions: ValidationOptions = {
-      schema,
+      adapter: zodAdapter,
     };
 
     const result = jsonStrategy.validateSchema(validData, validationOptions);

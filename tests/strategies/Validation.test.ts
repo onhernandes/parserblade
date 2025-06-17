@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { ParserError } from "../../src/errors";
 import { Base } from "../../src/strategies/Base";
+import { ZodAdapter } from "../../src/validation/adapters/ZodAdapter";
 import type { ValidationOptions } from "../../src/types";
 
 // Mock implementation of Base for testing validation
@@ -35,6 +36,8 @@ describe("Zod Schema Validation", () => {
       isActive: z.boolean().optional(),
     });
 
+    const zodAdapter = new ZodAdapter(userSchema);
+
     it("should validate valid data successfully", () => {
       const validData = JSON.stringify({
         name: "John Doe",
@@ -44,7 +47,7 @@ describe("Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const result = mockStrategy.validateSchema(validData, validationOptions);
@@ -67,7 +70,7 @@ describe("Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
@@ -90,7 +93,7 @@ describe("Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       expect(() => {
@@ -107,7 +110,7 @@ describe("Zod Schema Validation", () => {
 
       const customErrorMessage = "Custom validation failed";
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
         errorMessage: customErrorMessage,
       };
@@ -122,7 +125,7 @@ describe("Zod Schema Validation", () => {
       const invalidJsonData = '{"name": "John", "age": }'; // Invalid JSON
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
@@ -140,13 +143,14 @@ describe("Zod Schema Validation", () => {
         }),
       );
 
+      const arrayAdapter = new ZodAdapter(arraySchema);
       const validArrayData = JSON.stringify([
         { id: 1, name: "Item 1" },
         { id: 2, name: "Item 2" },
       ]);
 
       const validationOptions: ValidationOptions = {
-        schema: arraySchema,
+        adapter: arrayAdapter,
       };
 
       const result = mockStrategy.validateSchema(validArrayData, validationOptions);
@@ -169,6 +173,7 @@ describe("Zod Schema Validation", () => {
         metadata: z.record(z.any()).optional(),
       });
 
+      const nestedAdapter = new ZodAdapter(nestedSchema);
       const validNestedData = JSON.stringify({
         user: {
           profile: {
@@ -186,7 +191,7 @@ describe("Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: nestedSchema,
+        adapter: nestedAdapter,
       };
 
       const result = mockStrategy.validateSchema(validNestedData, validationOptions);
@@ -203,9 +208,11 @@ describe("Zod Schema Validation", () => {
       age: z.number(),
     });
 
+    const zodAdapter = new ZodAdapter(userSchema);
+
     it("should create a transform stream that validates data", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);
@@ -235,7 +242,7 @@ describe("Zod Schema Validation", () => {
 
     it("should emit error for invalid data when throwOnError is true", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: true,
       };
 
@@ -262,7 +269,7 @@ describe("Zod Schema Validation", () => {
 
     it("should emit validation result for invalid data when throwOnError is false", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
@@ -294,7 +301,7 @@ describe("Zod Schema Validation", () => {
 
     it("should handle Buffer input", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);

@@ -44,6 +44,18 @@ export class Yaml extends Base {
   }
 
   /**
+   * Check if a string is valid YAML
+   */
+  valid(data: string): boolean {
+    try {
+      yaml.load(data);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create a transform stream for parsing YAML data
    * Note: YAML doesn't have native streaming support like JSON/CSV
    */

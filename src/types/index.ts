@@ -1,5 +1,6 @@
 import type { Transform } from "node:stream";
 import type { ZodSchema } from "zod";
+import type { ValidationAdapter } from './validation';
 
 /**
  * Common parsing options that can be passed to any strategy
@@ -20,9 +21,9 @@ export interface StringifyOptions {
  */
 export interface ValidationOptions {
   /**
-   * The Zod schema to validate against
+   * The validation adapter to use
    */
-  schema: ZodSchema;
+  adapter: ValidationAdapter;
   /**
    * Whether to throw an error on validation failure (default: true)
    */
@@ -173,6 +174,7 @@ export interface BaseStrategyProps {
   /**
    * Create a transform stream for validation with Zod schema
    */
+  // biome-ignore lint/correctness/noUnusedVariables: Type parameter T is used for type inference in implementations
   pipeValidateSchema<T>(validationOptions: ValidationOptions): Transform;
 }
 
@@ -213,6 +215,7 @@ export interface BaseParserProps {
   /**
    * Create a transform stream for validation with Zod schema
    */
+  // biome-ignore lint/correctness/noUnusedVariables: Type parameter T is used for type inference in implementations
   pipeValidateSchema<T>(validationOptions: ValidationOptions): Transform;
 }
 

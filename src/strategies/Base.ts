@@ -64,56 +64,47 @@ export abstract class Base implements BaseStrategyProps {
    * First parses the data using the strategy, then validates against the schema
    */
   validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T> {
-    const { schema, throwOnError = true, errorMessage } = validationOptions;
+    const { adapter, throwOnError = true, errorMessage } = validationOptions;
 
     try {
       // Parse the data first using the strategy
       const parsedData = this.parse(data);
 
-      // Validate against the schema
-      const result = schema.safeParse(parsedData);
+      // Validate using the provided adapter
+      const result = adapter.validate(parsedData);
 
       if (result.success) {
         return {
           success: true,
           data: result.data as T,
         };
-      } else {
-        const error = {
-          message: errorMessage || "Schema validation failed",
-          issues: result.error.issues.map((issue) => ({
-            path: issue.path,
-            message: issue.message,
-            code: issue.code,
-          })),
-        };
-
-        if (throwOnError) {
-          throw new ParserError("validation", { validationError: error });
-        }
-
-        return {
-          success: false,
-          error,
-        };
       }
+
+      if (!result.error) {
+        throw new Error("Validation failed but no error details provided");
+      }
+
+      const error = {
+        message: errorMessage || result.error.message,
+        issues: result.error.issues,
+      };
+
+      if (throwOnError) {
+        throw new ParserError("validation", { validationError: error });
+      }
+
+      return {
+        success: false,
+        error,
+      };
     } catch (error) {
       if (error instanceof ParserError) {
-        // Re-throw parser errors as-is
         throw error;
       }
 
-      // Handle other errors (including Zod errors)
       const validationError = {
         message: errorMessage || "Validation error occurred",
-        issues:
-          error instanceof ZodError
-            ? error.issues.map((issue) => ({
-                path: issue.path,
-                message: issue.message,
-                code: issue.code,
-              }))
-            : [{ path: [], message: String(error), code: "unknown" }],
+        issues: [{ path: [], message: String(error), code: "unknown" }],
       };
 
       if (throwOnError) {
@@ -143,7 +134,7 @@ export abstract class Base implements BaseStrategyProps {
       ) {
         try {
           const dataString = chunk instanceof Buffer ? chunk.toString() : chunk;
-          const result = baseInstance.validateSchema<T>(dataString, validationOptions);
+          const result = baseInstance.validateSchema<T>(dataString as string, validationOptions);
 
           if (result.success) {
             this.push(result.data);

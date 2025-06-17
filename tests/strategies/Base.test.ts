@@ -4,6 +4,7 @@ import { z } from "zod";
 import { ParserError } from "../../src/errors";
 import { NotImplementedError } from "../../src/errors/NotImplemented";
 import { Base } from "../../src/strategies/Base";
+import { ZodAdapter } from "../../src/validation/adapters/ZodAdapter";
 import type { ValidationOptions } from "../../src/types";
 
 class TestImplementation extends Base {
@@ -67,6 +68,8 @@ describe("Base Strategy - Zod Schema Validation", () => {
       isActive: z.boolean().optional(),
     });
 
+    const zodAdapter = new ZodAdapter(userSchema);
+
     it("should validate valid data successfully", () => {
       const validData = JSON.stringify({
         name: "John Doe",
@@ -76,7 +79,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const result = mockStrategy.validateSchema(validData, validationOptions);
@@ -99,7 +102,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
@@ -110,8 +113,8 @@ describe("Base Strategy - Zod Schema Validation", () => {
       expect(result.error).toBeDefined();
       expect(result.error?.message).toBe("Schema validation failed");
       expect(result.error?.issues).toHaveLength(2);
-      expect(result.error?.issues[0].path).toEqual(["age"]);
-      expect(result.error?.issues[1].path).toEqual(["email"]);
+      expect(result.error?.issues?.[0]?.path).toEqual(["age"]);
+      expect(result.error?.issues?.[1]?.path).toEqual(["email"]);
     });
 
     it("should throw validation error for invalid data when throwOnError is true (default)", () => {
@@ -122,7 +125,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       expect(() => {
@@ -139,7 +142,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
 
       const customErrorMessage = "Custom validation failed";
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
         errorMessage: customErrorMessage,
       };
@@ -154,7 +157,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
       const invalidJsonData = '{"name": "John", "age": }'; // Invalid JSON
 
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
@@ -172,13 +175,14 @@ describe("Base Strategy - Zod Schema Validation", () => {
         }),
       );
 
+      const arrayAdapter = new ZodAdapter(arraySchema);
       const validArrayData = JSON.stringify([
         { id: 1, name: "Item 1" },
         { id: 2, name: "Item 2" },
       ]);
 
       const validationOptions: ValidationOptions = {
-        schema: arraySchema,
+        adapter: arrayAdapter,
       };
 
       const result = mockStrategy.validateSchema(validArrayData, validationOptions);
@@ -201,6 +205,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
         metadata: z.record(z.any()).optional(),
       });
 
+      const nestedAdapter = new ZodAdapter(nestedSchema);
       const validNestedData = JSON.stringify({
         user: {
           profile: {
@@ -218,7 +223,7 @@ describe("Base Strategy - Zod Schema Validation", () => {
       });
 
       const validationOptions: ValidationOptions = {
-        schema: nestedSchema,
+        adapter: nestedAdapter,
       };
 
       const result = mockStrategy.validateSchema(validNestedData, validationOptions);
@@ -235,99 +240,117 @@ describe("Base Strategy - Zod Schema Validation", () => {
       age: z.number(),
     });
 
-    it("should create a transform stream that validates data", (done) => {
+    const zodAdapter = new ZodAdapter(userSchema);
+
+    it("should create a transform stream that validates data", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);
       const results: any[] = [];
 
-      stream.on("data", (data) => {
-        results.push(data);
-      });
+      const promise = new Promise<void>((resolve, reject) => {
+        stream.on("data", (data) => {
+          results.push(data);
+        });
 
-      stream.on("end", () => {
-        expect(results).toHaveLength(1);
-        expect(results[0]).toEqual({ name: "John", age: 30 });
-        done();
-      });
+        stream.on("end", () => {
+          expect(results).toHaveLength(1);
+          expect(results[0]).toEqual({ name: "John", age: 30 });
+          resolve();
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
+      });
 
       stream.write('{"name": "John", "age": 30}');
       stream.end();
+
+      await promise;
     });
 
-    it("should emit error for invalid data when throwOnError is true", (done) => {
+    it("should emit error for invalid data when throwOnError is true", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: true,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);
 
-      stream.on("error", (error) => {
-        expect(error).toBeInstanceOf(ParserError);
-        done();
-      });
+      const promise = new Promise<void>((resolve, reject) => {
+        stream.on("error", (error) => {
+          expect(error).toBeInstanceOf(ParserError);
+          resolve();
+        });
 
-      stream.on("data", () => {
-        done(new Error("Should not emit data for invalid input"));
+        stream.on("data", () => {
+          reject(new Error("Should not emit data for invalid input"));
+        });
       });
 
       stream.write('{"name": "John", "age": "invalid"}');
       stream.end();
+
+      await promise;
     });
 
-    it("should emit validation result for invalid data when throwOnError is false", (done) => {
+    it("should emit validation result for invalid data when throwOnError is false", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
         throwOnError: false,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);
       const results: any[] = [];
 
-      stream.on("data", (data) => {
-        results.push(data);
-      });
+      const promise = new Promise<void>((resolve, reject) => {
+        stream.on("data", (data) => {
+          results.push(data);
+        });
 
-      stream.on("end", () => {
-        expect(results).toHaveLength(1);
-        expect(results[0].success).toBe(false);
-        expect(results[0].error).toBeDefined();
-        done();
-      });
+        stream.on("end", () => {
+          expect(results).toHaveLength(1);
+          expect(results[0].success).toBe(false);
+          expect(results[0].error).toBeDefined();
+          resolve();
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
+      });
 
       stream.write('{"name": "John", "age": "invalid"}');
       stream.end();
+
+      await promise;
     });
 
-    it("should handle Buffer input", (done) => {
+    it("should handle Buffer input", async () => {
       const validationOptions: ValidationOptions = {
-        schema: userSchema,
+        adapter: zodAdapter,
       };
 
       const stream = mockStrategy.pipeValidateSchema(validationOptions);
       const results: any[] = [];
 
-      stream.on("data", (data) => {
-        results.push(data);
-      });
+      const promise = new Promise<void>((resolve, reject) => {
+        stream.on("data", (data) => {
+          results.push(data);
+        });
 
-      stream.on("end", () => {
-        expect(results).toHaveLength(1);
-        expect(results[0]).toEqual({ name: "Jane", age: 25 });
-        done();
-      });
+        stream.on("end", () => {
+          expect(results).toHaveLength(1);
+          expect(results[0]).toEqual({ name: "Jane", age: 25 });
+          resolve();
+        });
 
-      stream.on("error", done);
+        stream.on("error", reject);
+      });
 
       stream.write(Buffer.from('{"name": "Jane", "age": 25}'));
       stream.end();
+
+      await promise;
     });
   });
 });

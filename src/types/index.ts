@@ -1,4 +1,5 @@
 import type { Transform } from "node:stream";
+import type { ZodSchema } from "zod";
 
 /**
  * Common parsing options that can be passed to any strategy
@@ -12,6 +13,49 @@ export interface ParseOptions {
  */
 export interface StringifyOptions {
   [key: string]: unknown;
+}
+
+/**
+ * Validation options for Zod schema validation
+ */
+export interface ValidationOptions {
+  /**
+   * The Zod schema to validate against
+   */
+  schema: ZodSchema;
+  /**
+   * Whether to throw an error on validation failure (default: true)
+   */
+  throwOnError?: boolean;
+  /**
+   * Custom error message for validation failures
+   */
+  errorMessage?: string;
+}
+
+/**
+ * Result of schema validation
+ */
+export interface ValidationResult<T = unknown> {
+  /**
+   * Whether the validation was successful
+   */
+  success: boolean;
+  /**
+   * The validated data (if successful)
+   */
+  data?: T;
+  /**
+   * Validation error details (if failed)
+   */
+  error?: {
+    message: string;
+    issues: Array<{
+      path: (string | number)[];
+      message: string;
+      code: string;
+    }>;
+  };
 }
 
 /**
@@ -112,6 +156,11 @@ export interface BaseStrategyProps {
   valid(data: string, options?: ParseOptions): boolean;
 
   /**
+   * Validate parsed data against a Zod schema
+   */
+  validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T>;
+
+  /**
    * Create a transform stream for parsing
    */
   pipeParse(): Transform;
@@ -120,6 +169,11 @@ export interface BaseStrategyProps {
    * Create a transform stream for stringifying
    */
   pipeStringify(): Transform;
+
+  /**
+   * Create a transform stream for validation with Zod schema
+   */
+  pipeValidateSchema<T>(validationOptions: ValidationOptions): Transform;
 }
 
 /**
@@ -142,6 +196,11 @@ export interface BaseParserProps {
   valid(data: string, options?: ParseOptions): boolean;
 
   /**
+   * Validate parsed data against a Zod schema using the configured strategy
+   */
+  validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T>;
+
+  /**
    * Create a transform stream for parsing
    */
   pipeParse(): Transform;
@@ -150,6 +209,11 @@ export interface BaseParserProps {
    * Create a transform stream for stringifying
    */
   pipeStringify(): Transform;
+
+  /**
+   * Create a transform stream for validation with Zod schema
+   */
+  pipeValidateSchema<T>(validationOptions: ValidationOptions): Transform;
 }
 
 /**

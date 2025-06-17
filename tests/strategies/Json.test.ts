@@ -1,9 +1,11 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { Readable } from "node:stream";
+import { z } from "zod";
 import { NotImplementedError } from "../../src/errors/NotImplemented";
 import { ParserError } from "../../src/errors/ParserError";
 import { Json } from "../../src/strategies/Json";
+import type { ValidationOptions } from "../../src/types";
 
 const strategy = new Json();
 const TEST_FILE = path.resolve(__dirname, "../data/services.json");
@@ -175,5 +177,63 @@ describe("Json Strategy", () => {
         });
       });
     });
+  });
+});
+
+describe("JSON Strategy - Zod Validation", () => {
+  const jsonStrategy = new Json();
+
+  it("should validate JSON data with schema", () => {
+    const schema = z.object({
+      name: z.string(),
+      age: z.number(),
+    });
+
+    const validData = '{"name": "John", "age": 30}';
+    const validationOptions: ValidationOptions = {
+      schema,
+    };
+
+    const result = jsonStrategy.validateSchema(validData, validationOptions);
+
+    expect(result.success).toBe(true);
+    expect(result.data).toEqual({ name: "John", age: 30 });
+  });
+
+  it("should fail validation for invalid JSON schema", () => {
+    const schema = z.object({
+      name: z.string(),
+      age: z.number(),
+    });
+
+    const invalidData = '{"name": "John", "age": "invalid"}';
+    const validationOptions: ValidationOptions = {
+      schema,
+      throwOnError: false,
+    };
+
+    const result = jsonStrategy.validateSchema(invalidData, validationOptions);
+
+    expect(result.success).toBe(false);
+    expect(result.error).toBeDefined();
+  });
+
+  it("should validate array data", () => {
+    const schema = z.array(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+      }),
+    );
+
+    const validData = '[{"id": 1, "name": "Item 1"}, {"id": 2, "name": "Item 2"}]';
+    const validationOptions: ValidationOptions = {
+      schema,
+    };
+
+    const result = jsonStrategy.validateSchema(validData, validationOptions);
+
+    expect(result.success).toBe(true);
+    expect(result.data).toHaveLength(2);
   });
 });

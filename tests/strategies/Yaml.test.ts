@@ -1,6 +1,8 @@
+import { z } from "zod";
 import { NotImplementedError } from "../../src/errors/NotImplemented";
 import { ParserError } from "../../src/errors/ParserError";
 import { Yaml } from "../../src/strategies/Yaml";
+import type { ValidationOptions } from "../../src/types";
 
 const strategy = new Yaml();
 
@@ -49,5 +51,74 @@ describe("Yaml Parser", () => {
       const result = strategy.valid('name:"Stardew Valley"');
       expect(result).toBe(true);
     });
+  });
+});
+
+describe("YAML Strategy - Zod Validation", () => {
+  const yamlStrategy = new Yaml();
+
+  it("should validate YAML data with schema", () => {
+    const schema = z.object({
+      name: z.string(),
+      age: z.number(),
+    });
+
+    const validData = `name: John
+age: 30`;
+
+    const validationOptions: ValidationOptions = {
+      schema,
+    };
+
+    const result = yamlStrategy.validateSchema(validData, validationOptions);
+
+    expect(result.success).toBe(true);
+    expect(result.data).toEqual({ name: "John", age: 30 });
+  });
+
+  it("should fail validation for invalid YAML schema", () => {
+    const schema = z.object({
+      name: z.string(),
+      age: z.number(),
+    });
+
+    const invalidData = `name: John
+age: invalid`;
+
+    const validationOptions: ValidationOptions = {
+      schema,
+      throwOnError: false,
+    };
+
+    const result = yamlStrategy.validateSchema(invalidData, validationOptions);
+
+    expect(result.success).toBe(false);
+    expect(result.error).toBeDefined();
+  });
+
+  it("should validate nested YAML objects", () => {
+    const schema = z.object({
+      user: z.object({
+        name: z.string(),
+        settings: z.object({
+          theme: z.enum(["light", "dark"]),
+        }),
+      }),
+    });
+
+    const validData = `user:
+  name: John
+  settings:
+    theme: dark`;
+
+    const validationOptions: ValidationOptions = {
+      schema,
+    };
+
+    const result = yamlStrategy.validateSchema(validData, validationOptions);
+
+    expect(result.success).toBe(true);
+    expect(result.data).toHaveProperty("user.name", "John");
+    expect(result.data).toHaveProperty("user.settings.theme", "dark");
   });
 });

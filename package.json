@@ -8,7 +8,10 @@
     "email": "",
     "url": "onhernandes.github.io"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "main": "dist/parserblade.cjs.js",
   "module": "dist/parserblade.es.js",
   "types": "dist/index.d.ts",
@@ -98,6 +101,7 @@
     "js-yaml": "^4.1.0",
     "JSONStream": "^1.3.5",
     "node-xml-stream": "^1.0.2",
-    "xml-js": "^1.6.11"
+    "xml-js": "^1.6.11",
+    "zod": "^3.25.67"
   }
 }

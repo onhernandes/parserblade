@@ -47,6 +47,20 @@ export class Parser implements BaseParserProps {
     return this.strategy.pipeStringify();
   }
 
+  /**
+   * Validate parsed data against a schema using the configured strategy
+   */
+  validateSchema<T>(data: string, validationOptions: import("./types").ValidationOptions): import("./types").ValidationResult<T> {
+    return this.strategy.validateSchema<T>(data, validationOptions);
+  }
+
+  /**
+   * Create a transform stream for validation with a schema using the configured strategy
+   */
+  pipeValidateSchema<T>(validationOptions: import("./types").ValidationOptions): Transform {
+    return this.strategy.pipeValidateSchema<T>(validationOptions);
+  }
+
   // TODO: Implement get and has methods in v2
   // get(data: unknown, path: string): unknown {}
   // has(data: unknown, path: string): boolean {}

@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This is an open source project called parserblade - simple JSON-like parse() and stringify() API for different file types.
+Take into consideration that, now, the project will have a v2 version with:
+
+- [x] TypeScript support
+- [x] Run as npx CLI
+- [] format validation
+- [] clipboard support on the CLI
+- [] inline conversion for shell pipelines llike `cat data.yaml | npx parserblade parse --to json | jq '.'`
+- [] Multi file batch processing
+- [] Watch mode for CLI
+- [] File merge CLI
+- [] New files support: toml, init, JSON Lines (JSONL/NDJSON), .env, .properties, markdown front formatter, excel, sql, avro
+- [] format diff via CLI
+- [] built-in checksum/hash utility built-in md5, sha256, etc on CLI
+- [] schema-aware validation (JSON Schema, OpenAPI, zod, joi, custom)
+- [] schema generation from data
+- [] data generation
+- [] compressing support
+
+You'll work as a software engineer focusing on implementing / creating the needed features following the best practices, writing unit tests, always focusing on great dx, with updated docs (in english and brazillian portuguese).

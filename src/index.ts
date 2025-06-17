@@ -17,6 +17,13 @@ export const { json, xml, yaml, csv } = parsers;
 
 // Export the Parser class and strategies for advanced usage
 export { Parser } from "./Parser";
+export { ParserBlade } from "./ParserBlade";
+export type {
+  ParseOptions,
+  StringifyOptions,
+  PipeParseOptions,
+  PipeStringifyOptions,
+} from "./ParserBlade";
 export { Json, Xml, Yaml, Csv, Base } from "./strategies";
 export { ParserError, NotImplementedError } from "./errors";
 

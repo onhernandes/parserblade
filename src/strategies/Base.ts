@@ -9,7 +9,6 @@ import type { BaseStrategyProps, ParseOptions, StringifyOptions } from "../types
 export abstract class Base implements BaseStrategyProps {
   /**
    * Parse a string into a JavaScript value
-   * Must be implemented by subclasses
    */
   parse(_data: string, _options?: ParseOptions): unknown {
     throw new NotImplementedError("parse method must be implemented");
@@ -17,7 +16,6 @@ export abstract class Base implements BaseStrategyProps {
 
   /**
    * Stringify a JavaScript value into a string
-   * Must be implemented by subclasses
    */
   stringify(_data: unknown, _options?: StringifyOptions): string {
     throw new NotImplementedError("stringify method must be implemented");
@@ -25,17 +23,15 @@ export abstract class Base implements BaseStrategyProps {
 
   /**
    * Create a transform stream for parsing
-   * Must be implemented by subclasses
    */
-  pipeParse(): Transform {
+  pipeParse(_options?: any): Transform {
     throw new NotImplementedError("pipeParse method must be implemented");
   }
 
   /**
    * Create a transform stream for stringifying
-   * Must be implemented by subclasses
    */
-  pipeStringify(): Transform {
+  pipeStringify(_options?: any): Transform {
     throw new NotImplementedError("pipeStringify method must be implemented");
   }
 

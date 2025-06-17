@@ -72,6 +72,7 @@ export class Csv extends Base {
   stringify(data: unknown[], options: CsvStringifyOptionsExtended = {}): string {
     const config: any = {
       header: true,
+      delimiter: options.delimiter || ",",
     };
 
     if (options.headers === false) {

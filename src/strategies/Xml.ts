@@ -57,15 +57,74 @@ export class Xml extends Base {
   }
 
   /**
+   * Basic XML validation to catch common malformed XML issues
+   */
+  private validateXmlWellFormedness(data: string): void {
+    // Check for unclosed tags by counting opening vs closing tags
+    const tagRegex = /<\/?[a-zA-Z][a-zA-Z0-9]*[^>]*>/g;
+    const tags: string[] = [];
+    let match: RegExpExecArray | null = tagRegex.exec(data);
+
+    while (match !== null) {
+      const tag = match[0];
+
+      // Skip self-closing tags
+      if (tag.endsWith("/>")) {
+        match = tagRegex.exec(data);
+        continue;
+      }
+
+      // Skip comments, CDATA, processing instructions
+      if (tag.startsWith("<!--") || tag.startsWith("<![CDATA[") || tag.startsWith("<?")) {
+        match = tagRegex.exec(data);
+        continue;
+      }
+
+      // Extract tag name
+      const tagNameMatch = tag.match(/^<\/?([a-zA-Z][a-zA-Z0-9]*)/);
+      if (!tagNameMatch || !tagNameMatch[1]) {
+        match = tagRegex.exec(data);
+        continue;
+      }
+
+      const tagName = tagNameMatch[1];
+      const isClosing = tag.startsWith("</");
+
+      if (isClosing) {
+        // Find matching opening tag
+        const lastOpenIndex = tags.lastIndexOf(tagName);
+        if (lastOpenIndex === -1) {
+          throw new Error(`Unmatched closing tag: ${tagName}`);
+        }
+        tags.splice(lastOpenIndex, 1);
+      } else {
+        tags.push(tagName);
+      }
+
+      match = tagRegex.exec(data);
+    }
+
+    // Check for unclosed tags
+    if (tags.length > 0) {
+      throw new Error(`Unclosed tags: ${tags.join(", ")}`);
+    }
+  }
+
+  /**
    * Parse an XML string and return valid JavaScript data
    */
   parse(data: string, options: XmlParseOptionsExtended = {}): unknown {
     try {
+      // Pre-validate XML well-formedness
+      this.validateXmlWellFormedness(data);
+
       const config: any = {
         compact: true,
         ignoreDeclaration: true,
         nativeType: true,
         nativeTypeAttributes: true,
+        strict: true,
+        ignoreDoctype: false,
       };
 
       if (options.showDeclaration) {

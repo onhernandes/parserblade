@@ -40,7 +40,8 @@
   font-size: 1em;
 }
 
-.github-markdown ul, .github-markdown ol {
+.github-markdown ul,
+.github-markdown ol {
   padding-left: 2em;
 }
 
@@ -79,5 +80,5 @@
 /** badge(.svg) does not have border */
 .github-markdown img:not([src*=".svg"]) {
   max-width: 100%;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }

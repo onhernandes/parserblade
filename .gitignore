@@ -2,3 +2,15 @@ node_modules
 coverage
 nohup.out
 parserblade.tar.gz
+
+# TypeScript build outputs
+dist
+*.tsbuildinfo
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -42,11 +42,11 @@ table.test-summary tr.test-interface .toggle {
 }
 
 table.test-summary tr.test-interface .toggle.opened:before {
-  content: '▼';
+  content: "▼";
 }
 
 table.test-summary tr.test-interface .toggle.closed:before {
-  content: '▶';
+  content: "▶";
 }
 
 table.test-summary .test-target > span {

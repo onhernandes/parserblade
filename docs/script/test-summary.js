@@ -1,8 +1,8 @@
-(function(){
+(() => {
   function toggle(ev) {
     var button = ev.target;
     var parent = ev.target.parentElement;
-    while(parent) {
+    while (parent) {
       if (parent.tagName === 'TR' && parent.classList.contains('test-interface')) break;
       parent = parent.parentElement;
     }
@@ -20,13 +20,13 @@
       direction = 'opened';
     }
 
-    var targetDepth = parseInt(parent.dataset.testDepth, 10) + 1;
+    var targetDepth = Number.parseInt(parent.dataset.testDepth, 10) + 1;
     var nextElement = parent.nextElementSibling;
     while (nextElement) {
-      var depth = parseInt(nextElement.dataset.testDepth, 10);
+      var depth = Number.parseInt(nextElement.dataset.testDepth, 10);
       if (depth >= targetDepth) {
         if (direction === 'opened') {
-          if (depth === targetDepth)  nextElement.style.display = '';
+          if (depth === targetDepth) nextElement.style.display = '';
         } else if (direction === 'closed') {
           nextElement.style.display = 'none';
           var innerButton = nextElement.querySelector('.toggle');

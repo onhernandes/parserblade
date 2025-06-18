@@ -1,6 +1,6 @@
 {
   "name": "parserblade",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "The easiest parser for JSON, XML, CSV and YAML. Use it as simple as JSON.stringify() or JSON.parse(). All in one place.",
   "homepage": "https://onhernandes.github.io/parserblade",
   "author": {
@@ -9,9 +9,22 @@
     "url": "onhernandes.github.io"
   },
   "files": [
+    "dist",
     "src"
   ],
-  "main": "src/index.js",
+  "main": "dist/parserblade.cjs.js",
+  "module": "dist/parserblade.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/parserblade.es.js",
+      "require": "./dist/parserblade.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "parserblade": "dist/cli/index.js"
+  },
   "keywords": [
     "parser",
     "data-parser",
@@ -41,56 +54,63 @@
     "json-parser",
     "json-stringify",
     "json-stringify-stream",
-    "json-parser-stream"
+    "json-parser-stream",
+    "typescript"
   ],
   "devDependencies": {
-    "esdoc": "^1.1.0",
-    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
-    "esdoc-inject-style-plugin": "^1.0.0",
-    "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^7.4.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^3.0.9",
-    "jest": "^26.1.0",
-    "lint-staged": "^9.4.3"
+    "@biomejs/biome": "^1.9.4",
+    "@types/adm-zip": "^0.5.7",
+    "@types/js-yaml": "^4.0.9",
+    "@types/jsonpath": "^0.2.4",
+    "@types/jsonstream": "^0.8.33",
+    "@types/node": "^20.19.1",
+    "@types/tar": "^6.1.13",
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vitest/ui": "^1.6.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.4.19",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.1"
   },
   "engines": {
-    "npm": ">= 4.0.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "node": ">= 16.0.0",
+    "npm": ">= 8.0.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest --no-cache",
-    "tdd": "./node_modules/.bin/jest --watch --no-cache",
-    "docs": "./node_modules/.bin/esdoc",
-    "lint": "./node_modules/.bin/eslint",
-    "publish-docs": "./node_modules/.bin/esdoc && git subtree push --prefix docs origin gh-pages",
-    "tarfile": "tar -czvf parserblade.tar.gz LICENSE package* README.md src"
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist coverage",
+    "prepublishOnly": "npm run clean && npm run typecheck && npm run test:run && npm run build"
   },
   "repository": "git@github.com:onhernandes/parserblade.git",
-  "jest": {
-    "testEnvironment": "node"
-  },
   "license": "MIT",
   "dependencies": {
+    "@types/joi": "^17.2.2",
+    "adm-zip": "^0.5.16",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^2.1.1",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "csv-parse": "^5.5.2",
+    "csv-stringify": "^6.4.4",
+    "joi": "^17.13.3",
+    "js-yaml": "^4.1.0",
+    "jsonpath": "^1.1.1",
     "JSONStream": "^1.3.5",
-    "csv-parse": "^4.11.1",
-    "csv-stringify": "^5.5.0",
-    "js-yaml": "^3.14.0",
     "node-xml-stream": "^1.0.2",
-    "xml-js": "^1.6.11"
+    "tar": "^7.4.3",
+    "xml-js": "^1.6.11",
+    "zod": "^3.25.67"
   }
 }

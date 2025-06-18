@@ -6,10 +6,7 @@
     "src/Parser.js": {
       "expectCount": 8,
       "actualCount": 6,
-      "undocumentLines": [
-        55,
-        57
-      ]
+      "undocumentLines": [55, 57]
     },
     "src/errors/NotImplemented.js": {
       "expectCount": 1,
@@ -24,81 +21,42 @@
     "src/index.js": {
       "expectCount": 2,
       "actualCount": 0,
-      "undocumentLines": [
-        1,
-        7
-      ]
+      "undocumentLines": [1, 7]
     },
     "src/strategies/Base.js": {
       "expectCount": 9,
       "actualCount": 7,
-      "undocumentLines": [
-        1,
-        2
-      ]
+      "undocumentLines": [1, 2]
     },
     "src/strategies/Csv.js": {
       "expectCount": 11,
       "actualCount": 5,
-      "undocumentLines": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ]
+      "undocumentLines": [1, 2, 3, 4, 5, 6]
     },
     "src/strategies/Json.js": {
       "expectCount": 8,
       "actualCount": 5,
-      "undocumentLines": [
-        1,
-        2,
-        3
-      ]
+      "undocumentLines": [1, 2, 3]
     },
     "src/strategies/Xml/XmlTag.js": {
       "expectCount": 4,
       "actualCount": 0,
-      "undocumentLines": [
-        1,
-        7,
-        14,
-        18
-      ]
+      "undocumentLines": [1, 7, 14, 18]
     },
     "src/strategies/Xml/index.js": {
       "expectCount": 14,
       "actualCount": 7,
-      "undocumentLines": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ]
+      "undocumentLines": [1, 2, 3, 4, 5, 6, 7]
     },
     "src/strategies/Yaml.js": {
       "expectCount": 6,
       "actualCount": 3,
-      "undocumentLines": [
-        1,
-        2,
-        3
-      ]
+      "undocumentLines": [1, 2, 3]
     },
     "src/strategies/index.js": {
       "expectCount": 4,
       "actualCount": 0,
-      "undocumentLines": [
-        1,
-        2,
-        3,
-        4
-      ]
+      "undocumentLines": [1, 2, 3, 4]
     }
   }
 }

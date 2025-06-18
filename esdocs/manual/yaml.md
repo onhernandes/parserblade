@@ -35,12 +35,9 @@ assert.equal(
 Just checks if given string is a valid YAML
 
 ```javascript
-const assert = require('assert')
-const { yaml } = require('parserblade')
-const result = yaml.valid('[name:\nStardew')
+const assert = require('assert');
+const { yaml } = require('parserblade');
+const result = yaml.valid('[name:\nStardew');
 
-assert.equal(
-  result,
-  false
-)
+assert.equal(result, false);
 ```

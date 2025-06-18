@@ -1,0 +1,12 @@
+{
+  "name": "J",
+  "age": 150,
+  "email": "invalid-email",
+  "isActive": "yes",
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "country": "USA"
+  },
+  "tags": []
+} 

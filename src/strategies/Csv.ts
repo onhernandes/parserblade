@@ -19,7 +19,8 @@ export interface CsvParseOptionsExtended extends CsvParseOptions {
 /**
  * Extended CSV stringify options with additional fields
  */
-export interface CsvStringifyOptionsExtended extends Omit<CsvStringifyOptions, "columns"> {
+export interface CsvStringifyOptionsExtended
+  extends Omit<CsvStringifyOptions, "columns"> {
   headers?: boolean;
   columns?: string[] | Record<string, string>;
 }
@@ -31,7 +32,10 @@ export class Csv extends Base {
   /**
    * Parse a CSV string and return valid JavaScript array
    */
-  parse(data: string, options: CsvParseOptionsExtended = {}): unknown[] {
+  protected parseInternal(
+    data: string,
+    options: CsvParseOptionsExtended = {}
+  ): unknown[] {
     const config: any = {
       columns: true,
       skip_empty_lines: true,
@@ -69,7 +73,10 @@ export class Csv extends Base {
   /**
    * Stringify JavaScript data into CSV format
    */
-  stringify(data: unknown[], options: CsvStringifyOptionsExtended = {}): string {
+  stringify(
+    data: unknown[],
+    options: CsvStringifyOptionsExtended = {}
+  ): string {
     const config: any = {
       header: true,
       delimiter: options.delimiter || ",",
@@ -96,7 +103,9 @@ export class Csv extends Base {
   pipeParse(options: CsvParseOptionsExtended = {}): Transform {
     const config: any = {
       delimiter: options.delimiter || ",",
-      columns: Object.prototype.hasOwnProperty.call(options, "headers") ? options.headers : true,
+      columns: Object.prototype.hasOwnProperty.call(options, "headers")
+        ? options.headers
+        : true,
     };
 
     return csvParserStream(config);
@@ -108,7 +117,9 @@ export class Csv extends Base {
   pipeStringify(options: CsvStringifyOptionsExtended = {}): Transform {
     const config: any = {
       delimiter: options.delimiter || ",",
-      header: Object.prototype.hasOwnProperty.call(options, "headers") ? !!options.headers : true,
+      header: Object.prototype.hasOwnProperty.call(options, "headers")
+        ? !!options.headers
+        : true,
     };
 
     if (Object.prototype.hasOwnProperty.call(options, "columns")) {

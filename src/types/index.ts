@@ -1,11 +1,28 @@
 import type { Transform } from "node:stream";
 import type { ZodSchema } from "zod";
-import type { ValidationAdapter } from './validation';
+import type { ValidationAdapter } from "./validation";
 
 /**
  * Common parsing options that can be passed to any strategy
  */
 export interface ParseOptions {
+  /**
+   * Optional validation configuration to validate parsed data
+   */
+  validation?: {
+    /**
+     * The validation adapter to use
+     */
+    adapter: ValidationAdapter;
+    /**
+     * Whether to throw an error on validation failure (default: true)
+     */
+    throwOnError?: boolean;
+    /**
+     * Custom error message for validation failures
+     */
+    errorMessage?: string;
+  };
   [key: string]: unknown;
 }
 
@@ -147,6 +164,16 @@ export interface BaseStrategyProps {
   parse(data: string, options?: ParseOptions): unknown;
 
   /**
+   * Parse a string with validation in a single operation
+   */
+  parseWithValidation<T>(
+    data: string,
+    options: ParseOptions & {
+      validation: NonNullable<ParseOptions["validation"]>;
+    }
+  ): ValidationResult<T>;
+
+  /**
    * Stringify a JavaScript value into a string
    */
   stringify(data: unknown, options?: StringifyOptions): string;
@@ -159,7 +186,10 @@ export interface BaseStrategyProps {
   /**
    * Validate parsed data against a Zod schema
    */
-  validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T>;
+  validateSchema<T>(
+    data: string,
+    validationOptions: ValidationOptions
+  ): ValidationResult<T>;
 
   /**
    * Create a transform stream for parsing
@@ -200,7 +230,10 @@ export interface BaseParserProps {
   /**
    * Validate parsed data against a Zod schema using the configured strategy
    */
-  validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T>;
+  validateSchema<T>(
+    data: string,
+    validationOptions: ValidationOptions
+  ): ValidationResult<T>;
 
   /**
    * Create a transform stream for parsing
@@ -222,7 +255,14 @@ export interface BaseParserProps {
 /**
  * Data types that can be parsed/stringified
  */
-export type ParseableData = string | number | boolean | null | undefined | object | unknown[];
+export type ParseableData =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | object
+  | unknown[];
 
 /**
  * Supported data formats

@@ -31,7 +31,7 @@ export class Json extends Base {
   /**
    * Parse a JSON string and return valid JavaScript data
    */
-  parse(data: string, options?: JsonParseOptions): unknown {
+  protected parseInternal(data: string, options?: JsonParseOptions): unknown {
     try {
       return JSON.parse(data, options?.reviver);
     } catch (error) {
@@ -74,7 +74,11 @@ export class Json extends Base {
 
     const transform = new Transform({
       objectMode: true,
-      transform(chunk: any, _encoding: string, callback: (error?: Error, data?: any) => void) {
+      transform(
+        chunk: any,
+        _encoding: string,
+        callback: (error?: Error, data?: any) => void
+      ) {
         // Pass the chunk to JSONStream
         jsonStream.write(chunk);
         callback();
@@ -115,7 +119,11 @@ export class Json extends Base {
 
     const transform = new Transform({
       objectMode: true,
-      transform(chunk: any, _encoding: string, callback: (error?: Error, data?: any) => void) {
+      transform(
+        chunk: any,
+        _encoding: string,
+        callback: (error?: Error, data?: any) => void
+      ) {
         // Pass the chunk to JSONStream
         jsonStream.write(chunk);
         callback();

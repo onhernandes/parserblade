@@ -11,7 +11,10 @@ export class Yaml extends Base {
   /**
    * Parse a YAML string and return valid JavaScript data
    */
-  parse(data: string, options: YamlParseOptions = {}): unknown {
+  protected parseInternal(
+    data: string,
+    options: YamlParseOptions = {}
+  ): unknown {
     try {
       return yaml.load(data, options);
     } catch (error: any) {
@@ -63,9 +66,13 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: Buffer, _encoding: string, callback: (error?: Error) => void) {
+      transform(
+        chunk: Buffer,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
-          const result = yamlInstance.parse(chunk.toString());
+          const result = yamlInstance.parseInternal(chunk.toString());
           this.push(result);
           callback();
         } catch (error) {
@@ -83,7 +90,11 @@ export class Yaml extends Base {
     const yamlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: unknown, _encoding: string, callback: (error?: Error) => void) {
+      transform(
+        chunk: unknown,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = yamlInstance.stringify(chunk);
           this.push(result);

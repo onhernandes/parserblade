@@ -17,8 +17,99 @@ export abstract class Base implements BaseStrategyProps {
   /**
    * Parse a string into a JavaScript value
    */
-  parse(_data: string, _options?: ParseOptions): unknown {
-    throw new NotImplementedError("parse method must be implemented");
+  parse(data: string, options?: ParseOptions): unknown {
+    // If validation is requested, use parseWithValidation
+    if (options?.validation) {
+      const result = this.parseWithValidation(
+        data,
+        options as ParseOptions & {
+          validation: NonNullable<ParseOptions["validation"]>;
+        }
+      );
+      if (result.success) {
+        return result.data;
+      }
+      // If we get here, throwOnError was false and validation failed
+      // Return the error result instead of throwing
+      return result;
+    }
+
+    // No validation requested, use parseInternal directly
+    return this.parseInternal(data, options);
+  }
+
+  /**
+   * Parse a string with validation
+   * This method combines parsing and validation in a single operation
+   */
+  parseWithValidation<T>(
+    data: string,
+    options: ParseOptions & {
+      validation: NonNullable<ParseOptions["validation"]>;
+    }
+  ): ValidationResult<T> {
+    const { validation, ...parseOptions } = options;
+    const { adapter, throwOnError = true, errorMessage } = validation;
+
+    try {
+      // Parse the data first using the strategy - need to call the actual implementation
+      // We create a new options object without validation to avoid recursion
+      const parsedData = this.parseInternal(data, parseOptions);
+
+      // Validate using the provided adapter
+      const result = adapter.validate(parsedData);
+
+      if (result.success) {
+        return {
+          success: true,
+          data: result.data as T,
+        };
+      }
+
+      if (!result.error) {
+        throw new Error("Validation failed but no error details provided");
+      }
+
+      const error = {
+        message: errorMessage || result.error.message,
+        issues: result.error.issues,
+      };
+
+      if (throwOnError) {
+        throw new ParserError("validation", { validationError: error });
+      }
+
+      return {
+        success: false,
+        error,
+      };
+    } catch (error) {
+      if (error instanceof ParserError) {
+        throw error;
+      }
+
+      const validationError = {
+        message: errorMessage || "Validation error occurred",
+        issues: [{ path: [], message: String(error), code: "unknown" }],
+      };
+
+      if (throwOnError) {
+        throw new ParserError("validation", { validationError });
+      }
+
+      return {
+        success: false,
+        error: validationError,
+      };
+    }
+  }
+
+  /**
+   * Internal parse method that subclasses should implement
+   * This is separated from the public parse method to handle validation logic
+   */
+  protected parseInternal(_data: string, _options?: ParseOptions): unknown {
+    throw new NotImplementedError("parseInternal method must be implemented");
   }
 
   /**
@@ -63,7 +154,10 @@ export abstract class Base implements BaseStrategyProps {
    * Validate parsed data against a Zod schema
    * First parses the data using the strategy, then validates against the schema
    */
-  validateSchema<T>(data: string, validationOptions: ValidationOptions): ValidationResult<T> {
+  validateSchema<T>(
+    data: string,
+    validationOptions: ValidationOptions
+  ): ValidationResult<T> {
     const { adapter, throwOnError = true, errorMessage } = validationOptions;
 
     try {
@@ -130,11 +224,14 @@ export abstract class Base implements BaseStrategyProps {
       transform(
         chunk: Buffer | string,
         _encoding: string,
-        callback: (error?: Error, data?: any) => void,
+        callback: (error?: Error, data?: any) => void
       ) {
         try {
           const dataString = chunk instanceof Buffer ? chunk.toString() : chunk;
-          const result = baseInstance.validateSchema<T>(dataString as string, validationOptions);
+          const result = baseInstance.validateSchema<T>(
+            dataString as string,
+            validationOptions
+          );
 
           if (result.success) {
             this.push(result.data);
@@ -145,7 +242,9 @@ export abstract class Base implements BaseStrategyProps {
               this.push(result);
               callback();
             } else {
-              callback(new ParserError("validation", { validationError: result.error }));
+              callback(
+                new ParserError("validation", { validationError: result.error })
+              );
             }
           }
         } catch (error) {

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { ParserError } from "../../src/errors";
-import { NotImplementedError } from "../../src/errors/NotImplemented";
 import { Yaml } from "../../src/strategies/Yaml";
 import { ZodAdapter } from "../../src/validation/adapters/ZodAdapter";
 import type { ValidationOptions } from "../../src/types";

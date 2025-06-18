@@ -1,5 +1,10 @@
 import type { Transform } from "node:stream";
-import type { BaseParserProps, BaseStrategyProps, ParseOptions, StringifyOptions } from "./types";
+import type {
+  BaseParserProps,
+  BaseStrategyProps,
+  ParseOptions,
+  StringifyOptions,
+} from "./types";
 
 /**
  * Parser - Receives any strategy and safely implements it
@@ -50,14 +55,31 @@ export class Parser implements BaseParserProps {
   /**
    * Validate parsed data against a schema using the configured strategy
    */
-  validateSchema<T>(data: string, validationOptions: import("./types").ValidationOptions): import("./types").ValidationResult<T> {
+  validateSchema<T>(
+    data: string,
+    validationOptions: import("./types").ValidationOptions
+  ): import("./types").ValidationResult<T> {
     return this.strategy.validateSchema<T>(data, validationOptions);
+  }
+
+  /**
+   * Parse a string with validation in a single operation
+   */
+  parseWithValidation<T>(
+    data: string,
+    options: import("./types").ParseOptions & {
+      validation: NonNullable<import("./types").ParseOptions["validation"]>;
+    }
+  ): import("./types").ValidationResult<T> {
+    return this.strategy.parseWithValidation<T>(data, options);
   }
 
   /**
    * Create a transform stream for validation with a schema using the configured strategy
    */
-  pipeValidateSchema<T>(validationOptions: import("./types").ValidationOptions): Transform {
+  pipeValidateSchema<T>(
+    validationOptions: import("./types").ValidationOptions
+  ): Transform {
     return this.strategy.pipeValidateSchema<T>(validationOptions);
   }
 

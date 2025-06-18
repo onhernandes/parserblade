@@ -75,7 +75,11 @@ export class Xml extends Base {
       }
 
       // Skip comments, CDATA, processing instructions
-      if (tag.startsWith("<!--") || tag.startsWith("<![CDATA[") || tag.startsWith("<?")) {
+      if (
+        tag.startsWith("<!--") ||
+        tag.startsWith("<![CDATA[") ||
+        tag.startsWith("<?")
+      ) {
         match = tagRegex.exec(data);
         continue;
       }
@@ -113,7 +117,10 @@ export class Xml extends Base {
   /**
    * Parse an XML string and return valid JavaScript data
    */
-  parse(data: string, options: XmlParseOptionsExtended = {}): unknown {
+  protected parseInternal(
+    data: string,
+    options: XmlParseOptionsExtended = {}
+  ): unknown {
     try {
       // Pre-validate XML well-formedness
       this.validateXmlWellFormedness(data);
@@ -188,9 +195,13 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: Buffer, _encoding: string, callback: (error?: Error) => void) {
+      transform(
+        chunk: Buffer,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
-          const result = xmlInstance.parse(chunk.toString(), options);
+          const result = xmlInstance.parseInternal(chunk.toString(), options);
           this.push(result);
           callback();
         } catch (error) {
@@ -208,7 +219,11 @@ export class Xml extends Base {
     const xmlInstance = this;
     return new Transform({
       objectMode: true,
-      transform(chunk: unknown, _encoding: string, callback: (error?: Error) => void) {
+      transform(
+        chunk: unknown,
+        _encoding: string,
+        callback: (error?: Error) => void
+      ) {
         try {
           const result = xmlInstance.stringify(chunk, options);
           this.push(result);

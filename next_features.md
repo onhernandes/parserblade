@@ -95,6 +95,8 @@ A set of feature suggestions focused on improving **Developer Experience (DX)**,
   npx parserblade query data.json '$.users[*].email'
   ```
 
+  Also, try to do this using streams.
+
 - **Format Diff Tool**  
   Compare two files of the same or different formats and output the differences.  
   Example:

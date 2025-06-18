@@ -221,6 +221,62 @@ cat data.txt | npx parserblade hash --algo sha512
 find . -name "*.js" -exec npx parserblade hash {} \; | grep "\.js"
 ```
 
+#### `query` - Extract data using JSONPath
+
+Extract specific parts of data files using JSONPath expressions, supporting all formats and compression.
+
+**Syntax:**
+
+```bash
+npx parserblade query [file] <query> [options]
+```
+
+**Options:**
+
+- `-f, --from <format>` - Input format (auto-detected if not specified)
+- `-t, --to <format>` - Output format (`json`, `xml`, `csv`, `yaml`) [default: `json`]
+- `--pretty` - Pretty print the output
+- `--count` - Return count of matching elements instead of the elements
+- `--first` - Return only the first matching element
+- `--unique` - Return only unique values (removes duplicates)
+
+**Examples:**
+
+```bash
+# Extract all user emails
+npx parserblade query users.json '$.users[*].email'
+
+# Get active users only
+npx parserblade query users.json '$.users[?(@.active == true)].name' --pretty
+
+# Count active users
+npx parserblade query users.json '$.users[?(@.active == true)]' --count
+
+# Get first user
+npx parserblade query users.json '$.users[*]' --first
+
+# Extract unique departments
+npx parserblade query data.json '$.employees[*].department' --unique
+
+# Query YAML files
+npx parserblade query config.yaml '$.database.host'
+
+# Query compressed files
+npx parserblade query data.json.gz '$.results[*].value'
+
+# Query from stdin
+cat data.json | npx parserblade query - '$.items[?(@.price > 100)]'
+
+# Complex filtering
+npx parserblade query sales.json '$.transactions[?(@.amount > 1000 && @.status == "completed")].id'
+
+# Recursive search
+npx parserblade query nested.json '$..email' --unique
+
+# Output to different formats
+npx parserblade query users.yaml '$.users[*].profile' --to json --pretty
+```
+
 ### Supported Formats
 
 - **JSON** (`.json`) - JavaScript Object Notation
@@ -352,6 +408,14 @@ cat access.log | npx parserblade parse --from csv --to json --pretty
 # Aggregate data from multiple sources
 cat config.yaml | npx parserblade parse --to json > temp.json
 cat users.csv | npx parserblade parse --to json | jq --slurpfile config temp.json '{config: $config[0], users: .}'
+
+# Extract specific data with JSONPath
+npx parserblade query sales-data.json '$.transactions[?(@.amount > 1000)]' --count
+npx parserblade query user-analytics.json '$.users[*].sessions[*].duration' --to csv
+
+# Analyze nested data structures
+npx parserblade query logs.json '$..errors[?(@.severity == "critical")]' --pretty
+npx parserblade query metrics.yaml '$.performance.memory[?(@.usage > 80)]' --unique
 ```
 
 #### Schema Validation Workflows
@@ -530,6 +594,55 @@ const { json } = require("parserblade");
 const data = json.parse(extractFirstTextFile("data.json.gz"));
 ```
 
+#### JSONPath Querying API
+
+```javascript
+const parserblade = require("parserblade");
+const jsonpath = require("jsonpath");
+
+// Parse any format to JSON for querying
+const yamlContent = `
+users:
+  - name: John
+    email: john@example.com
+    active: true
+  - name: Jane  
+    email: jane@example.com
+    active: false
+`;
+
+const data = parserblade.yaml.parse(yamlContent);
+
+// Use JSONPath for data extraction
+const emails = jsonpath.query(data, "$.users[*].email");
+console.log(emails); // ['john@example.com', 'jane@example.com']
+
+const activeUsers = jsonpath.query(data, "$.users[?(@.active == true)].name");
+console.log(activeUsers); // ['John']
+
+// Helper function for parsing and querying in one step
+function queryFile(filePath, queryExpr, format = "auto") {
+  const fs = require("fs");
+  let content = fs.readFileSync(filePath, "utf8");
+
+  // Auto-detect format if needed
+  if (format === "auto") {
+    format = parserblade.detectFormat
+      ? parserblade.detectFormat(content)
+      : "json";
+  }
+
+  const parser = parserblade[format];
+  const data = parser.parse(content);
+
+  return jsonpath.query(data, queryExpr);
+}
+
+// Usage examples
+const userEmails = queryFile("users.yaml", "$.users[*].email");
+const configValues = queryFile("config.json", "$.database.hosts[*]");
+```
+
 ### Integration Examples
 
 #### Docker & DevOps
@@ -664,6 +777,15 @@ npx parserblade hash dist/app.js --verify $(cat app.hash) && echo "File verified
 
 # Generate checksums for release artifacts
 find dist -type f -name "*.js" -exec npx parserblade hash {} --short \; > release-checksums.txt
+
+# Quick data extraction for debugging
+npx parserblade query package.json '$.dependencies' --pretty
+npx parserblade query tsconfig.json '$.compilerOptions.target'
+npx parserblade query api-response.json '$.data[*].id' --count
+
+# Extract environment-specific configurations
+npx parserblade query config.json '$.environments.production.database'
+npx parserblade query docker-compose.yml '$.services.*.environment[*]' --unique
 ```
 
 #### Security & Integrity

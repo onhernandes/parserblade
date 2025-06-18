@@ -47,6 +47,7 @@ export default defineConfig({
         "commander",
         "tar",
         "adm-zip",
+        "jsonpath",
       ],
       output: {
         globals: {

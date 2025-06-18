@@ -2,7 +2,12 @@
 
 import chalk from "chalk";
 import { Command } from "commander";
-import { parseCommand, validateCommand, hashCommand } from "./commands";
+import {
+  parseCommand,
+  validateCommand,
+  hashCommand,
+  queryCommand,
+} from "./commands";
 
 const program = new Command();
 
@@ -18,6 +23,7 @@ program
 program.addCommand(parseCommand);
 program.addCommand(validateCommand);
 program.addCommand(hashCommand);
+program.addCommand(queryCommand);
 
 // Handle errors gracefully
 program.configureOutput({

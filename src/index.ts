@@ -30,5 +30,11 @@ export { ParserError, NotImplementedError } from "./errors";
 // Export type definitions
 export * from "./types";
 
+// Export hash utilities
+export * from "./hash";
+
+// Export compression utilities
+export * from "./compression";
+
 // Default export for convenience
 export default parsers;

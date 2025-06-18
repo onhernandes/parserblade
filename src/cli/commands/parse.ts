@@ -2,6 +2,33 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import chalk from "chalk";
 import { Command } from "commander";
+
+/**
+ * Read data from stdin
+ */
+function readStdin(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let data = "";
+
+    process.stdin.setEncoding("utf8");
+
+    process.stdin.on("readable", () => {
+      let chunk: string | null;
+      // biome-ignore lint/suspicious/noAssignInExpressions: Standard Node.js pattern for reading streams
+      while (null !== (chunk = process.stdin.read())) {
+        data += chunk;
+      }
+    });
+
+    process.stdin.on("end", () => {
+      resolve(data);
+    });
+
+    process.stdin.on("error", (error) => {
+      reject(error);
+    });
+  });
+}
 import parserblade, { type DataFormat } from "../../index";
 import {
   detectFormat,
@@ -9,6 +36,11 @@ import {
   getSupportedFormats,
   isValidFormat,
 } from "../utils/format-detection";
+import {
+  isCompressed,
+  extractFirstTextFile,
+  writeCompressedFile,
+} from "../../compression";
 import { ZodAdapter } from "../../validation/adapters/ZodAdapter";
 import { JoiAdapter } from "../../validation/adapters/JoiAdapter";
 import { JsonSchemaAdapter } from "../../validation/adapters/JsonSchemaAdapter";
@@ -16,7 +48,7 @@ import type { ValidationAdapter } from "../../types/validation";
 
 export const parseCommand = new Command("parse")
   .description("Parse a file and convert it to another format")
-  .argument("<file>", "input file to parse")
+  .argument("[file]", "input file to parse (use '-' or omit for stdin)")
   .option("-t, --to <format>", "output format (json, xml, csv, yaml)")
   .option("-o, --output <file>", "output file (default: stdout)")
   .option(
@@ -30,7 +62,7 @@ export const parseCommand = new Command("parse")
   .option("--validate-throw", "throw on validation error (default: false)")
   .action(
     async (
-      inputFile: string,
+      inputFile: string | undefined,
       options: {
         to?: string;
         output?: string;
@@ -43,8 +75,21 @@ export const parseCommand = new Command("parse")
       }
     ) => {
       try {
-        // Read input file
-        const content = readFileSync(inputFile, "utf8");
+        // Determine if we should read from stdin
+        const shouldReadFromStdin = !inputFile || inputFile === "-";
+
+        // Read input content
+        let content: string;
+        if (shouldReadFromStdin) {
+          content = await readStdin();
+        } else {
+          // Check if file is compressed
+          if (isCompressed(inputFile)) {
+            content = extractFirstTextFile(inputFile);
+          } else {
+            content = readFileSync(inputFile, "utf8");
+          }
+        }
 
         // Determine input format
         let inputFormat: DataFormat;
@@ -62,8 +107,9 @@ export const parseCommand = new Command("parse")
           }
           inputFormat = options.from as DataFormat;
         } else {
-          inputFormat =
-            getFormatFromExtension(inputFile) || detectFormat(content);
+          inputFormat = shouldReadFromStdin
+            ? detectFormat(content)
+            : getFormatFromExtension(inputFile) || detectFormat(content);
         }
 
         // Determine output format
@@ -181,11 +227,17 @@ export const parseCommand = new Command("parse")
 
           // Output result
           if (options.output) {
-            writeFileSync(options.output, result);
+            // Check if output should be compressed
+            if (isCompressed(options.output)) {
+              writeCompressedFile(result, options.output);
+            } else {
+              writeFileSync(options.output, result);
+            }
+            const inputSource = shouldReadFromStdin ? "stdin" : inputFile;
             console.log(
               chalk.green(
                 `✓ Converted and validated ${chalk.bold(
-                  inputFile
+                  inputSource
                 )} (${inputFormat}) to ${chalk.bold(
                   options.output
                 )} (${outputFormat})`
@@ -214,15 +266,21 @@ export const parseCommand = new Command("parse")
 
           // Output result
           if (options.output) {
-            writeFileSync(options.output, result);
+            // Check if output should be compressed
+            if (isCompressed(options.output)) {
+              writeCompressedFile(result, options.output);
+            } else {
+              writeFileSync(options.output, result);
+            }
+            const inputSource = shouldReadFromStdin ? "stdin" : inputFile;
             const successMessage = validationAdapter
               ? `✓ Converted and validated ${chalk.bold(
-                  inputFile
+                  inputSource
                 )} (${inputFormat}) to ${chalk.bold(
                   options.output
                 )} (${outputFormat})`
               : `✓ Converted ${chalk.bold(
-                  inputFile
+                  inputSource
                 )} (${inputFormat}) to ${chalk.bold(
                   options.output
                 )} (${outputFormat})`;

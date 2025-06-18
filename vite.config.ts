@@ -7,9 +7,17 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        "cli/index": resolve(__dirname, "src/cli/index.ts"),
+      },
       name: "ParserBlade",
-      fileName: (format) => `parserblade.${format}.js`,
+      fileName: (format, entryName) => {
+        if (entryName === "cli/index") {
+          return "cli/index.js";
+        }
+        return `parserblade.${format}.js`;
+      },
       formats: ["es", "cjs"],
     },
     rollupOptions: {
@@ -17,8 +25,16 @@ export default defineConfig({
       external: [
         // Node.js built-in modules
         "stream",
+        "node:stream",
+        "node:stream/promises",
         "fs",
+        "node:fs",
         "path",
+        "node:path",
+        "crypto",
+        "node:crypto",
+        "zlib",
+        "node:zlib",
         "util",
         // Dependencies
         "csv-parse",
@@ -29,6 +45,8 @@ export default defineConfig({
         "node-xml-stream",
         "chalk",
         "commander",
+        "tar",
+        "adm-zip",
       ],
       output: {
         globals: {
@@ -63,7 +81,12 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html", "lcov"],
       include: ["src/**/*.ts"],
-      exclude: ["src/**/*.test.ts", "src/**/*.d.ts", "src/cli/**/*", "tests/**/*"],
+      exclude: [
+        "src/**/*.test.ts",
+        "src/**/*.d.ts",
+        "src/cli/**/*",
+        "tests/**/*",
+      ],
       thresholds: {
         global: {
           branches: 80,
